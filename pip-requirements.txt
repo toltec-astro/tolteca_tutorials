@@ -4,3 +4,5 @@ git+https://github.com/toltec-astro/tolteca.git
 matplotlib==3.0.2
 jupyter>=1.0
 notebook>=5.7.2
+sphinx_astropy
+sphinx_bootstrap_theme

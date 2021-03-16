@@ -5,7 +5,8 @@ import time
 
 # Third-party
 from astropy import log as logger
-logger.setLevel('INFO')
+# logger.setLevel('INFO')
+logger.setLevel('DEBUG')
 
 from nbconvert.preprocessors import ExecutePreprocessor, CellExecutionError
 from nbconvert.exporters import RSTExporter
@@ -149,10 +150,7 @@ class NBTutorialsConverter(object):
 
         # Exports the notebook to RST
         logger.debug('Exporting notebook to RST...')
-        exporter = RSTExporter()
-
-        if self.template_file:
-            exporter.template_file = self.template_file
+        exporter = RSTExporter(template_file=self.template_file)
         output, resources = exporter.from_filename(self._executed_nb_path,
                                                    resources=resources)
 
