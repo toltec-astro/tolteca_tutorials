@@ -1,6 +1,12 @@
 Contributing
 ============
 
+The TolTECA tutorials repository is modeled after the
+`Astropy Tutorials <https://github.com/astropy/astropy-tutorials>`_.
+
+Included below is the `CONTRIBUTING.rst <https://github.com/astropy/astropy-tutorials/blob/master/CONTRIBUTING.rst>`_ in the astropy tutorials repository
+which also serves as the guideline of contributing to this TolTECA tutorials.
+
 Overview
 --------
 
@@ -250,8 +256,8 @@ To use this approach, follow these steps:
 * You will need to sign up for an account with Zenodo before you can upload a file there.
 
 * After a Zenodo account has been properly set up, be sure to log in and do a new upload. Follow
-the Zenodo instructions and complete all the required fields as the bare minimum in order to have
-the data file(s) uploaded to their records. Once this is done you will have a link to share the data.
+  the Zenodo instructions and complete all the required fields as the bare minimum in order to have
+  the data file(s) uploaded to their records. Once this is done you will have a link to share the data.
 
 * With the link to the data file record, which has the format ``https://zenodo.org/api/records/:id``, an example HTTP GET request needed to retrieve the data using the Python package ``requests`` is shown below::
 

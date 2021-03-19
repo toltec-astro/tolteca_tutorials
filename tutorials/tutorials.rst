@@ -1,9 +1,8 @@
 Tutorials
 =========
 
-The tutorials on this site walk you through some typical software tasks and
-demonstrate the features in Astropy sub-packages in the context of a story or
-standard workflow. See the `Astropy documentation <http://docs.astropy.org/>`_
-for a structured view of the functionality within the Astropy project.
+The tutorials below demonstrate the general TolTEC data analysis and
+visualization tasks one could accomplish with the TolTECA software stack,
+in the context of a coherent workflow.
 
-Check the relevant keywords in the sidebox.
+Use the side panel on the left to filter the tutorials by keywords.
