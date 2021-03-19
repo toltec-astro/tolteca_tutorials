@@ -82,9 +82,10 @@ a:hover{
   color: #ffffff !important;
 }
 
-#astropy-logo {
+#toltec-logo {
   width: 35vw;
-  padding-top: 100px;
+  padding-top: 22px;
+  margin-bottom: -12px;
 }
 
 .landing {

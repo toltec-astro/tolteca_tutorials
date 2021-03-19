@@ -40,7 +40,7 @@
 
 <nav class="navbar navbar-expand-lg bg-navbar">
   <a class="navbar-brand" href="/" style="padding: 0px 5px;">
-    <img src="../_static/astropy_logo.png" onerror="this.onerror=null;this.src='_static/astropy_logo.png';" style="height: 38px;">
+    <img src="../_static/toltec_logo.png" onerror="this.onerror=null;this.src='_static/toltec_logo.png';" style="height: 38px;">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="http://www.astropy.org"/>Astropy<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://toltecdr.astro.umass.edu"/>TolTECA<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Modules</a>
@@ -108,6 +108,10 @@
         <div>
   <div class="section" id="contributing">
 <span id="contributing-page"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>The TolTECA tutorials repository is modeled after the
+<a class="reference external" href="https://github.com/astropy/astropy-tutorials">Astropy Tutorials</a>.</p>
+<p>Included below is the <a class="reference external" href="https://github.com/astropy/astropy-tutorials/blob/master/CONTRIBUTING.rst">CONTRIBUTING.rst</a> in the astropy tutorials repository
+which also serves as the guideline of contributing to this TolTECA tutorials.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Each tutorial is a <a class="reference external" href="http://jupyter.org/">Jupyter notebook</a> file. Each notebook is saved in a separate directory within the <code class="docutils literal notranslate"><span class="pre">tutorials/notebooks</span></code>
@@ -359,13 +363,11 @@ the top of the notebook:</p>
 </ul>
 <p>For larger data files that are bigger than 10 MB in size, we recommend hosting with Zenodo.
 To use this approach, follow these steps:</p>
-<ul class="simple">
-<li><p>You will need to sign up for an account with Zenodo before you can upload a file there.</p></li>
-<li><p>After a Zenodo account has been properly set up, be sure to log in and do a new upload. Follow</p></li>
-</ul>
-<p>the Zenodo instructions and complete all the required fields as the bare minimum in order to have
-the data file(s) uploaded to their records. Once this is done you will have a link to share the data.</p>
 <ul>
+<li><p>You will need to sign up for an account with Zenodo before you can upload a file there.</p></li>
+<li><p>After a Zenodo account has been properly set up, be sure to log in and do a new upload. Follow
+the Zenodo instructions and complete all the required fields as the bare minimum in order to have
+the data file(s) uploaded to their records. Once this is done you will have a link to share the data.</p></li>
 <li><p>With the link to the data file record, which has the format <code class="docutils literal notranslate"><span class="pre">https://zenodo.org/api/records/:id</span></code>, an example HTTP GET request needed to retrieve the data using the Python package <code class="docutils literal notranslate"><span class="pre">requests</span></code> is shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://zenodo.org/api/records/1234)</span>

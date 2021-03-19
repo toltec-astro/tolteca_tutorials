@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Examples &#8212; tolteca_tutorials v0.0.dev</title>
+    <title>Recipes and Scripts &#8212; tolteca_tutorials v0.0.dev</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -38,29 +38,23 @@
   </head><body>
 
 
-<!-- Learn astropy banner -->
+<!-- TolTEC banner -->
 <div class="container-fluid landing text-center">
-  <a href="/"><img src="_static/astropy_logo_banner.png" id="astropy-logo"></a>
+  <a href="/"><img src="_static/toltec_logo_banner.png" id="toltec-logo"></a>
   <form class="input-group col-sm-7 m-auto"  id="search-bar" action="search.html" method="get">
       <div class="input-group-prepend">
           <button class="input-group-text" type="submit"><i class="fa fa-search fa-fw"></i></button>
       </div>
-      <input type="text" name="q" id="search-bar-input" class="form-control" placeholder="Search the universe of Astropy" />
+      <input type="text" name="q" id="search-bar-input" class="form-control" placeholder="Search in TolTECA" />
   </form>
 </div>
 
 <!-- Guides, Tutorials, Examples, Documentation Placards -->
 <div class="container-fluid row definition-cards">
-  <div class="card bg-guide col-md-3 col-lg-2 p-0 m-2  ml-auto enable-guides">
-    <div class="card-body">
-      <h2 class="card-title text-center"><a href="guides.html" class="text-white">Guides</a></h2>
-      <p class="card-text text-center">Guides are comprehensive, conceptually-focused documents providing stand-alone introductions to core packages in addition to the underlying astronomical concepts.</p>
-    </div>
-  </div>
   <div class="card bg-tutorial col-md-3 col-lg-2 p-0 m-2 ml-auto">
     <div class="card-body">
         <h2 class="card-title text-center"><a href="tutorials.html" class="text-white">Tutorials</a></h2>
-      <p class="card-text text-center">Tutorials are step-by-step cookbooks for common activities that incorporate several packages. They are more specific and less conceptual than Guides but more extended than Examples.</p>
+      <p class="card-text text-center">Tutorials are step-by-step cookbooks for common activities that incorporate several packages. They are more educational and interactive than recipes and scripts.</p>
     </div>
   </div>
   <div class="card bg-documentation col-md-3 col-lg-2 p-0 m-2">
@@ -71,8 +65,8 @@
   </div>
   <div class="card bg-example col-md-3 col-lg-2 p-0 m-2 mr-auto">
     <div class="card-body">
-        <h2 class="card-title text-center"><a href="#" class="text-white">Examples</a></h2>
-      <p class="card-text text-center">Examples are stand-alone code snippets that live in the astropy documentation that demonstrate a specific functionality within a package.</p>
+        <h2 class="card-title text-center"><a href="#" class="text-white">Recipes & Scripts</a></h2>
+      <p class="card-text text-center">Recipes and scripts are utility code snippets that accomplish specific, high-level data related tasks.</p>
     </div>
   </div>
 </div>
@@ -87,16 +81,31 @@
     
 
     
+    <div class="col-md-3">
+      <div id="sidebar" class="bs-sidenav card" role="complementary">
+        <h3>Table of contents</h3>
+        <ul>
+<li><a class="reference internal" href="#">Recipes and Scripts</a></li>
+</ul>
 
-    <div class="col-md-12">
+      </div>
+    </div>
+    
+
+    <div class="col-md-9">
       <div class="content-padding card">
         <div>
-  <div class="section" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<p>Examples are stand-alone code snippets that live in the Astropy documentation which demonstrate a specific functionality within a package.
-Examples don’t provide conceptual background/context or exhaustive explanation of the functionality being demonstrated.
-Examples have less explanation—they may prompt questions which can be answered by scrolling up and down into the documentation.</p>
-<p>See the <a class="reference external" href="http://docs.astropy.org/en/stable/generated/examples/index.html">Astropy Examples</a> for a structured view of the examples within the Astropy project.</p>
+  <div class="section" id="recipes-and-scripts">
+<h1>Recipes and Scripts<a class="headerlink" href="#recipes-and-scripts" title="Permalink to this headline">¶</a></h1>
+<p>Recipes are utility code snippets that comes as part of the
+<a class="reference external" href="https://github.com/toltec-astro/tolteca">tolteca</a> package,
+which implements a set of specific, high-level TolTEC data related tasks.</p>
+<p>Some of these tasks are used as part of the TolTEC data acquisition system,
+and some of them is used for operation and maintenance of the data archive.</p>
+<p>Recipes and scripts offer a command-line interface and the level of
+extensiveness of the documentation within each recipe/script may vary.</p>
+<p>See <a class="reference external" href="https://github.com/toltec-astro/tolteca/tree/master/tolteca/recipes">tolteca/recipes</a>
+and <a class="reference external" href="https://github.com/toltec-astro/tolteca/tree/master/tolteca/scripts">tolteca/scirpts</a> for more details.</p>
 </div>
 
 </div>

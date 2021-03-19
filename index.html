@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learn Astropy &#8212; tolteca_tutorials v0.0.dev</title>
+    <title>TolTECA &#8212; tolteca_tutorials v0.0.dev</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -38,29 +38,23 @@
   </head><body>
 
 
-<!-- Learn astropy banner -->
+<!-- TolTEC banner -->
 <div class="container-fluid landing text-center">
-  <a href="/"><img src="_static/astropy_logo_banner.png" id="astropy-logo"></a>
+  <a href="/"><img src="_static/toltec_logo_banner.png" id="toltec-logo"></a>
   <form class="input-group col-sm-7 m-auto"  id="search-bar" action="search.html" method="get">
       <div class="input-group-prepend">
           <button class="input-group-text" type="submit"><i class="fa fa-search fa-fw"></i></button>
       </div>
-      <input type="text" name="q" id="search-bar-input" class="form-control" placeholder="Search the universe of Astropy" />
+      <input type="text" name="q" id="search-bar-input" class="form-control" placeholder="Search in TolTECA" />
   </form>
 </div>
 
 <!-- Guides, Tutorials, Examples, Documentation Placards -->
 <div class="container-fluid row definition-cards">
-  <div class="card bg-guide col-md-3 col-lg-2 p-0 m-2  ml-auto enable-guides">
-    <div class="card-body">
-      <h2 class="card-title text-center"><a href="guides.html" class="text-white">Guides</a></h2>
-      <p class="card-text text-center">Guides are comprehensive, conceptually-focused documents providing stand-alone introductions to core packages in addition to the underlying astronomical concepts.</p>
-    </div>
-  </div>
   <div class="card bg-tutorial col-md-3 col-lg-2 p-0 m-2 ml-auto">
     <div class="card-body">
         <h2 class="card-title text-center"><a href="tutorials.html" class="text-white">Tutorials</a></h2>
-      <p class="card-text text-center">Tutorials are step-by-step cookbooks for common activities that incorporate several packages. They are more specific and less conceptual than Guides but more extended than Examples.</p>
+      <p class="card-text text-center">Tutorials are step-by-step cookbooks for common activities that incorporate several packages. They are more educational and interactive than recipes and scripts.</p>
     </div>
   </div>
   <div class="card bg-documentation col-md-3 col-lg-2 p-0 m-2">
@@ -71,8 +65,8 @@
   </div>
   <div class="card bg-example col-md-3 col-lg-2 p-0 m-2 mr-auto">
     <div class="card-body">
-        <h2 class="card-title text-center"><a href="examples.html" class="text-white">Examples</a></h2>
-      <p class="card-text text-center">Examples are stand-alone code snippets that live in the astropy documentation that demonstrate a specific functionality within a package.</p>
+        <h2 class="card-title text-center"><a href="recipes.html" class="text-white">Recipes & Scripts</a></h2>
+      <p class="card-text text-center">Recipes and scripts are utility code snippets that accomplish specific, high-level data related tasks.</p>
     </div>
   </div>
 </div>
@@ -91,38 +85,61 @@
     <div class="col-md-12">
       <div class="content-padding card">
         <div>
-  <div class="section" id="learn-astropy">
-<h1>Learn Astropy<a class="headerlink" href="#learn-astropy" title="Permalink to this headline">¶</a></h1>
-<p>Astropy is a Python library for use in astronomy.
-Learn Astropy provides a portal to all of the Astropy educational material through a single dynamically searchable web page.
-It allows you to filter tutorials by keywords, search for filters, and make search queries in tutorials and documentation simultaneously.</p>
-<div class="section" id="installing-astropy">
-<h2>Installing Astropy<a class="headerlink" href="#installing-astropy" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://www.anaconda.com/download/">Anaconda Python Distribution</a> includes Astropy and is the recommended way to install both Python and the Astropy package. Once you have Anaconda installed, use the following to update to the latest version of Astropy:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">update</span> <span class="n">astropy</span>
+  <div class="section" id="tolteca">
+<h1>TolTECA<a class="headerlink" href="#tolteca" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/toltec-astro">TolTECA</a> is the software stack developed to
+facilitate the data analysis tasks of the
+<a class="reference external" href="http://toltec.astro.umass.edu">TolTEC camera</a>, which is to be mounted on the
+<a class="reference external" href="http://www.lmtgtm.org">Large Millimeter Telescope (LMT)</a> and provides simultaneous,
+polarization-sensitive imaging at wavelengths of 1.1, 1.4 and 2.0mm through its
+7718 Lumped element Kinetic Inductance Detectors (KIDs). For more detailed
+description, please check out our recent SPIE papers
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020SPIE11453E..02W/abstract">TolTEC</a>
+and <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020SPIE11452E..2OM/abstract">TolTECA</a>.</p>
+<p>This site hosts a wide range of learning materials and documentations for those
+who would like to working with TolTEC data. The site is equipped with a search
+box that allows you to filter tutorials by keywords, search for filters, and
+make search queries in tutorials and documentation simultaneously.</p>
+<div class="section" id="installing-tolteca">
+<h2>Installing TolTECA<a class="headerlink" href="#installing-tolteca" title="Permalink to this headline">¶</a></h2>
+<p>The two key components of TolTECA are the Python package <code class="docutils literal notranslate"><span class="pre">tolteca</span></code>, and the
+fast data reduction engine <code class="docutils literal notranslate"><span class="pre">citlali</span></code> written in C++. Tolteca implements the
+general data and pipeline management framework that serves at the highest
+levels, while <code class="docutils literal notranslate"><span class="pre">citlali</span></code> works at the low-level to carry out the actual KIDs
+readout signal interpretation, time-ordered data (TOD) processing, and
+map-making. All the software source codes can be found in the
+<a class="reference external" href="https://github.com/toltec-astro">toltec-astro</a> Github page.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>As of March 2021, the repositories are only available to <code class="xref py py-obj docutils literal notranslate"><span class="pre">toltec-astro</span></code>
+organization members. please send email to zhiyuanma (at) umass (dot) edu
+if you would like to have access.</p>
+</div>
+<p>To download and run the Jupyter notebook tutorials, one need to install the
+Python package <code class="docutils literal notranslate"><span class="pre">tolteca</span></code> and its dependencies, which can be done as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/toltec-astro/tolteca_tutorials.git
+$ cd tolteca_tutorials
+$ pip install -r pip-requirements.txt
 </pre></div>
 </div>
-<p>To install Astropy from the source into an existing Python installation, see the more detailed <a class="reference external" href="http://astropy.readthedocs.io/en/stable/install.html">installation instructions</a> in the main Astropy documentation.</p>
-</div>
-<div class="section" id="get-help">
-<h2>Get help<a class="headerlink" href="#get-help" title="Permalink to this headline">¶</a></h2>
-<p>If you have any questions regarding using Astropy there are numerous channels for communication.
-Post to any one of <a class="reference external" href="https://www.astropy.org/help.html">several forums</a> to get help from our active, helpful, and friendly community of users and developers.</p>
+<p>For more detailed instructions of installing <code class="docutils literal notranslate"><span class="pre">tolteca</span></code> and to learn about the
+C++ data reduction engine <code class="docutils literal notranslate"><span class="pre">citlali</span></code>, see their documentations
+<a class="reference external" href="https://github.com/toltec-astro/tolteca">tolteca</a> and
+<a class="reference external" href="https://toltec-astro.github.io/citlali/">citlali</a>.</p>
 </div>
 <div class="section" id="for-contributors">
 <h2>For contributors<a class="headerlink" href="#for-contributors" title="Permalink to this headline">¶</a></h2>
-<p>We welcome feedback, improvements, and new tutorial content via the <a class="reference external" href="https://github.com/astropy/astropy-tutorials">Astropy
-Tutorials Repository</a>  on
-GitHub. If you find a typo or would like to clarify some text, please either
-<a class="reference external" href="https://github.com/astropy/astropy-tutorials/issues/new">create an issue</a> or
-make the change yourself and then submit a pull request directly to the
-repository. Questions and/or comments about the tutorials are welcome on the
-<a class="reference external" href="https://groups.google.com/forum/#!forum/astropy-dev">astropy-dev</a> mailing
-list. For more information, please see the contributing documentation:</p>
+<p>Feedback, improvements, and new tutorial content are highly appreciated
+via the <a class="reference external" href="https://github.com/toltec-astro/tolteca_tutorials">TolTECA tutorials repository</a>  on
+GitHub. Please feel free to open issues or submit pull requests.</p>
+<p>For more information, please see the contributing documentation:</p>
 <a href="contributing.html"><button id="binder" style="background-color: #fa743b; border-color: #fa743b; margin-bottom: 1rem; cursor: pointer">How to contribute</button></a></div>
-<div class="section" id="for-developers">
-<h2>For developers<a class="headerlink" href="#for-developers" title="Permalink to this headline">¶</a></h2>
-<p>See the developer documentation: <a class="reference internal" href="dev.html#dev-page"><span class="std std-ref">Documentation on tutorials infrastructure</span></a>.</p>
+<div class="section" id="acknowledgement">
+<h2>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The TolTEC project is funded by the National Science Foundation, grant #1636621.</p></li>
+<li><p>This site uses the HTML templates and infrastructure developed by <a class="reference external" href="https://learn.astropy.org">Learn Astropy</a>.</p></li>
+</ul>
 </div>
 </div>
 
