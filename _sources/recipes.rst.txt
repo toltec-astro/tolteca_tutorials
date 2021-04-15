@@ -1,7 +1,7 @@
 Recipes and Scripts
 ===================
 
-Recipes are utility code snippets that comes as part of the
+Recipes and scripts are utility code snippets that comes as part of the
 `tolteca <https://github.com/toltec-astro/tolteca>`_ package,
 which implements a set of specific, high-level TolTEC data related tasks.
 

@@ -1,0 +1,623 @@
+.. meta::
+    :keywords: filterTutorials, filterDataReduction
+
+None
+
+
+
+
+.. raw:: html
+
+    <a href="../_static/tolteca_reduce/tolteca_reduce.ipynb"><button id="download">Download tutorial notebook</button></a>
+    <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_reduce/tolteca_reduce.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
+
+    <div id="spacer"></div>
+
+.. meta::
+    :keywords: filterTutorials, 
+
+.. role:: inputnumrole
+.. role:: outputnumrole
+
+.. _tolteca_reduce:
+
+Work with the data reduction submodule
+======================================
+
+Authors
+-------
+
+Zhiyuan Ma
+
+Learning Goals
+--------------
+
+-  Learn the concept of ``RuntimeContext``, which is the primary
+   interface to run data related tasks.
+
+-  Reduce an example TolTEC observation.
+
+Keywords
+--------
+
+Data reduction
+
+Summary
+-------
+
+In this tutorial, we will create a simulated TolTEC observation and
+reduce it.
+
+To proceed, we need to first setup a tolteca working directory
+(workdir).
+
+A tolteca workdir is a directory prepared by tolteca, which contains
+special subdirs recognized by the tolteca, as well as a set of runtime
+config files in YAML format.
+
+Tolteca workdir provides the user experience similar to a python virutal
+environment. User can create many workdirs and each has its own
+configuration setup for a certain task or project. The configurations
+are picked up automatically when invoking ``tolteca ...`` command in the
+shell when in a particular tolteca workdir.
+
+Under the hood, the in-memory representation of a workdir in tolteca is
+an instance of ``tolteca.utils.RuntimeContext``. All funtionalities
+related to tolteca workdir are defined as some methods of this class (or
+some subclass of it). The runtime context is the core object that user
+would be dealing with in tolteca when working in the IPython prompt or
+Jupyter notebook.
+
+Let’s first create a runtime context object.
+--------------------------------------------
+
+To make the tutorial independent of any user’s own system setup, we just
+use a temporary directory here:
+
+
+:inputnumrole:`In[1]:`
+
+
+.. code:: python
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    
+    import tempfile
+    from contextlib import ExitStack  # to manage the tempdir
+    
+    es = ExitStack()
+    workdir = es.enter_context(tempfile.TemporaryDirectory())
+    
+    from tolteca.utils import RuntimeContext
+    
+    rc = RuntimeContext.from_dir(dirpath=workdir, create=True)
+    
+    print(f'Created runtime context {rc}')
+    print(f'Config files in the rc: {rc.config_files}')
+
+
+:outputnumrole:`Out[1]:`
+
+
+.. parsed-literal::
+
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml')]
+
+
+To load the config, just access the ``config`` attribute:
+
+
+:inputnumrole:`In[2]:`
+
+
+.. code:: python
+
+    print(f'config: {rc.config}')
+
+
+:outputnumrole:`Out[2]:`
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    SchemaMissingKeyError                     Traceback (most recent call last)
+
+    <ipython-input-1-dde38748b755> in <module>
+    ----> 1 print(f'config: {rc.config}')
+    
+
+    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
+         34             return self._wrap_in_coroutine(obj)
+         35 
+    ---> 36         value = obj.__dict__[self.func.__name__] = self.func(obj)
+         37         return value
+         38 
+
+
+    ~/Codes/toltec/py/tolteca/tolteca/utils/__init__.py in config(self)
+        145                                 f" No top level dict found.")
+        146                     rupdate(cfg, c)
+    --> 147         cfg = self.validate_config(cfg)
+        148         # update runtime info
+        149         cfg['runtime'] = self.to_dict()
+
+
+    ~/Codes/toltec/py/tolteca/tolteca/utils/__init__.py in validate_config(cls, cfg)
+        155         if cfg is None:
+        156             return None
+    --> 157         return cls.get_config_schema().validate(cfg)
+        158 
+        159     @classmethod
+
+
+    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
+        409                 message = "Missing key%s: %s" % (_plural_s(missing_keys), s_missing_keys)
+        410                 message = self._prepend_schema_name(message)
+    --> 411                 raise SchemaMissingKeyError(message, e.format(data) if e else None)
+        412             if not self._ignore_extra_keys and (len(new) != len(data)):
+        413                 wrong_keys = set(data.keys()) - set(new.keys())
+
+
+    SchemaMissingKeyError: Missing key: 'setup'
+
+
+The reason of the exception is that we have not “setup” the runtime
+context properly. The setup step is to “initialize” the workdir, so
+later tolteca runs can recognize the context. To setup,
+
+
+:inputnumrole:`In[3]:`
+
+
+.. code:: python
+
+    rc.setup()
+    
+    from tollan.utils.fmt import pformat_yaml  # pretty print the config
+    print(pformat_yaml(rc.config))
+
+
+:outputnumrole:`Out[3]:`
+
+
+.. parsed-literal::
+
+    
+    runtime:
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+    setup:
+      created_at: 2021-04-15T18:27:42.301
+      version: 0.1.dev268+ga76764d
+    
+
+
+The ``setup()`` method also support adding custom records as follows
+(note the ``overwrite=True``, otherwise the ``setup()`` will not be on
+an already setup runtime context):
+
+
+:inputnumrole:`In[4]:`
+
+
+.. code:: python
+
+    rc.setup(config={
+        'my_info': {'foo': 'bar'},
+        'setup': {'baz': 'boo'}
+        }, overwrite=True)
+    print(pformat_yaml(rc.config))
+
+
+:outputnumrole:`Out[4]:`
+
+
+.. parsed-literal::
+
+    
+    my_info:
+      foo: bar
+    runtime:
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+    setup:
+      baz: boo
+      created_at: 2021-04-15T18:27:42.483
+      version: 0.1.dev268+ga76764d
+    
+
+
+Now we have the workdir setup, we can go back and pretend that we
+already have a valid tolteca workdir, in which case we can just load the
+runtime context directly without needing to create and setup again (note
+how our custom records get loaded as well):
+
+
+:inputnumrole:`In[5]:`
+
+
+.. code:: python
+
+    try:
+        del rc  # just to make sure we don't get confused with the old rc object.
+    except Exception:
+        pass
+    rc = RuntimeContext(rootpath=workdir)
+    print(f'Created runtime context {rc}')
+    print(f'Config files in the rc: {rc.config_files}')
+    print(f'Config:\n{pformat_yaml(rc.config)}')
+
+
+:outputnumrole:`Out[5]:`
+
+
+.. parsed-literal::
+
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml')]
+    Config:
+    
+    my_info:
+      foo: bar
+    runtime:
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+    setup:
+      baz: boo
+      created_at: 2021-04-15T18:27:42.483
+      version: 0.1.dev268+ga76764d
+    
+
+
+Create simulated data
+---------------------
+
+Tolteca.simu provides a set of tools to create simulated data. To run
+the simulator, we will need our workdir that we just setup, but with
+more information.
+
+The tolteca.simu comes with its own subclass of ``RuntimeContext``,
+namely, ``SimulatorRuntime``. The simulator runtime manages simulator
+related configurations loaded from the workdir. To create the simulator
+runtime, we do the follows:
+
+
+:inputnumrole:`In[6]:`
+
+
+.. code:: python
+
+    from tolteca.simu import SimulatorRuntime
+    rc = SimulatorRuntime(rootpath=workdir)
+    print(f'Created runtime context {rc}')
+    print(f'Config files in the rc: {rc.config_files}')
+    print(f'Config:\n{pformat_yaml(rc.config)}')
+
+
+:outputnumrole:`Out[6]:`
+
+
+.. parsed-literal::
+
+    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml')]
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    SchemaMissingKeyError                     Traceback (most recent call last)
+
+    <ipython-input-1-add96175c9b1> in <module>
+          3 print(f'Created runtime context {rc}')
+          4 print(f'Config files in the rc: {rc.config_files}')
+    ----> 5 print(f'Config:\n{pformat_yaml(rc.config)}')
+    
+
+    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
+         34             return self._wrap_in_coroutine(obj)
+         35 
+    ---> 36         value = obj.__dict__[self.func.__name__] = self.func(obj)
+         37         return value
+         38 
+
+
+    ~/Codes/toltec/py/tolteca/tolteca/utils/__init__.py in config(self)
+        145                                 f" No top level dict found.")
+        146                     rupdate(cfg, c)
+    --> 147         cfg = self.validate_config(cfg)
+        148         # update runtime info
+        149         cfg['runtime'] = self.to_dict()
+
+
+    ~/Codes/toltec/py/tolteca/tolteca/utils/__init__.py in validate_config(cls, cfg)
+        155         if cfg is None:
+        156             return None
+    --> 157         return cls.get_config_schema().validate(cfg)
+        158 
+        159     @classmethod
+
+
+    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
+        409                 message = "Missing key%s: %s" % (_plural_s(missing_keys), s_missing_keys)
+        410                 message = self._prepend_schema_name(message)
+    --> 411                 raise SchemaMissingKeyError(message, e.format(data) if e else None)
+        412             if not self._ignore_extra_keys and (len(new) != len(data)):
+        413                 wrong_keys = set(data.keys()) - set(new.keys())
+
+
+    SchemaMissingKeyError: Missing key: 'simu'
+
+
+The reason of the exception is that we have not “setup” the simulator
+properly. The simulator expects a branch of config entries under the key
+``simu``, stored in one of the YAML files found in the workdir.
+
+The tolteca.simu has a set of “built-in” configurations that one can use
+readily, one of which is ‘toltec_point_source’. Let’s dump this config
+to the workdir with file name “60_simu.yaml”. Note the format
+``\d+_.+.yaml``, this is the convention of the YAML config files to be
+recongnized by the tolteca runtime context. The files with lower number
+are overriden by those with higher number.
+
+
+:inputnumrole:`In[7]:`
+
+
+.. code:: python
+
+    from tolteca.simu import example_configs as cfgs
+    cfg = cfgs['toltec_point_source']
+    print(pformat_yaml(cfg))
+    
+    import yaml
+    with open(rc.rootpath.joinpath('60_simu.yaml'), 'w') as fo:
+        yaml.dump(cfg, fo)
+
+
+:outputnumrole:`Out[7]:`
+
+
+.. parsed-literal::
+
+    
+    simu:
+      instrument:
+        calobj: cal/calobj_default/index.yaml
+        name: toltec
+      jobkey: toltec_point_source
+      mapping:
+        length: '1. arcmin'
+        n_scans: 40
+        ref_frame: icrs
+        rot: '0. deg'
+        space: '1.5 arcsec'
+        speed: '1. arcmin/s'
+        t0: 2020-04-12 00:00:00
+        t_turnover: '0.1 s'
+        target: '92d -7d'
+        type: tolteca.simu:SkyRasterScanModel
+      obs_params:
+        f_smp_data: '122. Hz'
+        f_smp_mapping: '12 Hz'
+        t_exp: '1 ct'
+      sources:
+        - colname_map:
+            a1100: flux_a1100
+            a1400: flux_a1400
+            a2000: flux_a2000
+            dec: dec
+            name: name
+            ra: ra
+          filepath: toltec_sources.asc
+          grouping: array_name
+          type: point_source_catalog
+    
+
+
+Now we re-visit the ``config`` attribute of the simulator runtime. We
+should see the new 60_simu.yaml file is suceessfully picked up and no
+more complains about missing configuration keys.
+
+
+:inputnumrole:`In[8]:`
+
+
+.. code:: python
+
+    print(f'Config:\n{pformat_yaml(rc.config)}')
+
+
+:outputnumrole:`Out[8]:`
+
+
+.. parsed-literal::
+
+    Config:
+    
+    my_info:
+      foo: bar
+    runtime:
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+    setup:
+      baz: boo
+      created_at: 2021-04-15T18:27:42.483
+      version: 0.1.dev268+ga76764d
+    simu:
+      instrument:
+        calobj: cal/calobj_default/index.yaml
+        name: toltec
+      jobkey: toltec_point_source
+      mapping:
+        length: '1. arcmin'
+        n_scans: 40
+        ref_frame: icrs
+        rot: '0. deg'
+        space: '1.5 arcsec'
+        speed: '1. arcmin/s'
+        t0: 2020-04-12 00:00:00
+        t_turnover: '0.1 s'
+        target: '92d -7d'
+        type: tolteca.simu:SkyRasterScanModel
+      mapping_only: false
+      obs_params:
+        f_smp_data: 122.0 Hz
+        f_smp_mapping: 12.0 Hz
+        t_exp: 1.0 ct
+      perf_params: {}
+      plot: false
+      save: false
+      sources:
+        - colname_map:
+            a1100: flux_a1100
+            a1400: flux_a1400
+            a2000: flux_a2000
+            dec: dec
+            name: name
+            ra: ra
+          filepath: toltec_sources.asc
+          grouping: array_name
+          type: point_source_catalog
+    
+
+
+The simulator configuration defines the on-the-fly mapping pattern, the
+input sources, and the instrument to simulate. Under the hood, each of
+these aspects is managed by its own class and one can inspect through
+the methods.
+
+First, we can try plot the mapping pattern:
+
+
+:inputnumrole:`In[9]:`
+
+
+.. code:: python
+
+    mapping = rc.get_mapping_model()
+    print(f'mapping model:\n{mapping}')
+    # the time to finish the mapping can be obtained from the mapping model
+    mapping_time = mapping.get_total_time()
+    print(f'time to finish mapping: {mapping_time}')
+    # to plot the pattern, let's genrate some sampling points
+    # For plotting, we just use a linspace grid here, but in the actual simulator run
+    # it makes use of the obs params "f_smp_mapping" as the sampling frequency
+    t = np.linspace(0, mapping_time, 1000)
+    
+    mapping_offsets = mapping(t)  # this is the offsets from bore sight
+    
+    # to evaluate mapping pattern around a coordinates, use evaluate_at
+    # The frame of input coordinates will be assumed for the offsets
+    # here the mapping target from the config is given in equitorial
+    # so the mapping will be along equitorial coordinate frame
+    target_coord = mapping.target
+    print(f'mapping target: {mapping.target}')
+    
+    mapping_coords = mapping.evaluate_at(target_coord, t)
+    
+    import astropy.units as u
+    
+    fig = plt.figure(figsize=(10, 5))
+    fig.subplots_adjust(wspace=0.7)
+    # the bore sight offsets
+    ax = fig.add_subplot(1, 2, 1)
+    ax.set_aspect('equal')
+    ax.plot(
+        mapping_offsets[0].to_value(u.arcmin),
+        mapping_offsets[1].to_value(u.arcmin),
+        marker='.',
+        )
+    ax.plot(0, 0, marker='o', color='red')  # the target
+    ax.set_xlabel('lon. offset (arcmin)')
+    ax.set_ylabel('lat. offset (arcmin)')
+    
+    # the sky coords, which we need an fiducial wcs object
+    # to plot in the ref frame of target coords, i.e., ICRS
+    from astropy.wcs.utils import celestial_frame_to_wcs
+    w = celestial_frame_to_wcs(target_coord.frame)
+    # set the crval to target
+    w.wcs.crval = np.array([target_coord.ra.degree, target_coord.dec.degree])
+    ax = fig.add_subplot(1, 2, 2, projection=w)
+    ax.set_aspect('equal')
+    ax.plot(
+        mapping_coords.ra.degree,
+        mapping_coords.dec.degree,
+        transform=ax.get_transform('icrs'),
+        marker='.',
+        )
+    ax.plot(
+        target_coord.ra.degree, target_coord.dec.degree,
+        transform=ax.get_transform('icrs'),
+        marker='o', color='red',
+        )
+    ax.coords[0].set_ticklabel(exclude_overlapping=True)
+    ax.tick_params(axis='y', labelrotation=45)
+
+
+:outputnumrole:`Out[9]:`
+
+
+.. parsed-literal::
+
+    mapping model:
+    Model: SkyRasterScanModel
+    Inputs: ('t',)
+    Outputs: ('lon', 'lat')
+    Model set size: 1
+    Parameters:
+        length space  n_scans rot   speed    t_turnover
+        arcmin arcsec         deg arcmin / s     s     
+        ------ ------ ------- --- ---------- ----------
+           1.0    1.5    40.0 0.0        1.0        0.1
+    time to finish mapping: 43.9 s
+    mapping target: <SkyCoord (ICRS): (ra, dec) in deg
+        (92., -7.)>
+
+
+.. parsed-literal::
+
+    WARNING: InputWarning: Coordinate string is being interpreted as an ICRS coordinate. [astroquery.utils.commons]
+
+
+
+.. image:: nboutput/tolteca_reduce_17_2.png
+
+
+
+
+:inputnumrole:`In[None]:`
+
+
+
+
+
+
+
+.. raw:: html
+
+    <div id="spacer"></div>
+
+    <a href="../_static/tolteca_reduce/tolteca_reduce.ipynb"><button id="download">Download tutorial notebook</button></a>
+    <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_reduce/tolteca_reduce.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
+
