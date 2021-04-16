@@ -68,6 +68,28 @@ some subclass of it). The runtime context is the core object that user
 would be dealing with in tolteca when working in the IPython prompt or
 Jupyter notebook.
 
+The first part of the tutorial gives a walk through of the concept of
+runtime context and workdir. We will show how to setup from scratch a
+workdir for running tolteca.simu module from Cell 1-7. Note that in the
+tutorial, we create the workdir in a temporary folder, however, one is
+encouraged to setup the workdir in his or her own user space, to match
+the actual use case. The tolteca.cli module provides a command
+``tolteca setup`` to setup a workdir in the shell:
+
+.. code:: text
+
+       $ cd /path/to/hold/workdir
+       $ tolteca setup example_tolteca_workdir
+       $ cd example_tolteca_workdir && ls  # check the content
+       50_setup.yaml  bin/  cal/  log/
+
+then one can just copy over one of the example configurations for the
+simulator stored in
+```tolteca/data/examples/`` <https://github.com/toltec-astro/tolteca/tree/master/tolteca/data/examples>`__
+to the workdir. Once the workdir is in place and has all the necessary
+bits, on can jump right into the second part of the tutorial starting
+`Cell 8 <#cell8>`__.
+
 Let’s first create a runtime context object.
 --------------------------------------------
 
@@ -80,9 +102,11 @@ use a temporary directory here:
 
 .. code:: python
 
+    # import some common packages
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
+    import astropy.units as u
     
     import tempfile
     from contextlib import ExitStack  # to manage the tempdir
@@ -103,8 +127,8 @@ use a temporary directory here:
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml')]
 
 
 To load the config, just access the ``config`` attribute:
@@ -190,13 +214,13 @@ later tolteca runs can recognize the context. To setup,
 
     
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
     setup:
-      created_at: 2021-04-15T18:27:42.301
+      created_at: 2021-04-16T04:16:10.908
       version: 0.1.dev268+ga76764d
     
 
@@ -227,14 +251,14 @@ an already setup runtime context):
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-15T18:27:42.483
+      created_at: 2021-04-16T04:16:11.046
       version: 0.1.dev268+ga76764d
     
 
@@ -265,21 +289,21 @@ how our custom records get loaded as well):
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml')]
     Config:
     
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-15T18:27:42.483
+      created_at: 2021-04-16T04:16:11.046
       version: 0.1.dev268+ga76764d
     
 
@@ -314,8 +338,8 @@ runtime, we do the follows:
 
 .. parsed-literal::
 
-    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml')]
+    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml')]
 
 
 ::
@@ -377,6 +401,11 @@ to the workdir with file name “60_simu.yaml”. Note the format
 recongnized by the tolteca runtime context. The files with lower number
 are overriden by those with higher number.
 
+Note that in the example config, it refers to a filepath
+``toltec_sources.asc`` in the ``sources`` list. This is an ASCII table
+that defines the point sources to be injected on the sky. We need also
+create this table.
+
 
 :inputnumrole:`In[7]:`
 
@@ -390,6 +419,20 @@ are overriden by those with higher number.
     import yaml
     with open(rc.rootpath.joinpath('60_simu.yaml'), 'w') as fo:
         yaml.dump(cfg, fo)
+    
+    # create the point source catalog
+    # we just add two sources here. The column names
+    # used matches with those in the source definition `colname_map`, whose
+    # keys (a1100, etc) matches with the `grouping: array_name` setting.
+    from astropy.table import Table
+    catalog = Table(rows=[
+        ['s0', 92., -7., 3., 2., 1.,],
+        ['s1', 92., -7.01, 1., 1., 1.,],
+        ],
+        names=['name', 'ra', 'dec', 'flux_a1100', 'flux_a1400', 'flux_a2000'],
+        units=[None, u.deg, u.deg, u.mJy, u.mJy, u.mJy]
+        )
+    catalog.write(rc.rootpath.joinpath('toltec_sources.asc'), format='ascii.ecsv')
 
 
 :outputnumrole:`Out[7]:`
@@ -436,12 +479,19 @@ Now we re-visit the ``config`` attribute of the simulator runtime. We
 should see the new 60_simu.yaml file is suceessfully picked up and no
 more complains about missing configuration keys.
 
+For those returning readers who already have a workdir setup with
+correct contents, you can start from this cell.
+
 
 :inputnumrole:`In[8]:`
 
 
 .. code:: python
 
+    # If you already have a workdir at some path so you can ignore Cells 1-7 and jump in from here: 
+    # from tolteca.simu import SimulatorRuntime
+    # workdir = '/the/path/to/a/workdir/with/simu/configs'
+    # rc = SimulatorRuntime(rootpath=workdir)
     print(f'Config:\n{pformat_yaml(rc.config)}')
 
 
@@ -455,14 +505,14 @@ more complains about missing configuration keys.
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-15T18:27:42.483
+      created_at: 2021-04-16T04:16:11.046
       version: 0.1.dev268+ga76764d
     simu:
       instrument:
@@ -504,10 +554,11 @@ more complains about missing configuration keys.
 
 The simulator configuration defines the on-the-fly mapping pattern, the
 input sources, and the instrument to simulate. Under the hood, each of
-these aspects is managed by its own class and one can inspect through
-the methods.
+these aspects is managed by its own class which implements the related
+functionalities.
 
-First, we can try plot the mapping pattern:
+Let’s take a look at the mapping model first. We can make a plot of the
+mapping pattern:
 
 
 :inputnumrole:`In[9]:`
@@ -515,6 +566,7 @@ First, we can try plot the mapping pattern:
 
 .. code:: python
 
+    
     mapping = rc.get_mapping_model()
     print(f'mapping model:\n{mapping}')
     # the time to finish the mapping can be obtained from the mapping model
@@ -536,8 +588,6 @@ First, we can try plot the mapping pattern:
     
     mapping_coords = mapping.evaluate_at(target_coord, t)
     
-    import astropy.units as u
-    
     fig = plt.figure(figsize=(10, 5))
     fig.subplots_adjust(wspace=0.7)
     # the bore sight offsets
@@ -558,7 +608,7 @@ First, we can try plot the mapping pattern:
     w = celestial_frame_to_wcs(target_coord.frame)
     # set the crval to target
     w.wcs.crval = np.array([target_coord.ra.degree, target_coord.dec.degree])
-    ax = fig.add_subplot(1, 2, 2, projection=w)
+    ax = fig.add_subplot(1, 2, 2, projection=w)  # a WCSAxes plot, see https://docs.astropy.org/en/stable/visualization/wcsaxes/index.html
     ax.set_aspect('equal')
     ax.plot(
         mapping_coords.ra.degree,
@@ -571,8 +621,7 @@ First, we can try plot the mapping pattern:
         transform=ax.get_transform('icrs'),
         marker='o', color='red',
         )
-    ax.coords[0].set_ticklabel(exclude_overlapping=True)
-    ax.tick_params(axis='y', labelrotation=45)
+    ax.coords[0].set_ticklabel(exclude_overlapping=True)  # reduce the cluttering of tick labels.
 
 
 :outputnumrole:`Out[9]:`
@@ -602,6 +651,80 @@ First, we can try plot the mapping pattern:
 
 
 .. image:: nboutput/tolteca_reduce_17_2.png
+
+
+
+For the input sources, the ``sources`` list specified in the simulator
+configs is parsed and a set of ``tolteca.simu.base.SourceModel``
+subclass instances are created according to the ``type`` key. In this
+case, we only have one model with type ``point_source_catalog``. It is
+specified in format of an ASCII table, which we just created:
+
+
+:inputnumrole:`In[10]:`
+
+
+.. code:: python
+
+    sources = rc.get_source_model()
+    print(sources)
+    m_point_source = sources[0]  # take out the point source model and let's take a look
+    print(f'model class is:\n{type(m_point_source)}')
+    print(f'model data:\n{m_point_source.data}')
+    print(f'model source positions: {m_point_source.pos}')
+    # we can make a synetic image and plot by creating a SourceImageModel from the SourceCatalogModel
+    # to do this we need some beammodels and a pixelscale.
+    # we can use the toltec beammodels here, and assume a 1"/pix scale
+    from tolteca.simu.toltec import BeamModel
+    m_img = m_point_source.make_image_model(beam_models=BeamModel().models, pixscale=1 << u.arcsec / u.pix)
+    # the m_img is a SourceImageModel class which contains image data as a dict of ImageHDU.
+    # we create a set of WCSAxes to plot them
+    
+    from astropy.wcs import WCS
+    
+    fig = plt.figure(figsize=(10, 5))
+    fig.subplots_adjust(wspace=0.9)
+    n_hdus = len(m_img.data)
+    
+    for i, (k, hdu) in enumerate(m_img.data.items()):
+        w = WCS(hdu.header)
+        ax = fig.add_subplot(1, n_hdus, i + 1, projection=w)
+        ax.set_aspect('equal')
+        ax.set_title(f'{k}')
+        ax.imshow(hdu.data)
+        # label the sources
+        for p, n in zip(m_point_source.pos, m_point_source.data['name']):
+            ax.text(p.ra.degree, p.dec.degree, n, transform=ax.get_transform('icrs'), color='red')
+
+
+:outputnumrole:`Out[10]:`
+
+
+.. parsed-literal::
+
+    [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/toltec_sources.asc')>]
+    model class is:
+    <class 'tolteca.simu.base.SourceCatalogModel'>
+    Name: SourceCatalogModel
+    N_inputs: 2
+    N_outputs: 1
+    model data:
+    a1100 a1400 a2000  dec  name  ra 
+     mJy   mJy   mJy   deg       deg 
+    ----- ----- ----- ----- ---- ----
+      3.0   2.0   1.0  -7.0   s0 92.0
+      1.0   1.0   1.0 -7.01   s1 92.0
+    model source positions: <SkyCoord (ICRS): (ra, dec) in deg
+        [(92., -7.  ), (92., -7.01)]>
+
+
+
+.. image:: nboutput/tolteca_reduce_19_1.png
+
+
+
+
+:inputnumrole:`In[11]:`
 
 
 

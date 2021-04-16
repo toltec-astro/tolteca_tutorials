@@ -138,15 +138,36 @@ related to tolteca workdir are defined as some methods of this class (or
 some subclass of it). The runtime context is the core object that user
 would be dealing with in tolteca when working in the IPython prompt or
 Jupyter notebook.</p>
+<p>The first part of the tutorial gives a walk through of the concept of
+runtime context and workdir. We will show how to setup from scratch a
+workdir for running tolteca.simu module from Cell 1-7. Note that in the
+tutorial, we create the workdir in a temporary folder, however, one is
+encouraged to setup the workdir in his or her own user space, to match
+the actual use case. The tolteca.cli module provides a command
+<code class="docutils literal notranslate"><span class="pre">tolteca</span> <span class="pre">setup</span></code> to setup a workdir in the shell:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd /path/to/hold/workdir
+$ tolteca setup example_tolteca_workdir
+$ cd example_tolteca_workdir &amp;&amp; ls  # check the content
+50_setup.yaml  bin/  cal/  log/
+</pre></div>
+</div>
+<p>then one can just copy over one of the example configurations for the
+simulator stored in
+<code class="docutils literal notranslate"><span class="pre">`tolteca/data/examples/</span></code> &lt;<a class="reference external" href="https://github.com/toltec-astro/tolteca/tree/master/tolteca/data/examples">https://github.com/toltec-astro/tolteca/tree/master/tolteca/data/examples</a>&gt;`__
+to the workdir. Once the workdir is in place and has all the necessary
+bits, on can jump right into the second part of the tutorial starting
+<a class="reference external" href="#cell8">Cell 8</a>.</p>
 </div>
 <div class="section" id="lets-first-create-a-runtime-context-object">
 <h2>Let’s first create a runtime context object.<a class="headerlink" href="#lets-first-create-a-runtime-context-object" title="Permalink to this headline">¶</a></h2>
 <p>To make the tutorial independent of any user’s own system setup, we just
 use a temporary directory here:</p>
 <p><span class="inputnumrole">In[1]:</span></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some common packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 
 <span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">ExitStack</span>  <span class="c1"># to manage the tempdir</span>
@@ -163,8 +184,8 @@ use a temporary directory here:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[1]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="p">)</span>
-<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml&#39;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>To load the config, just access the <code class="docutils literal notranslate"><span class="pre">config</span></code> attribute:</p>
@@ -228,13 +249,13 @@ later tolteca runs can recognize the context. To setup,</p>
 </div>
 <p><span class="outputnumrole">Out[3]:</span></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">15</span><span class="n">T18</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">42.301</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="n">T04</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">10.908</span>
   <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev268</span><span class="o">+</span><span class="n">ga76764d</span>
 </pre></div>
 </div>
@@ -253,14 +274,14 @@ an already setup runtime context):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_info</span><span class="p">:</span>
   <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
 <span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
   <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">15</span><span class="n">T18</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">42.483</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="n">T04</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">11.046</span>
   <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev268</span><span class="o">+</span><span class="n">ga76764d</span>
 </pre></div>
 </div>
@@ -280,21 +301,21 @@ how our custom records get loaded as well):</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[5]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="p">)</span>
-<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml&#39;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml&#39;</span><span class="p">)]</span>
 <span class="n">Config</span><span class="p">:</span>
 
 <span class="n">my_info</span><span class="p">:</span>
   <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
 <span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
   <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">15</span><span class="n">T18</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">42.483</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="n">T04</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">11.046</span>
   <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev268</span><span class="o">+</span><span class="n">ga76764d</span>
 </pre></div>
 </div>
@@ -317,8 +338,8 @@ runtime, we do the follows:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[6]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">SimulatorRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="p">)</span>
-<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp1wt8qc97/50_setup.yaml&#39;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">SimulatorRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
@@ -375,6 +396,10 @@ to the workdir with file name “60_simu.yaml”. Note the format
 <code class="docutils literal notranslate"><span class="pre">\d+_.+.yaml</span></code>, this is the convention of the YAML config files to be
 recongnized by the tolteca runtime context. The files with lower number
 are overriden by those with higher number.</p>
+<p>Note that in the example config, it refers to a filepath
+<code class="docutils literal notranslate"><span class="pre">toltec_sources.asc</span></code> in the <code class="docutils literal notranslate"><span class="pre">sources</span></code> list. This is an ASCII table
+that defines the point sources to be injected on the sky. We need also
+create this table.</p>
 <p><span class="inputnumrole">In[7]:</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tolteca.simu</span> <span class="kn">import</span> <span class="n">example_configs</span> <span class="k">as</span> <span class="n">cfgs</span>
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">cfgs</span><span class="p">[</span><span class="s1">&#39;toltec_point_source&#39;</span><span class="p">]</span>
@@ -383,6 +408,20 @@ are overriden by those with higher number.</p>
 <span class="kn">import</span> <span class="nn">yaml</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">rootpath</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;60_simu.yaml&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
     <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">fo</span><span class="p">)</span>
+
+<span class="c1"># create the point source catalog</span>
+<span class="c1"># we just add two sources here. The column names</span>
+<span class="c1"># used matches with those in the source definition `colname_map`, whose</span>
+<span class="c1"># keys (a1100, etc) matches with the `grouping: array_name` setting.</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;s0&#39;</span><span class="p">,</span> <span class="mf">92.</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,],</span>
+    <span class="p">[</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span> <span class="mf">92.</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.01</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,],</span>
+    <span class="p">],</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;ra&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">,</span> <span class="s1">&#39;flux_a1100&#39;</span><span class="p">,</span> <span class="s1">&#39;flux_a1400&#39;</span><span class="p">,</span> <span class="s1">&#39;flux_a2000&#39;</span><span class="p">],</span>
+    <span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">mJy</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">mJy</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">mJy</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="n">catalog</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">rootpath</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;toltec_sources.asc&#39;</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii.ecsv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[7]:</span></p>
@@ -422,8 +461,14 @@ are overriden by those with higher number.</p>
 <p>Now we re-visit the <code class="docutils literal notranslate"><span class="pre">config</span></code> attribute of the simulator runtime. We
 should see the new 60_simu.yaml file is suceessfully picked up and no
 more complains about missing configuration keys.</p>
+<p>For those returning readers who already have a workdir setup with
+correct contents, you can start from this cell.</p>
 <p><span class="inputnumrole">In[8]:</span></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config:</span><span class="se">\n</span><span class="si">{</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">config</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you already have a workdir at some path so you can ignore Cells 1-7 and jump in from here:</span>
+<span class="c1"># from tolteca.simu import SimulatorRuntime</span>
+<span class="c1"># workdir = &#39;/the/path/to/a/workdir/with/simu/configs&#39;</span>
+<span class="c1"># rc = SimulatorRuntime(rootpath=workdir)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config:</span><span class="se">\n</span><span class="si">{</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">config</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[8]:</span></p>
@@ -432,14 +477,14 @@ more complains about missing configuration keys.</p>
 <span class="n">my_info</span><span class="p">:</span>
   <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
 <span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp1wt8qc97</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmplgccgf4t</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
   <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">15</span><span class="n">T18</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">42.483</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="n">T04</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">11.046</span>
   <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev268</span><span class="o">+</span><span class="n">ga76764d</span>
 <span class="n">simu</span><span class="p">:</span>
   <span class="n">instrument</span><span class="p">:</span>
@@ -480,9 +525,10 @@ more complains about missing configuration keys.</p>
 </div>
 <p>The simulator configuration defines the on-the-fly mapping pattern, the
 input sources, and the instrument to simulate. Under the hood, each of
-these aspects is managed by its own class and one can inspect through
-the methods.</p>
-<p>First, we can try plot the mapping pattern:</p>
+these aspects is managed by its own class which implements the related
+functionalities.</p>
+<p>Let’s take a look at the mapping model first. We can make a plot of the
+mapping pattern:</p>
 <p><span class="inputnumrole">In[9]:</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">get_mapping_model</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mapping model:</span><span class="se">\n</span><span class="si">{</span><span class="n">mapping</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -505,8 +551,6 @@ the methods.</p>
 
 <span class="n">mapping_coords</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">evaluate_at</span><span class="p">(</span><span class="n">target_coord</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
-
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="c1"># the bore sight offsets</span>
@@ -527,7 +571,7 @@ the methods.</p>
 <span class="n">w</span> <span class="o">=</span> <span class="n">celestial_frame_to_wcs</span><span class="p">(</span><span class="n">target_coord</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
 <span class="c1"># set the crval to target</span>
 <span class="n">w</span><span class="o">.</span><span class="n">wcs</span><span class="o">.</span><span class="n">crval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">target_coord</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">target_coord</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">degree</span><span class="p">])</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>  <span class="c1"># a WCSAxes plot, see https://docs.astropy.org/en/stable/visualization/wcsaxes/index.html</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">mapping_coords</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span>
@@ -540,8 +584,7 @@ the methods.</p>
     <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span><span class="s1">&#39;icrs&#39;</span><span class="p">),</span>
     <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
     <span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ticklabel</span><span class="p">(</span><span class="n">exclude_overlapping</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ticklabel</span><span class="p">(</span><span class="n">exclude_overlapping</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># reduce the cluttering of tick labels.</span>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[9]:</span></p>
@@ -564,6 +607,62 @@ the methods.</p>
 </pre></div>
 </div>
 <img alt="../_images/tolteca_reduce_17_2.png" src="../_images/tolteca_reduce_17_2.png" />
+<p>For the input sources, the <code class="docutils literal notranslate"><span class="pre">sources</span></code> list specified in the simulator
+configs is parsed and a set of <code class="docutils literal notranslate"><span class="pre">tolteca.simu.base.SourceModel</span></code>
+subclass instances are created according to the <code class="docutils literal notranslate"><span class="pre">type</span></code> key. In this
+case, we only have one model with type <code class="docutils literal notranslate"><span class="pre">point_source_catalog</span></code>. It is
+specified in format of an ASCII table, which we just created:</p>
+<p><span class="inputnumrole">In[10]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sources</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">get_source_model</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sources</span><span class="p">)</span>
+<span class="n">m_point_source</span> <span class="o">=</span> <span class="n">sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># take out the point source model and let&#39;s take a look</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model class is:</span><span class="se">\n</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">m_point_source</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model data:</span><span class="se">\n</span><span class="si">{</span><span class="n">m_point_source</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model source positions: </span><span class="si">{</span><span class="n">m_point_source</span><span class="o">.</span><span class="n">pos</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># we can make a synetic image and plot by creating a SourceImageModel from the SourceCatalogModel</span>
+<span class="c1"># to do this we need some beammodels and a pixelscale.</span>
+<span class="c1"># we can use the toltec beammodels here, and assume a 1&quot;/pix scale</span>
+<span class="kn">from</span> <span class="nn">tolteca.simu.toltec</span> <span class="kn">import</span> <span class="n">BeamModel</span>
+<span class="n">m_img</span> <span class="o">=</span> <span class="n">m_point_source</span><span class="o">.</span><span class="n">make_image_model</span><span class="p">(</span><span class="n">beam_models</span><span class="o">=</span><span class="n">BeamModel</span><span class="p">()</span><span class="o">.</span><span class="n">models</span><span class="p">,</span> <span class="n">pixscale</span><span class="o">=</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">)</span>
+<span class="c1"># the m_img is a SourceImageModel class which contains image data as a dict of ImageHDU.</span>
+<span class="c1"># we create a set of WCSAxes to plot them</span>
+
+<span class="kn">from</span> <span class="nn">astropy.wcs</span> <span class="kn">import</span> <span class="n">WCS</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">n_hdus</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">m_img</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">hdu</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m_img</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_hdus</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1"># label the sources</span>
+    <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">m_point_source</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">m_point_source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span><span class="s1">&#39;icrs&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[10]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[&lt;SourceCatalogModel(name=&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/toltec_sources.asc&#39;)&gt;]
+model class is:
+&lt;class &#39;tolteca.simu.base.SourceCatalogModel&#39;&gt;
+Name: SourceCatalogModel
+N_inputs: 2
+N_outputs: 1
+model data:
+a1100 a1400 a2000  dec  name  ra
+ mJy   mJy   mJy   deg       deg
+----- ----- ----- ----- ---- ----
+  3.0   2.0   1.0  -7.0   s0 92.0
+  1.0   1.0   1.0 -7.01   s1 92.0
+model source positions: &lt;SkyCoord (ICRS): (ra, dec) in deg
+    [(92., -7.  ), (92., -7.01)]&gt;
+</pre></div>
+</div>
+<img alt="../_images/tolteca_reduce_19_1.png" src="../_images/tolteca_reduce_19_1.png" />
+<p><span class="inputnumrole">In[11]:</span></p>
 <p><span class="inputnumrole">In[None]:</span></p>
 <div id="spacer"></div>
 
