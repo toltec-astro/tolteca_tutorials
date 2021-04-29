@@ -1,8 +1,8 @@
-git+https://github.com/toltec-astro/tollan.git
-git+https://github.com/toltec-astro/kidsproc.git
-git+https://github.com/toltec-astro/tolteca.git
 matplotlib
 jupyter>=1.0
 notebook>=5.7.2
 nbconvert
 pandoc
+sphinx_astropy
+sphinx_bootstrap_theme
+mkdocs
