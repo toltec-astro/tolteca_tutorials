@@ -127,8 +127,8 @@ use a temporary directory here:
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml')]
 
 
 To load the config, just access the ``config`` attribute:
@@ -156,7 +156,7 @@ To load the config, just access the ``config`` attribute:
     ----> 1 print(f'config: {rc.config}')
     
 
-    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
+    /usr/local/Cellar/python@3.8/3.8.9/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
          34             return self._wrap_in_coroutine(obj)
          35 
     ---> 36         value = obj.__dict__[self.func.__name__] = self.func(obj)
@@ -180,7 +180,7 @@ To load the config, just access the ``config`` attribute:
         159     @classmethod
 
 
-    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
+    /usr/local/Cellar/python@3.8/3.8.9/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
         409                 message = "Missing key%s: %s" % (_plural_s(missing_keys), s_missing_keys)
         410                 message = self._prepend_schema_name(message)
     --> 411                 raise SchemaMissingKeyError(message, e.format(data) if e else None)
@@ -214,14 +214,14 @@ later tolteca runs can recognize the context. To setup,
 
     
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
     setup:
-      created_at: 2021-04-16T04:16:10.908
-      version: 0.1.dev268+ga76764d
+      created_at: 2021-04-29T02:41:16.064
+      version: 0.1.dev288+g35d04f8.d20210428
     
 
 
@@ -251,15 +251,15 @@ an already setup runtime context):
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-16T04:16:11.046
-      version: 0.1.dev268+ga76764d
+      created_at: 2021-04-29T02:41:16.273
+      version: 0.1.dev288+g35d04f8.d20210428
     
 
 
@@ -289,22 +289,22 @@ how our custom records get loaded as well):
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml')]
     Config:
     
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-16T04:16:11.046
-      version: 0.1.dev268+ga76764d
+      created_at: 2021-04-29T02:41:16.273
+      version: 0.1.dev288+g35d04f8.d20210428
     
 
 
@@ -338,8 +338,8 @@ runtime, we do the follows:
 
 .. parsed-literal::
 
-    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml')]
+    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml')]
 
 
 ::
@@ -355,7 +355,7 @@ runtime, we do the follows:
     ----> 5 print(f'Config:\n{pformat_yaml(rc.config)}')
     
 
-    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
+    /usr/local/Cellar/python@3.8/3.8.9/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
          34             return self._wrap_in_coroutine(obj)
          35 
     ---> 36         value = obj.__dict__[self.func.__name__] = self.func(obj)
@@ -379,7 +379,7 @@ runtime, we do the follows:
         159     @classmethod
 
 
-    /usr/local/Cellar/python@3.8/3.8.8_1/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
+    /usr/local/Cellar/python@3.8/3.8.9/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
         409                 message = "Missing key%s: %s" % (_plural_s(missing_keys), s_missing_keys)
         410                 message = self._prepend_schema_name(message)
     --> 411                 raise SchemaMissingKeyError(message, e.format(data) if e else None)
@@ -505,15 +505,15 @@ correct contents, you can start from this cell.
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-16T04:16:11.046
-      version: 0.1.dev268+ga76764d
+      created_at: 2021-04-29T02:41:16.273
+      version: 0.1.dev288+g35d04f8.d20210428
     simu:
       instrument:
         calobj: cal/calobj_default/index.yaml
@@ -658,7 +658,9 @@ For the input sources, the ``sources`` list specified in the simulator
 configs is parsed and a set of ``tolteca.simu.base.SourceModel``
 subclass instances are created according to the ``type`` key. In this
 case, we only have one model with type ``point_source_catalog``. It is
-specified in format of an ASCII table, which we just created:
+specified in format of an ASCII table, which we just created. Below is
+the snippet that renders the input point sources to FITS image HDUs as
+observed by the TolTEC instrument:
 
 
 :inputnumrole:`In[10]:`
@@ -667,7 +669,7 @@ specified in format of an ASCII table, which we just created:
 .. code:: python
 
     sources = rc.get_source_model()
-    print(sources)
+    print(f'sources: {sources}')
     m_point_source = sources[0]  # take out the point source model and let's take a look
     print(f'model class is:\n{type(m_point_source)}')
     print(f'model data:\n{m_point_source.data}')
@@ -702,7 +704,7 @@ specified in format of an ASCII table, which we just created:
 
 .. parsed-literal::
 
-    [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmplgccgf4t/toltec_sources.asc')>]
+    sources: [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/toltec_sources.asc')>]
     model class is:
     <class 'tolteca.simu.base.SourceCatalogModel'>
     Name: SourceCatalogModel
@@ -723,8 +725,290 @@ specified in format of an ASCII table, which we just created:
 
 
 
+The last piece of the simulator, namely, the ``instrument``, ties the
+mapping model and the source models together, and drives generating of
+simulated data.
+
+Under the hood, ``tolteca.simu.base.SimulatorBase`` defines the abstract
+interface for implementing the simulator engine. Subclasses are
+implemented to make simulated observations for different instruments.
+
+We have specified ``instrument: toltec`` in the simulator config, which
+instructs the simulator runtime context to create a
+``tolteca.simu.toltec.ToltecObsSimulator`` instance as the simulator
+engine, which implements the actual methods for createing the simulated
+observations.
+
+We can inspect the simulator engine as follows:
+
 
 :inputnumrole:`In[11]:`
+
+
+.. code:: python
+
+    simobj = rc.get_instrument_simulator()
+    print(f'simulator engine: {simobj}')
+    # one of the key attributes of the TolTEC simulator is the so called array property table,
+    # which stores all the detector properties as tabular data
+    apt = simobj.table
+    # print(pformat_yaml(apt.meta))
+    print(apt)
+
+
+:outputnumrole:`Out[11]:`
+
+
+.. parsed-literal::
+
+    simulator engine: <tolteca.simu.toltec.ToltecObsSimulator object at 0x1376f8940>
+       uid      nw  pg ...         x_t                   y_t          
+                       ...         deg                   deg          
+    ---------- --- --- ... -------------------- ----------------------
+    00_0_169_0   0   0 ... -0.03249180330681757   -0.01154409322948823
+    00_0_169_1   0   0 ... -0.03249180330681757   -0.01154409322948823
+    00_1_170_0   0   1 ... -0.03249180330681757  -0.010101081575802202
+    00_1_170_1   0   1 ... -0.03249180330681757  -0.010101081575802202
+    00_0_163_0   0   0 ... -0.03249180330681757  -0.008658069922116172
+    00_0_163_1   0   0 ... -0.03249180330681757  -0.008658069922116172
+    00_1_159_0   0   1 ... -0.03249180330681757 -0.0072150582684301435
+    00_1_159_1   0   1 ... -0.03249180330681757 -0.0072150582684301435
+    00_0_155_0   0   0 ... -0.03249180330681757 -0.0057720466147441135
+    00_0_155_1   0   0 ... -0.03249180330681757 -0.0057720466147441135
+           ... ... ... ...                  ...                    ...
+    12_0_156_0  12   0 ...  0.03445012806505416  -0.003856776601669935
+    12_0_156_1  12   0 ...  0.03445012806505416  -0.003856776601669935
+    12_1_154_0  12   1 ...  0.03445012806505416  -0.001285592200556646
+    12_1_154_1  12   1 ...  0.03445012806505416  -0.001285592200556646
+    12_0_155_0  12   0 ...  0.03445012806505416  0.0012855922005566422
+    12_0_155_1  12   0 ...  0.03445012806505416  0.0012855922005566422
+    12_1_155_0  12   1 ...  0.03445012806505416  0.0038567766016699306
+    12_1_155_1  12   1 ...  0.03445012806505416  0.0038567766016699306
+    12_0_158_0  12   0 ...  0.03445012806505416   0.006427961002783219
+    12_0_158_1  12   0 ...  0.03445012806505416   0.006427961002783219
+    Length = 7718 rows
+
+
+
+:inputnumrole:`In[12]:`
+
+
+.. code:: python
+
+    # the columns x_t and y_t (`t` stands for toltec) stores the location of each
+    # detector on the focal plane, offseted from a fiducial center (co-axial for all three arrays)
+    # to plot the focal plane for each array.
+    apt_grps = apt.group_by('array_name').groups
+    n_arrays = len(apt_grps)
+    fig, axes = plt.subplots(1, n_arrays, figsize=(15, 4), sharex=True, sharey=True)
+    fig.subplots_adjust(wspace=0.3)
+    # color map kwargs
+    n_networks = 13
+    cm_kwargs = dict(
+        cmap=plt.cm.get_cmap('tab20', n_networks),
+        vmin=-0.5,
+        vmax=n_networks - 0.5
+        )
+    for (ax, (array_name, ), subapt) in zip(axes, apt_grps.keys, apt_grps):
+        ax.set_aspect('equal')
+        # color code by each detector "network" and toltec has 13 of them
+        im = ax.scatter(subapt['x_t'].to_value(u.arcmin), subapt['y_t'].to_value(u.arcmin), s=2, c=subapt['nw'], **cm_kwargs)
+        ax.set_title(apt.meta[array_name]['name_long'])
+    axes[0].set_xlabel('lon offset (arcmin)')
+    axes[0].set_ylabel('lat offset (arcmin)')
+    cb = fig.colorbar(im, ax=axes, location='right', shrink=0.87)
+    cb.set_label('network id')
+
+
+
+:outputnumrole:`Out[12]:`
+
+
+
+.. image:: nboutput/tolteca_reduce_22_0.png
+
+
+
+The default array property table also include a set of fiducial KIDs
+model parameters. These KIDs model parameters are used to create the
+KIDs resonator model as well as to simulate the readout circuit. These
+aspects can be inspected via the ``kidssim`` and ``kids_readout_model``
+properties:
+
+
+:inputnumrole:`In[13]:`
+
+
+.. code:: python
+
+    kidssim = simobj.kidssim
+    print(kidssim)
+    # plot the resonance circle by simulating a sweep
+    x, S21 = kidssim.sweep_x(n_steps=176, n_fwhms=10)
+    print(f'sweep data x shape: {x.shape} S21 shape: {S21.shape}')
+    # plot the first detectors
+    fig, axes = plt.subplots(1, 3, constrained_layout=True, figsize=(10, 5))
+    # f-S21 plane
+    ax = axes[0]
+    ax.plot(x[0], np.abs(S21[0]), marker='.')
+    ax.set_xlabel('detuning paramter x')
+    ax.set_ylabel('normalized S21')
+    # I-Q plane
+    ax = axes[1]
+    ax.set_aspect('equal')
+    ax.plot(S21[0].real, S21[0].imag, marker='.')
+    ax.set_xlabel('In-phase normalized')
+    ax.set_ylabel('Quatrature normalized')
+    # the kids readout model mix the normalized S21 with the readout circuit signatures.
+    # in the kids model we use here, this is just a gain factor but in the actual TolTEC readout
+    # system, the readout model is much more complicated
+    ax = axes[2]
+    ax.set_aspect('equal')
+    # note the readout model need additionally the actual readout frequencies as the inputs
+    # we compute f from the x values following the definition of x := f/fr - 1
+    S21_readout = simobj.kids_readout_model(S21, (x + 1) * kidssim.fr[:, np.newaxis])
+    # note on the plot below how the value range is different
+    ax.set_xlabel('In-phase with readout gain (adu)')
+    ax.set_ylabel('Quatrature with readout gain (adu)')
+    ax.plot(S21_readout[0].real, S21_readout[0].imag, marker='.')
+
+
+:outputnumrole:`Out[13]:`
+
+
+.. parsed-literal::
+
+    <kidsproc.kidsmodel.simulator.KidsSimulator object at 0x1378094c0>
+    sweep data x shape: (7718, 176) S21 shape: (7718, 176)
+
+
+
+
+.. parsed-literal::
+
+    [<matplotlib.lines.Line2D at 0x137d17520>]
+
+
+
+
+.. image:: nboutput/tolteca_reduce_24_2.png
+
+
+
+The routine that puts all the pieces together are methods
+``mapping_context`` and ``probe_context``. It does the actual compuation
+for given source model and mapping pattern. Below we demonstrate some of
+the internals of these methods:
+
+
+:inputnumrole:`In[14]:`
+
+
+.. code:: python
+
+    with simobj.mapping_context(mapping=mapping, sources=sources) as mapping_evaluator:
+        # obs is a callable that takes time delta, and produces the time ordered data sampled from the sources
+        # with the mapping pattern
+        print(f'mapping evaluator: {mapping_evaluator}')
+        # for example, we can evaluate the time ordered data for the first 5 seconds, with some fiducial
+        # sampling rate 122Hz
+        f_smp = 100 << u.Hz
+        t = np.arange(0, 5, (1. / f_smp).to_value(u.s)) << u.s
+        s, obs_info = mapping_evaluator(t)
+        print(f'signal shape: {s.shape}, unit: {s.unit}')
+        print(f'obs_info keys: {obs_info.keys()}')
+    # we can plot some of the TODs on sky with the help of obs info
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(1, 1, 1, projection=w)
+    ax.imshow(m_img.data['a1100'].data) # plot the rendered source image in 1.1mm 
+    # ax.set_aspect('equal')
+    ax.plot(
+        obs_info['obs_coords_icrs'].ra, obs_info['obs_coords_icrs'].dec,
+        transform=ax.get_transform('icrs'),
+        marker='x', label='bore sight')
+    # di=2474 is one of the detector that saw the sources
+    for di in [500, 1500, 2474, 3500]:
+        ax.plot(
+            obs_info['lon'][:, di], obs_info['lat'][:, di],
+            transform=ax.get_transform('icrs'),
+            marker='.', label=f'detector #{di}')
+    ax.legend()
+
+
+:outputnumrole:`Out[14]:`
+
+
+.. parsed-literal::
+
+    mapping evaluator: <function ToltecObsSimulator.mapping_context.<locals>.evaluate at 0x1377841f0>
+    signal shape: (7718, 500), unit: MJy / sr
+    obs_info keys: dict_keys(['t', 'time_obs', '_ref_frame', '_ref_coord', 'obs_coords', 'hold_flags', 'm_proj_icrs', 'projected_frame', 'native_frame', 'obs_coords_icrs', '_altaz_frame', 'obs_coords_altaz', 'obs_parallactic_angle', 'a', 'm_rot_m3', 'x', 'y', 'lon', 'lat', 's_additive', 's', 'm_source', 'mapping', 'ref_coord', 'ref_frame', 'self', 'sources', 't0', 'tbl', 'x_t', 'y_t'])
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.legend.Legend at 0x13ce55b20>
+
+
+
+
+.. image:: nboutput/tolteca_reduce_26_2.png
+
+
+
+
+:inputnumrole:`In[15]:`
+
+
+.. code:: python
+
+    # the probe context returns the kidsdata evaluator, which
+    # takes the sky signal as input and produce readout timestream
+    with simobj.probe_context(fp=None) as kidsdata_evaluator:
+        r, x, S21 = kidsdata_evaluator(s)
+    
+    print(f'S21 shape: {S21.shape} dtype: {S21.dtype}')
+    # It may be interesting to look at the PSD of the measured time streams
+    # note that we didn't include any noise so the PSDs will be zero
+    # for detector that didn't pass the point sources
+    from scipy import signal
+    
+    psds = dict()
+    psd_f, psds['r'] = signal.welch(r, f_smp.to_value(u.Hz))
+    
+    _, psds['x'] = signal.welch(x, f_smp.to_value(u.Hz))
+    _, psds['I'] = signal.welch(S21.real, f_smp.to_value(u.Hz))
+    _, psds['Q'] = signal.welch(S21.imag, f_smp.to_value(u.Hz))
+    fig, axes = plt.subplots(2, 2, sharex=True, figsize=(10, 5))
+    axes[-1, 0].set_xlabel('PSD Frequency (Hz)')
+    for ax, (label, psd) in zip(axes.ravel(), psds.items()):
+        ax.set_title(f'PSD {label}')
+        # di=2474 is one of the detector that saw the sources.
+        for di in [500, 1500, 2474, 3500]:
+            ax.plot(psd_f, psd[di], label=f'detector {di}')
+    axes[0, 0].legend()
+
+
+:outputnumrole:`Out[15]:`
+
+
+.. parsed-literal::
+
+    S21 shape: (7718, 500) dtype: complex128
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.legend.Legend at 0x137891280>
+
+
+
+
+.. image:: nboutput/tolteca_reduce_27_2.png
 
 
 
