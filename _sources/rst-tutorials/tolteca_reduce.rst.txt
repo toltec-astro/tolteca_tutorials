@@ -127,8 +127,8 @@ use a temporary directory here:
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml')]
 
 
 To load the config, just access the ``config`` attribute:
@@ -214,14 +214,14 @@ later tolteca runs can recognize the context. To setup,
 
     
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml
     setup:
-      created_at: 2021-04-29T02:41:16.064
-      version: 0.1.dev288+g35d04f8.d20210428
+      created_at: 2021-05-07T03:59:56.320
+      version: 0.1.dev290+g46a73af
     
 
 
@@ -251,15 +251,15 @@ an already setup runtime context):
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-29T02:41:16.273
-      version: 0.1.dev288+g35d04f8.d20210428
+      created_at: 2021-05-07T03:59:56.535
+      version: 0.1.dev290+g46a73af
     
 
 
@@ -289,22 +289,22 @@ how our custom records get loaded as well):
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml')]
     Config:
     
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-29T02:41:16.273
-      version: 0.1.dev288+g35d04f8.d20210428
+      created_at: 2021-05-07T03:59:56.535
+      version: 0.1.dev290+g46a73af
     
 
 
@@ -338,8 +338,8 @@ runtime, we do the follows:
 
 .. parsed-literal::
 
-    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml')]
+    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml')]
 
 
 ::
@@ -505,15 +505,15 @@ correct contents, you can start from this cell.
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-04-29T02:41:16.273
-      version: 0.1.dev288+g35d04f8.d20210428
+      created_at: 2021-05-07T03:59:56.535
+      version: 0.1.dev290+g46a73af
     simu:
       instrument:
         calobj: cal/calobj_default/index.yaml
@@ -535,7 +535,11 @@ correct contents, you can start from this cell.
         f_smp_data: 122.0 Hz
         f_smp_mapping: 12.0 Hz
         t_exp: 1.0 ct
-      perf_params: {}
+      perf_params:
+        anim_frame_rate: 12.0 Hz
+        chunk_size: 10.0 s
+        erfa_interp_len: 300.0 s
+        mapping_interp_len: 1.0 s
       plot: false
       save: false
       sources:
@@ -704,7 +708,7 @@ observed by the TolTEC instrument:
 
 .. parsed-literal::
 
-    sources: [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/toltec_sources.asc')>]
+    sources: [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/toltec_sources.asc')>]
     model class is:
     <class 'tolteca.simu.base.SourceCatalogModel'>
     Name: SourceCatalogModel
@@ -761,7 +765,7 @@ We can inspect the simulator engine as follows:
 
 .. parsed-literal::
 
-    simulator engine: <tolteca.simu.toltec.ToltecObsSimulator object at 0x1376f8940>
+    simulator engine: <tolteca.simu.toltec.ToltecObsSimulator object at 0x13207af70>
        uid      nw  pg ...         x_t                   y_t          
                        ...         deg                   deg          
     ---------- --- --- ... -------------------- ----------------------
@@ -878,7 +882,7 @@ properties:
 
 .. parsed-literal::
 
-    <kidsproc.kidsmodel.simulator.KidsSimulator object at 0x1378094c0>
+    <kidsproc.kidsmodel.simulator.KidsSimulator object at 0x1320e0c40>
     sweep data x shape: (7718, 176) S21 shape: (7718, 176)
 
 
@@ -886,7 +890,7 @@ properties:
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x137d17520>]
+    [<matplotlib.lines.Line2D at 0x1325dcd90>]
 
 
 
@@ -940,7 +944,7 @@ the internals of these methods:
 
 .. parsed-literal::
 
-    mapping evaluator: <function ToltecObsSimulator.mapping_context.<locals>.evaluate at 0x1377841f0>
+    mapping evaluator: <function ToltecObsSimulator.mapping_context.<locals>.evaluate at 0x132043040>
     signal shape: (7718, 500), unit: MJy / sr
     obs_info keys: dict_keys(['t', 'time_obs', '_ref_frame', '_ref_coord', 'obs_coords', 'hold_flags', 'm_proj_icrs', 'projected_frame', 'native_frame', 'obs_coords_icrs', '_altaz_frame', 'obs_coords_altaz', 'obs_parallactic_angle', 'a', 'm_rot_m3', 'x', 'y', 'lon', 'lat', 's_additive', 's', 'm_source', 'mapping', 'ref_coord', 'ref_frame', 'self', 'sources', 't0', 'tbl', 'x_t', 'y_t'])
 
@@ -949,7 +953,7 @@ the internals of these methods:
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x13ce55b20>
+    <matplotlib.legend.Legend at 0x137718460>
 
 
 
@@ -1003,12 +1007,601 @@ the internals of these methods:
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x137891280>
+    <matplotlib.legend.Legend at 0x133e2f4f0>
 
 
 
 
 .. image:: nboutput/tolteca_reduce_27_2.png
+
+
+
+To simulator an entire observation and save the data to data file,
+``tolteca.simu`` provides a convenient interface
+``SimulatorRuntime.run``. The method implement the end-to-end work flow
+that ties the mapping pattern, the source models, the instrument
+simulator engine, as well as the data output module.
+
+
+:inputnumrole:`In[16]:`
+
+
+.. code:: python
+
+    result = rc.run()
+    print(result)
+
+
+:outputnumrole:`Out[16]:`
+
+
+.. parsed-literal::
+
+    SimulatorResult(_iterdata=<generator object SimulatorRuntime.run.<locals>.data_generator at 0x1323d6ba0>, _lazy=True, config={'my_info': {'foo': 'bar'}, 'setup': {'baz': 'boo', 'created_at': '2021-05-07T03:59:56.535', 'version': '0.1.dev290+g46a73af'}, 'simu': {'jobkey': 'toltec_point_source', 'sources': [{'filepath': 'toltec_sources.asc', 'grouping': 'array_name', 'type': 'point_source_catalog', 'colname_map': {'a1100': 'flux_a1100', 'a1400': 'flux_a1400', 'a2000': 'flux_a2000', 'dec': 'dec', 'name': 'name', 'ra': 'ra'}}], 'instrument': {'calobj': 'cal/calobj_default/index.yaml', 'name': 'toltec'}, 'mapping': {'length': '1. arcmin', 'n_scans': 40, 'ref_frame': 'icrs', 'rot': '0. deg', 'space': '1.5 arcsec', 'speed': '1. arcmin/s', 't0': datetime.datetime(2020, 4, 12, 0, 0), 't_turnover': '0.1 s', 'target': '92d -7d', 'type': 'tolteca.simu:SkyRasterScanModel'}, 'obs_params': {'f_smp_data': <Quantity 122. Hz>, 'f_smp_mapping': <Quantity 12. Hz>, 't_exp': <Quantity 1. ct>}, 'save': False, 'plot': False, 'mapping_only': False, 'perf_params': {'chunk_size': <Quantity 10. s>, 'mapping_interp_len': <Quantity 1. s>, 'erfa_interp_len': <Quantity 300. s>, 'anim_frame_rate': <Quantity 12. Hz>}}, 'runtime': {'rootpath': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr'), 'logdir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log'), 'bindir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin'), 'caldir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal'), 'setup_file': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml')}}, data_generator=<function SimulatorRuntime.run.<locals>.data_generator at 0x131d30280>, mapping=<SkyRasterScanModel(length=1. arcmin, space=1.5 arcsec, n_scans=40. , rot=0. deg, speed=1. arcmin / s, t_turnover=0.1 s)>, obs_params={'f_smp_data': <Quantity 122. Hz>, 'f_smp_mapping': <Quantity 12. Hz>, 't_exp': <Quantity 1. ct>}, simctx=SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr), simobj=<tolteca.simu.toltec.ToltecObsSimulator object at 0x1320c28e0>, sources=[<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/toltec_sources.asc')>])
+
+
+.. parsed-literal::
+
+    WARNING: InputWarning: Coordinate string is being interpreted as an ICRS coordinate. [astroquery.utils.commons]
+
+
+The above line creates the ``tolteca.simu.SimulatorResult`` instance
+which holds the result. The result can be marked as either ``lazy`` or
+not. In the lazy case (our case, as indicated by the ``lazy``
+attribute), the actual simulation is run when the
+``SimulatorResult.save`` method is called, and the simulation will be
+run in chunks, to allow simulating a lot of data that cannot be held in
+the memory at once:
+
+
+:inputnumrole:`In[17]:`
+
+
+.. code:: python
+
+    outdir = rc.get_or_create_output_dir()
+    result.save(outdir)
+    print(f'saved simulated data to {outdir}')
+
+
+:outputnumrole:`Out[17]:`
+
+
+.. parsed-literal::
+
+    WARNING: InputWarning: Coordinate string is being interpreted as an ICRS coordinate. [astroquery.utils.commons]
+
+
+.. parsed-literal::
+
+    saved simulated data to /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/toltec_point_source
+
+
+The files created are listed as below. The ``apt_*.ecsv`` is the array
+property table, and the ``toltec*_.nc`` are the raw KIDs data:
+
+
+:inputnumrole:`In[18]:`
+
+
+.. code:: python
+
+    from tollan.utils.fmt import pformat_paths
+    print(pformat_paths(outdir.glob('*'), relative_to=outdir, sort=True))
+
+
+:outputnumrole:`Out[18]:`
+
+
+.. parsed-literal::
+
+    apt_000001_000_0000_2021_05_07_04_00_05.ecsv
+    simresult.state
+    tel_000001_000_0000_2021_05_07_04_00_05.nc
+    toltec0_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec10_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec11_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec12_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec1_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec2_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec3_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec4_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec5_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec6_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec7_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec8_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    toltec9_000001_000_0000_2021_05_07_04_00_05_timestream.nc
+    tolteca.yaml
+
+
+At this poin, we’ve done creating our simulated data. It is noted that
+the various inspection and plotting is for the educational purpose of
+the tutorial, exposing the under-the-hood machineries.
+
+For doing the simulation in production, one just need to create a
+``SimulatorRuntime`` object, call the ``SimulatorRuntime.run`` method,
+finally the ``SimulatorResult.save``.
+
+To make it even easier, the ``tolteca.cli`` module provides a command
+line interface to invoke the simulator work flow:
+
+::
+
+   $ cd some_tolteca_workdir
+   $ tolteca simu
+
+Reduce the simulated observation
+--------------------------------
+
+The data reduction is done by using the
+``tolteca.reduce.PipelineRuntime``, a subclass of the
+``tolteca.utils.RuntimeContext`` object that we should now already be
+familar with. To create the pipeline runtime,
+
+
+:inputnumrole:`In[19]:`
+
+
+.. code:: python
+
+    from tolteca.reduce import PipelineRuntime
+    prc = PipelineRuntime(rootpath=workdir)
+    print(f'Created pipeline runtime {prc}')
+    print(f'Config files in the rc: {prc.config_files}')
+    print(f'Config:\n{pformat_yaml(prc.config)}')
+
+
+:outputnumrole:`Out[19]:`
+
+
+.. parsed-literal::
+
+    Created pipeline runtime PipelineRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/60_simu.yaml')]
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    SchemaMissingKeyError                     Traceback (most recent call last)
+
+    <ipython-input-1-6864aabdb620> in <module>
+          3 print(f'Created pipeline runtime {prc}')
+          4 print(f'Config files in the rc: {prc.config_files}')
+    ----> 5 print(f'Config:\n{pformat_yaml(prc.config)}')
+    
+
+    /usr/local/Cellar/python@3.8/3.8.9/envs/tolteca_tutorials/lib/python3.8/site-packages/cached_property.py in __get__(self, obj, cls)
+         34             return self._wrap_in_coroutine(obj)
+         35 
+    ---> 36         value = obj.__dict__[self.func.__name__] = self.func(obj)
+         37         return value
+         38 
+
+
+    ~/Codes/toltec/py/tolteca/tolteca/utils/__init__.py in config(self)
+        145                                 f" No top level dict found.")
+        146                     rupdate(cfg, c)
+    --> 147         cfg = self.validate_config(cfg)
+        148         # update runtime info
+        149         cfg['runtime'] = self.to_dict()
+
+
+    ~/Codes/toltec/py/tolteca/tolteca/utils/__init__.py in validate_config(cls, cfg)
+        155         if cfg is None:
+        156             return None
+    --> 157         return cls.get_config_schema().validate(cfg)
+        158 
+        159     @classmethod
+
+
+    /usr/local/Cellar/python@3.8/3.8.9/envs/tolteca_tutorials/lib/python3.8/site-packages/schema.py in validate(self, data)
+        409                 message = "Missing key%s: %s" % (_plural_s(missing_keys), s_missing_keys)
+        410                 message = self._prepend_schema_name(message)
+    --> 411                 raise SchemaMissingKeyError(message, e.format(data) if e else None)
+        412             if not self._ignore_extra_keys and (len(new) != len(data)):
+        413                 wrong_keys = set(data.keys()) - set(new.keys())
+
+
+    SchemaMissingKeyError: Missing key: 'reduce'
+
+
+The reason of the exception is that we have not “setup” the pipeline
+properly. The pipeline expects a branch of config entries under the key
+``reduce``, stored in one of the YAML files found in the workdir.
+
+The tolteca.reduce has a set of “built-in” configurations that one can
+use readily, one of which is ‘toltec_point_source’. Let’s dump this
+config to the workdir with file name “80_reduce.yaml”. Note the format
+``\d+_.+.yaml``, this is the convention of the YAML config files to be
+recongnized by the tolteca runtime context. The files with lower number
+are overriden by those with higher number.
+
+
+:inputnumrole:`In[20]:`
+
+
+.. code:: python
+
+    from tolteca.reduce import example_configs as cfgs
+    cfg = cfgs['toltec_citlali_simple']
+    # here we need to update the input path field to match the simu outdir
+    cfg['reduce']['inputs'][0]['path'] = rc.config['simu']['jobkey']
+    # and we set the jobkey to something more sensible
+    cfg['reduce']['jobkey'] = 'toltec_point_source_reduced'
+    print(pformat_yaml(cfg))
+    
+    import yaml
+    with open(rc.rootpath.joinpath('80_reduce.yaml'), 'w') as fo:
+        yaml.dump(cfg, fo)
+
+
+:outputnumrole:`Out[20]:`
+
+
+.. parsed-literal::
+
+    
+    reduce:
+      inputs:
+        - path: toltec_point_source
+      jobkey: toltec_point_source_reduced
+      pipeline:
+        config:
+          kids:
+            fitter:
+              modelspec: gainlintrend
+              weight_window:
+                fwhm_Hz: 1.5e4
+                type: lorentz
+            solver:
+          map:
+            grouping: array_name
+            mgrid0: 0.0
+            mgrid1: 0.0
+            offset: 0.0
+            pattern: Raster
+            pixelsize: 0.75
+            type: RaDec
+          runtime:
+            ncores: 1
+            policy: seq
+          tod:
+            despike:
+              despikewindow: 32
+              enabled: false
+              sigma: 8.0
+              timeconstant: 0.015
+            downsample:
+              downsamplefactor: 1
+              enabled: true
+            filter:
+              agibbs: 50.0
+              enabled: false
+              fhigh: 4.0
+              flow: 0.0
+              nterms: 32
+            kernel:
+              enabled: true
+            pcaclean:
+              approximateWeights: 0
+              cutStd: 0.0
+              enabled: false
+              grouping: array_name
+              neigToCut: 9
+        name: citlali
+    
+
+
+
+:inputnumrole:`In[21]:`
+
+
+.. code:: python
+
+    # now we are ready to load the pipeline runtime:
+    prc = PipelineRuntime(rootpath=workdir)
+    print(f'Created pipeline runtime {prc}')
+    print(f'Config files in the rc: {prc.config_files}')
+    print(f'Config:\n{pformat_yaml(prc.config)}')
+
+
+:outputnumrole:`Out[21]:`
+
+
+.. parsed-literal::
+
+    Created pipeline runtime PipelineRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/60_simu.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/80_reduce.yaml')]
+    Config:
+    
+    my_info:
+      foo: bar
+    reduce:
+      inputs:
+        - path: toltec_point_source
+      jobkey: toltec_point_source_reduced
+      pipeline:
+        config:
+          kids:
+            fitter:
+              modelspec: gainlintrend
+              weight_window:
+                fwhm_Hz: 1.5e4
+                type: lorentz
+            solver:
+          map:
+            grouping: array_name
+            mgrid0: 0.0
+            mgrid1: 0.0
+            offset: 0.0
+            pattern: Raster
+            pixelsize: 0.75
+            type: RaDec
+          runtime:
+            ncores: 1
+            policy: seq
+          tod:
+            despike:
+              despikewindow: 32
+              enabled: false
+              sigma: 8.0
+              timeconstant: 0.015
+            downsample:
+              downsamplefactor: 1
+              enabled: true
+            filter:
+              agibbs: 50.0
+              enabled: false
+              fhigh: 4.0
+              flow: 0.0
+              nterms: 32
+            kernel:
+              enabled: true
+            pcaclean:
+              approximateWeights: 0
+              cutStd: 0.0
+              enabled: false
+              grouping: array_name
+              neigToCut: 9
+        name: citlali
+      select:
+    runtime:
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml
+    setup:
+      baz: boo
+      created_at: 2021-05-07T03:59:56.535
+      version: 0.1.dev290+g46a73af
+    simu:
+      instrument:
+        calobj: cal/calobj_default/index.yaml
+        name: toltec
+      jobkey: toltec_point_source
+      mapping:
+        length: '1. arcmin'
+        n_scans: 40
+        ref_frame: icrs
+        rot: '0. deg'
+        space: '1.5 arcsec'
+        speed: '1. arcmin/s'
+        t0: 2020-04-12 00:00:00
+        t_turnover: '0.1 s'
+        target: '92d -7d'
+        type: tolteca.simu:SkyRasterScanModel
+      obs_params:
+        f_smp_data: '122. Hz'
+        f_smp_mapping: '12 Hz'
+        t_exp: '1 ct'
+      sources:
+        - colname_map:
+            a1100: flux_a1100
+            a1400: flux_a1400
+            a2000: flux_a2000
+            dec: dec
+            name: name
+            ra: ra
+          filepath: toltec_sources.asc
+          grouping: array_name
+          type: point_source_catalog
+    
+
+
+The pipeline runtime handles the execution of the underlying pipeline
+engine, which is specified to be ``citlali`` in our case. To proceed, we
+need to make available the citlali executable to the tolteca. This can
+be conveniently done with the helper function
+``RuntimeContext.link_to_bindir``:
+
+We can inspect the configurations and the engine itself as follows:
+
+
+:inputnumrole:`In[22]:`
+
+
+.. code:: python
+
+    # In the environment this tutorial gets rendered, we the compiled citlali
+    # executable is in ~/Codes/toltec/cpp/citlali/build/bin
+    from pathlib import Path
+    citlali_exec = Path('~/Codes/toltec/cpp/citlali/build/bin/citlali').expanduser()
+    prc.symlink_to_bindir(citlali_exec, link_name='citlali')
+
+
+:outputnumrole:`Out[22]:`
+
+
+
+
+.. parsed-literal::
+
+    PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin/citlali')
+
+
+
+
+:inputnumrole:`In[23]:`
+
+
+.. code:: python
+
+    ppl_params = prc.get_pipeline_params()
+    print(pformat_yaml(ppl_params))
+    # we can inspect the engine version
+    engine = ppl_params['engine']
+    print(f'engine version: {engine.version}')
+
+
+:outputnumrole:`Out[23]:`
+
+
+.. parsed-literal::
+
+    
+    config:
+      kids:
+        fitter:
+          modelspec: gainlintrend
+          weight_window:
+            fwhm_Hz: 1.5e4
+            type: lorentz
+        solver:
+      map:
+        grouping: array_name
+        mgrid0: 0.0
+        mgrid1: 0.0
+        offset: 0.0
+        pattern: Raster
+        pixelsize: 0.75
+        type: RaDec
+      runtime:
+        ncores: 1
+        policy: seq
+      tod:
+        despike:
+          despikewindow: 32
+          enabled: false
+          sigma: 8.0
+          timeconstant: 0.015
+        downsample:
+          downsamplefactor: 1
+          enabled: true
+        filter:
+          agibbs: 50.0
+          enabled: false
+          fhigh: 4.0
+          flow: 0.0
+          nterms: 32
+        kernel:
+          enabled: true
+        pcaclean:
+          approximateWeights: 0
+          cutStd: 0.0
+          enabled: false
+          grouping: array_name
+          neigToCut: 9
+    engine: Citlali(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin/citlali,version=cc27f77)
+    name: citlali
+    
+    engine version: cc27f77
+
+
+To run the pipelin, simply do:
+
+
+:inputnumrole:`In[24]:`
+
+
+.. code:: python
+
+    result = prc.run()
+
+
+:outputnumrole:`Out[24]:`
+
+
+.. parsed-literal::
+
+    /usr/local/Cellar/python@3.8/3.8.9/Frameworks/Python.framework/Versions/3.8/lib/python3.8/subprocess.py:848: RuntimeWarning: line buffering (buffering=1) isn't supported in binary mode, the default buffer size will be used
+      self.stdout = io.open(c2pread, 'rb', bufsize)
+    ** logging ** configured with level=debug (debug at compile time; available levels: {trace, debug, info, warning, error, critical, off})
+    [2021-05-07 00:00:34.436] [info] [logging.h:129] **timeit** Citlali Process
+    [2021-05-07 00:00:34.437] [info] [main.cpp:81] reconfigure logger to level=error
+    
+
+
+The files created are listed as below. The ``citlali.ecsv`` is the low
+level config file supplied to the citlali call, and the
+``toltec*_.fits`` are the reduced maps.
+
+
+:inputnumrole:`In[25]:`
+
+
+.. code:: python
+
+    outdir = result['outdir']
+    print(pformat_paths(outdir.glob('*'), relative_to=outdir, sort=True))
+
+
+:outputnumrole:`Out[25]:`
+
+
+.. parsed-literal::
+
+    citlali.yaml
+    toltec_simu_a1100_science_000001_450100.fits
+    toltec_simu_a1400_science_000001_450100.fits
+    toltec_simu_a2000_science_000001_450100.fits
+
+
+We can now load back the reduced files and see the sources that we
+initialy put into the simulation.
+
+
+:inputnumrole:`In[26]:`
+
+
+.. code:: python
+
+    from astropy.io import fits
+    from astropy.visualization import PercentileInterval, ImageNormalize, MinMaxInterval
+    interval = PercentileInterval(99)
+    
+    fig = plt.figure(figsize=(10, 15))
+    fig.subplots_adjust(wspace=0.9)
+    n_hdus = len(m_img.data)
+    
+    for i, (k, hdu) in enumerate(m_img.data.items()):
+        w = WCS(hdu.header)
+        ax = fig.add_subplot(4, n_hdus, i + 1, projection=w)
+        ax.set_aspect('equal')
+        ax.set_title(f'{k}')
+        ax.imshow(hdu.data)
+        # label the sources
+        for p, n in zip(m_point_source.pos, m_point_source.data['name']):
+            ax.text(p.ra.degree, p.dec.degree, n, transform=ax.get_transform('icrs'), color='red')
+        # load the output fits file and plot
+        hl = fits.open(list(outdir.glob(f'*_{k}_*.fits'))[-1])
+        for j, (e, label) in enumerate(zip([1, 2, 4], ['reduced signal', 'weight', 'coverage'])):  # signal (1), weight (2), and int 4
+            hdu = hl[e]
+            w = WCS(hdu.header)  # signal map is extension 1
+            ax = fig.add_subplot(4, n_hdus, n_hdus * (j + 1) + i + 1, projection=w)
+            ax.set_title(f'{label} {k}')
+            norm = ImageNormalize(hdu.data, interval=interval)
+            ax.imshow(hdu.data, norm=norm)
+
+
+:outputnumrole:`Out[26]:`
+
+
+
+.. image:: nboutput/tolteca_reduce_48_0.png
 
 
 

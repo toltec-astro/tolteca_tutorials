@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap_sandstone.css" />
     <link rel="stylesheet" type="text/css" href="../_static/astropy.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -85,6 +86,7 @@
 <li><a class="reference internal" href="#summary">Summary</a></li>
 <li><a class="reference internal" href="#lets-first-create-a-runtime-context-object">Let’s first create a runtime context object.</a></li>
 <li><a class="reference internal" href="#create-simulated-data">Create simulated data</a></li>
+<li><a class="reference internal" href="#reduce-the-simulated-observation">Reduce the simulated observation</a></li>
 </ul>
 </li>
 </ul>
@@ -184,8 +186,8 @@ use a temporary directory here:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[1]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="p">)</span>
-<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml&#39;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>To load the config, just access the <code class="docutils literal notranslate"><span class="pre">config</span></code> attribute:</p>
@@ -249,14 +251,14 @@ later tolteca runs can recognize the context. To setup,</p>
 </div>
 <p><span class="outputnumrole">Out[3]:</span></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="n">T02</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">16.064</span>
-  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev288</span><span class="o">+</span><span class="n">g35d04f8</span><span class="o">.</span><span class="n">d20210428</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mf">56.320</span>
+  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev290</span><span class="o">+</span><span class="n">g46a73af</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">setup()</span></code> method also support adding custom records as follows
@@ -274,15 +276,15 @@ an already setup runtime context):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_info</span><span class="p">:</span>
   <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
 <span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
   <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="n">T02</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">16.273</span>
-  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev288</span><span class="o">+</span><span class="n">g35d04f8</span><span class="o">.</span><span class="n">d20210428</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mf">56.535</span>
+  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev290</span><span class="o">+</span><span class="n">g46a73af</span>
 </pre></div>
 </div>
 <p>Now we have the workdir setup, we can go back and pretend that we
@@ -301,22 +303,22 @@ how our custom records get loaded as well):</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[5]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="p">)</span>
-<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml&#39;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml&#39;</span><span class="p">)]</span>
 <span class="n">Config</span><span class="p">:</span>
 
 <span class="n">my_info</span><span class="p">:</span>
   <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
 <span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
   <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="n">T02</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">16.273</span>
-  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev288</span><span class="o">+</span><span class="n">g35d04f8</span><span class="o">.</span><span class="n">d20210428</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mf">56.535</span>
+  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev290</span><span class="o">+</span><span class="n">g46a73af</span>
 </pre></div>
 </div>
 </div>
@@ -338,8 +340,8 @@ runtime, we do the follows:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[6]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">SimulatorRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="p">)</span>
-<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/50_setup.yaml&#39;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">runtime</span> <span class="n">context</span> <span class="n">SimulatorRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
@@ -477,15 +479,15 @@ correct contents, you can start from this cell.</p>
 <span class="n">my_info</span><span class="p">:</span>
   <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
 <span class="n">runtime</span><span class="p">:</span>
-  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="nb">bin</span>
-  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">cal</span>
-  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="n">log</span>
-  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span>
-  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp91c1hcn1</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
 <span class="n">setup</span><span class="p">:</span>
   <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
-  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span><span class="n">T02</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">16.273</span>
-  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev288</span><span class="o">+</span><span class="n">g35d04f8</span><span class="o">.</span><span class="n">d20210428</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mf">56.535</span>
+  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev290</span><span class="o">+</span><span class="n">g46a73af</span>
 <span class="n">simu</span><span class="p">:</span>
   <span class="n">instrument</span><span class="p">:</span>
     <span class="n">calobj</span><span class="p">:</span> <span class="n">cal</span><span class="o">/</span><span class="n">calobj_default</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">yaml</span>
@@ -507,7 +509,11 @@ correct contents, you can start from this cell.</p>
     <span class="n">f_smp_data</span><span class="p">:</span> <span class="mf">122.0</span> <span class="n">Hz</span>
     <span class="n">f_smp_mapping</span><span class="p">:</span> <span class="mf">12.0</span> <span class="n">Hz</span>
     <span class="n">t_exp</span><span class="p">:</span> <span class="mf">1.0</span> <span class="n">ct</span>
-  <span class="n">perf_params</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="n">perf_params</span><span class="p">:</span>
+    <span class="n">anim_frame_rate</span><span class="p">:</span> <span class="mf">12.0</span> <span class="n">Hz</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="mf">10.0</span> <span class="n">s</span>
+    <span class="n">erfa_interp_len</span><span class="p">:</span> <span class="mf">300.0</span> <span class="n">s</span>
+    <span class="n">mapping_interp_len</span><span class="p">:</span> <span class="mf">1.0</span> <span class="n">s</span>
   <span class="n">plot</span><span class="p">:</span> <span class="n">false</span>
   <span class="n">save</span><span class="p">:</span> <span class="n">false</span>
   <span class="n">sources</span><span class="p">:</span>
@@ -647,7 +653,7 @@ observed by the TolTEC instrument:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[10]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sources: [&lt;SourceCatalogModel(name=&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp91c1hcn1/toltec_sources.asc&#39;)&gt;]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sources: [&lt;SourceCatalogModel(name=&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/toltec_sources.asc&#39;)&gt;]
 model class is:
 &lt;class &#39;tolteca.simu.base.SourceCatalogModel&#39;&gt;
 Name: SourceCatalogModel
@@ -687,7 +693,7 @@ observations.</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[11]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="n">engine</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">tolteca</span><span class="o">.</span><span class="n">simu</span><span class="o">.</span><span class="n">toltec</span><span class="o">.</span><span class="n">ToltecObsSimulator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1376f8940</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="n">engine</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">tolteca</span><span class="o">.</span><span class="n">simu</span><span class="o">.</span><span class="n">toltec</span><span class="o">.</span><span class="n">ToltecObsSimulator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13207af70</span><span class="o">&gt;</span>
    <span class="n">uid</span>      <span class="n">nw</span>  <span class="n">pg</span> <span class="o">...</span>         <span class="n">x_t</span>                   <span class="n">y_t</span>
                    <span class="o">...</span>         <span class="n">deg</span>                   <span class="n">deg</span>
 <span class="o">----------</span> <span class="o">---</span> <span class="o">---</span> <span class="o">...</span> <span class="o">--------------------</span> <span class="o">----------------------</span>
@@ -782,11 +788,11 @@ properties:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[13]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">kidsproc</span><span class="o">.</span><span class="n">kidsmodel</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">KidsSimulator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1378094c0</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">kidsproc</span><span class="o">.</span><span class="n">kidsmodel</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">KidsSimulator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1320e0c40</span><span class="o">&gt;</span>
 <span class="n">sweep</span> <span class="n">data</span> <span class="n">x</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">7718</span><span class="p">,</span> <span class="mi">176</span><span class="p">)</span> <span class="n">S21</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">7718</span><span class="p">,</span> <span class="mi">176</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x137d17520</span><span class="o">&gt;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x1325dcd90</span><span class="o">&gt;</span><span class="p">]</span>
 </pre></div>
 </div>
 <img alt="../_images/tolteca_reduce_24_2.png" src="../_images/tolteca_reduce_24_2.png" />
@@ -825,12 +831,12 @@ the internals of these methods:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[14]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="n">evaluator</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">ToltecObsSimulator</span><span class="o">.</span><span class="n">mapping_context</span><span class="o">.&lt;</span><span class="nb">locals</span><span class="o">&gt;.</span><span class="n">evaluate</span> <span class="n">at</span> <span class="mh">0x1377841f0</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="n">evaluator</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">ToltecObsSimulator</span><span class="o">.</span><span class="n">mapping_context</span><span class="o">.&lt;</span><span class="nb">locals</span><span class="o">&gt;.</span><span class="n">evaluate</span> <span class="n">at</span> <span class="mh">0x132043040</span><span class="o">&gt;</span>
 <span class="n">signal</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">7718</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">unit</span><span class="p">:</span> <span class="n">MJy</span> <span class="o">/</span> <span class="n">sr</span>
 <span class="n">obs_info</span> <span class="n">keys</span><span class="p">:</span> <span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;time_obs&#39;</span><span class="p">,</span> <span class="s1">&#39;_ref_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;_ref_coord&#39;</span><span class="p">,</span> <span class="s1">&#39;obs_coords&#39;</span><span class="p">,</span> <span class="s1">&#39;hold_flags&#39;</span><span class="p">,</span> <span class="s1">&#39;m_proj_icrs&#39;</span><span class="p">,</span> <span class="s1">&#39;projected_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;native_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;obs_coords_icrs&#39;</span><span class="p">,</span> <span class="s1">&#39;_altaz_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;obs_coords_altaz&#39;</span><span class="p">,</span> <span class="s1">&#39;obs_parallactic_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;m_rot_m3&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;s_additive&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;m_source&#39;</span><span class="p">,</span> <span class="s1">&#39;mapping&#39;</span><span class="p">,</span> <span class="s1">&#39;ref_coord&#39;</span><span class="p">,</span> <span class="s1">&#39;ref_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="s1">&#39;sources&#39;</span><span class="p">,</span> <span class="s1">&#39;t0&#39;</span><span class="p">,</span> <span class="s1">&#39;tbl&#39;</span><span class="p">,</span> <span class="s1">&#39;x_t&#39;</span><span class="p">,</span> <span class="s1">&#39;y_t&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x13ce55b20</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x137718460</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <img alt="../_images/tolteca_reduce_26_2.png" src="../_images/tolteca_reduce_26_2.png" />
@@ -866,10 +872,466 @@ the internals of these methods:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S21</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">7718</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">complex128</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x137891280</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x133e2f4f0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <img alt="../_images/tolteca_reduce_27_2.png" src="../_images/tolteca_reduce_27_2.png" />
+<p>To simulator an entire observation and save the data to data file,
+<code class="docutils literal notranslate"><span class="pre">tolteca.simu</span></code> provides a convenient interface
+<code class="docutils literal notranslate"><span class="pre">SimulatorRuntime.run</span></code>. The method implement the end-to-end work flow
+that ties the mapping pattern, the source models, the instrument
+simulator engine, as well as the data output module.</p>
+<p><span class="inputnumrole">In[16]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[16]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SimulatorResult</span><span class="p">(</span><span class="n">_iterdata</span><span class="o">=&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">SimulatorRuntime</span><span class="o">.</span><span class="n">run</span><span class="o">.&lt;</span><span class="nb">locals</span><span class="o">&gt;.</span><span class="n">data_generator</span> <span class="n">at</span> <span class="mh">0x1323d6ba0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_lazy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;my_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">},</span> <span class="s1">&#39;setup&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;baz&#39;</span><span class="p">:</span> <span class="s1">&#39;boo&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-05-07T03:59:56.535&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1.dev290+g46a73af&#39;</span><span class="p">},</span> <span class="s1">&#39;simu&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;jobkey&#39;</span><span class="p">:</span> <span class="s1">&#39;toltec_point_source&#39;</span><span class="p">,</span> <span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;filepath&#39;</span><span class="p">:</span> <span class="s1">&#39;toltec_sources.asc&#39;</span><span class="p">,</span> <span class="s1">&#39;grouping&#39;</span><span class="p">:</span> <span class="s1">&#39;array_name&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;point_source_catalog&#39;</span><span class="p">,</span> <span class="s1">&#39;colname_map&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a1100&#39;</span><span class="p">:</span> <span class="s1">&#39;flux_a1100&#39;</span><span class="p">,</span> <span class="s1">&#39;a1400&#39;</span><span class="p">:</span> <span class="s1">&#39;flux_a1400&#39;</span><span class="p">,</span> <span class="s1">&#39;a2000&#39;</span><span class="p">:</span> <span class="s1">&#39;flux_a2000&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">:</span> <span class="s1">&#39;dec&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;ra&#39;</span><span class="p">:</span> <span class="s1">&#39;ra&#39;</span><span class="p">}}],</span> <span class="s1">&#39;instrument&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;calobj&#39;</span><span class="p">:</span> <span class="s1">&#39;cal/calobj_default/index.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;toltec&#39;</span><span class="p">},</span> <span class="s1">&#39;mapping&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="s1">&#39;1. arcmin&#39;</span><span class="p">,</span> <span class="s1">&#39;n_scans&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;ref_frame&#39;</span><span class="p">:</span> <span class="s1">&#39;icrs&#39;</span><span class="p">,</span> <span class="s1">&#39;rot&#39;</span><span class="p">:</span> <span class="s1">&#39;0. deg&#39;</span><span class="p">,</span> <span class="s1">&#39;space&#39;</span><span class="p">:</span> <span class="s1">&#39;1.5 arcsec&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;1. arcmin/s&#39;</span><span class="p">,</span> <span class="s1">&#39;t0&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;t_turnover&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1 s&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="s1">&#39;92d -7d&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;tolteca.simu:SkyRasterScanModel&#39;</span><span class="p">},</span> <span class="s1">&#39;obs_params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;f_smp_data&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">122.</span> <span class="n">Hz</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;f_smp_mapping&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">12.</span> <span class="n">Hz</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;t_exp&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">1.</span> <span class="n">ct</span><span class="o">&gt;</span><span class="p">},</span> <span class="s1">&#39;save&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;plot&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;mapping_only&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;perf_params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;chunk_size&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">10.</span> <span class="n">s</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;mapping_interp_len&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">1.</span> <span class="n">s</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;erfa_interp_len&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">300.</span> <span class="n">s</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;anim_frame_rate&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">12.</span> <span class="n">Hz</span><span class="o">&gt;</span><span class="p">}},</span> <span class="s1">&#39;runtime&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;rootpath&#39;</span><span class="p">:</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr&#39;</span><span class="p">),</span> <span class="s1">&#39;logdir&#39;</span><span class="p">:</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/log&#39;</span><span class="p">),</span> <span class="s1">&#39;bindir&#39;</span><span class="p">:</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin&#39;</span><span class="p">),</span> <span class="s1">&#39;caldir&#39;</span><span class="p">:</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/cal&#39;</span><span class="p">),</span> <span class="s1">&#39;setup_file&#39;</span><span class="p">:</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml&#39;</span><span class="p">)}},</span> <span class="n">data_generator</span><span class="o">=&lt;</span><span class="n">function</span> <span class="n">SimulatorRuntime</span><span class="o">.</span><span class="n">run</span><span class="o">.&lt;</span><span class="nb">locals</span><span class="o">&gt;.</span><span class="n">data_generator</span> <span class="n">at</span> <span class="mh">0x131d30280</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">mapping</span><span class="o">=&lt;</span><span class="n">SkyRasterScanModel</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mf">1.</span> <span class="n">arcmin</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="mf">1.5</span> <span class="n">arcsec</span><span class="p">,</span> <span class="n">n_scans</span><span class="o">=</span><span class="mf">40.</span> <span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mf">0.</span> <span class="n">deg</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mf">1.</span> <span class="n">arcmin</span> <span class="o">/</span> <span class="n">s</span><span class="p">,</span> <span class="n">t_turnover</span><span class="o">=</span><span class="mf">0.1</span> <span class="n">s</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">obs_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;f_smp_data&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">122.</span> <span class="n">Hz</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;f_smp_mapping&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">12.</span> <span class="n">Hz</span><span class="o">&gt;</span><span class="p">,</span> <span class="s1">&#39;t_exp&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quantity</span> <span class="mf">1.</span> <span class="n">ct</span><span class="o">&gt;</span><span class="p">},</span> <span class="n">simctx</span><span class="o">=</span><span class="n">SimulatorRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="p">),</span> <span class="n">simobj</span><span class="o">=&lt;</span><span class="n">tolteca</span><span class="o">.</span><span class="n">simu</span><span class="o">.</span><span class="n">toltec</span><span class="o">.</span><span class="n">ToltecObsSimulator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1320c28e0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="o">&lt;</span><span class="n">SourceCatalogModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/toltec_sources.asc&#39;</span><span class="p">)</span><span class="o">&gt;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARNING</span><span class="p">:</span> <span class="n">InputWarning</span><span class="p">:</span> <span class="n">Coordinate</span> <span class="n">string</span> <span class="ow">is</span> <span class="n">being</span> <span class="n">interpreted</span> <span class="k">as</span> <span class="n">an</span> <span class="n">ICRS</span> <span class="n">coordinate</span><span class="o">.</span> <span class="p">[</span><span class="n">astroquery</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">commons</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The above line creates the <code class="docutils literal notranslate"><span class="pre">tolteca.simu.SimulatorResult</span></code> instance
+which holds the result. The result can be marked as either <code class="docutils literal notranslate"><span class="pre">lazy</span></code> or
+not. In the lazy case (our case, as indicated by the <code class="docutils literal notranslate"><span class="pre">lazy</span></code>
+attribute), the actual simulation is run when the
+<code class="docutils literal notranslate"><span class="pre">SimulatorResult.save</span></code> method is called, and the simulation will be
+run in chunks, to allow simulating a lot of data that cannot be held in
+the memory at once:</p>
+<p><span class="inputnumrole">In[17]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">get_or_create_output_dir</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">outdir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;saved simulated data to </span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[17]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARNING</span><span class="p">:</span> <span class="n">InputWarning</span><span class="p">:</span> <span class="n">Coordinate</span> <span class="n">string</span> <span class="ow">is</span> <span class="n">being</span> <span class="n">interpreted</span> <span class="k">as</span> <span class="n">an</span> <span class="n">ICRS</span> <span class="n">coordinate</span><span class="o">.</span> <span class="p">[</span><span class="n">astroquery</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">commons</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">saved</span> <span class="n">simulated</span> <span class="n">data</span> <span class="n">to</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">toltec_point_source</span>
+</pre></div>
+</div>
+<p>The files created are listed as below. The <code class="docutils literal notranslate"><span class="pre">apt_*.ecsv</span></code> is the array
+property table, and the <code class="docutils literal notranslate"><span class="pre">toltec*_.nc</span></code> are the raw KIDs data:</p>
+<p><span class="inputnumrole">In[18]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tollan.utils.fmt</span> <span class="kn">import</span> <span class="n">pformat_paths</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pformat_paths</span><span class="p">(</span><span class="n">outdir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">),</span> <span class="n">relative_to</span><span class="o">=</span><span class="n">outdir</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[18]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt_000001_000_0000_2021_05_07_04_00_05</span><span class="o">.</span><span class="n">ecsv</span>
+<span class="n">simresult</span><span class="o">.</span><span class="n">state</span>
+<span class="n">tel_000001_000_0000_2021_05_07_04_00_05</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec0_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec10_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec11_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec12_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec1_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec2_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec3_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec4_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec5_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec6_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec7_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec8_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">toltec9_000001_000_0000_2021_05_07_04_00_05_timestream</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">tolteca</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>At this poin, we’ve done creating our simulated data. It is noted that
+the various inspection and plotting is for the educational purpose of
+the tutorial, exposing the under-the-hood machineries.</p>
+<p>For doing the simulation in production, one just need to create a
+<code class="docutils literal notranslate"><span class="pre">SimulatorRuntime</span></code> object, call the <code class="docutils literal notranslate"><span class="pre">SimulatorRuntime.run</span></code> method,
+finally the <code class="docutils literal notranslate"><span class="pre">SimulatorResult.save</span></code>.</p>
+<p>To make it even easier, the <code class="docutils literal notranslate"><span class="pre">tolteca.cli</span></code> module provides a command
+line interface to invoke the simulator work flow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd some_tolteca_workdir
+$ tolteca simu
+</pre></div>
+</div>
+</div>
+<div class="section" id="reduce-the-simulated-observation">
+<h2>Reduce the simulated observation<a class="headerlink" href="#reduce-the-simulated-observation" title="Permalink to this headline">¶</a></h2>
+<p>The data reduction is done by using the
+<code class="docutils literal notranslate"><span class="pre">tolteca.reduce.PipelineRuntime</span></code>, a subclass of the
+<code class="docutils literal notranslate"><span class="pre">tolteca.utils.RuntimeContext</span></code> object that we should now already be
+familar with. To create the pipeline runtime,</p>
+<p><span class="inputnumrole">In[19]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tolteca.reduce</span> <span class="kn">import</span> <span class="n">PipelineRuntime</span>
+<span class="n">prc</span> <span class="o">=</span> <span class="n">PipelineRuntime</span><span class="p">(</span><span class="n">rootpath</span><span class="o">=</span><span class="n">workdir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Created pipeline runtime </span><span class="si">{</span><span class="n">prc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config files in the rc: </span><span class="si">{</span><span class="n">prc</span><span class="o">.</span><span class="n">config_files</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config:</span><span class="se">\n</span><span class="si">{</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">prc</span><span class="o">.</span><span class="n">config</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[19]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">pipeline</span> <span class="n">runtime</span> <span class="n">PipelineRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml&#39;</span><span class="p">),</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/60_simu.yaml&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="n">SchemaMissingKeyError</span>                     <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">6864</span><span class="n">aabdb620</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Created pipeline runtime </span><span class="si">{</span><span class="n">prc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+      <span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config files in the rc: </span><span class="si">{</span><span class="n">prc</span><span class="o">.</span><span class="n">config_files</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">----&gt;</span> <span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config:</span><span class="se">\n</span><span class="si">{</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">prc</span><span class="o">.</span><span class="n">config</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">python</span><span class="o">@</span><span class="mf">3.8</span><span class="o">/</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tolteca_tutorials</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">cached_property</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+     <span class="mi">34</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_in_coroutine</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+     <span class="mi">35</span>
+<span class="o">---&gt;</span> <span class="mi">36</span>         <span class="n">value</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+     <span class="mi">37</span>         <span class="k">return</span> <span class="n">value</span>
+     <span class="mi">38</span>
+
+
+<span class="o">~/</span><span class="n">Codes</span><span class="o">/</span><span class="n">toltec</span><span class="o">/</span><span class="n">py</span><span class="o">/</span><span class="n">tolteca</span><span class="o">/</span><span class="n">tolteca</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="mi">145</span>                                 <span class="sa">f</span><span class="s2">&quot; No top level dict found.&quot;</span><span class="p">)</span>
+    <span class="mi">146</span>                     <span class="n">rupdate</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="o">--&gt;</span> <span class="mi">147</span>         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_config</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+    <span class="mi">148</span>         <span class="c1"># update runtime info</span>
+    <span class="mi">149</span>         <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;runtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+
+<span class="o">~/</span><span class="n">Codes</span><span class="o">/</span><span class="n">toltec</span><span class="o">/</span><span class="n">py</span><span class="o">/</span><span class="n">tolteca</span><span class="o">/</span><span class="n">tolteca</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">validate_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+    <span class="mi">155</span>         <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="mi">156</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="o">--&gt;</span> <span class="mi">157</span>         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_config_schema</span><span class="p">()</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+    <span class="mi">158</span>
+    <span class="mi">159</span>     <span class="nd">@classmethod</span>
+
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">python</span><span class="o">@</span><span class="mf">3.8</span><span class="o">/</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tolteca_tutorials</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">schema</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="mi">409</span>                 <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Missing key</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">_plural_s</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">),</span> <span class="n">s_missing_keys</span><span class="p">)</span>
+    <span class="mi">410</span>                 <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepend_schema_name</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="o">--&gt;</span> <span class="mi">411</span>                 <span class="k">raise</span> <span class="n">SchemaMissingKeyError</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">if</span> <span class="n">e</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="mi">412</span>             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ignore_extra_keys</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">new</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="mi">413</span>                 <span class="n">wrong_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+
+<span class="n">SchemaMissingKeyError</span><span class="p">:</span> <span class="n">Missing</span> <span class="n">key</span><span class="p">:</span> <span class="s1">&#39;reduce&#39;</span>
+</pre></div>
+</div>
+<p>The reason of the exception is that we have not “setup” the pipeline
+properly. The pipeline expects a branch of config entries under the key
+<code class="docutils literal notranslate"><span class="pre">reduce</span></code>, stored in one of the YAML files found in the workdir.</p>
+<p>The tolteca.reduce has a set of “built-in” configurations that one can
+use readily, one of which is ‘toltec_point_source’. Let’s dump this
+config to the workdir with file name “80_reduce.yaml”. Note the format
+<code class="docutils literal notranslate"><span class="pre">\d+_.+.yaml</span></code>, this is the convention of the YAML config files to be
+recongnized by the tolteca runtime context. The files with lower number
+are overriden by those with higher number.</p>
+<p><span class="inputnumrole">In[20]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tolteca.reduce</span> <span class="kn">import</span> <span class="n">example_configs</span> <span class="k">as</span> <span class="n">cfgs</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">cfgs</span><span class="p">[</span><span class="s1">&#39;toltec_citlali_simple&#39;</span><span class="p">]</span>
+<span class="c1"># here we need to update the input path field to match the simu outdir</span>
+<span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;reduce&#39;</span><span class="p">][</span><span class="s1">&#39;inputs&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;simu&#39;</span><span class="p">][</span><span class="s1">&#39;jobkey&#39;</span><span class="p">]</span>
+<span class="c1"># and we set the jobkey to something more sensible</span>
+<span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;reduce&#39;</span><span class="p">][</span><span class="s1">&#39;jobkey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;toltec_point_source_reduced&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">cfg</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">rootpath</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;80_reduce.yaml&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">fo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[20]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reduce</span><span class="p">:</span>
+  <span class="n">inputs</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">path</span><span class="p">:</span> <span class="n">toltec_point_source</span>
+  <span class="n">jobkey</span><span class="p">:</span> <span class="n">toltec_point_source_reduced</span>
+  <span class="n">pipeline</span><span class="p">:</span>
+    <span class="n">config</span><span class="p">:</span>
+      <span class="n">kids</span><span class="p">:</span>
+        <span class="n">fitter</span><span class="p">:</span>
+          <span class="n">modelspec</span><span class="p">:</span> <span class="n">gainlintrend</span>
+          <span class="n">weight_window</span><span class="p">:</span>
+            <span class="n">fwhm_Hz</span><span class="p">:</span> <span class="mf">1.5e4</span>
+            <span class="nb">type</span><span class="p">:</span> <span class="n">lorentz</span>
+        <span class="n">solver</span><span class="p">:</span>
+      <span class="nb">map</span><span class="p">:</span>
+        <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+        <span class="n">mgrid0</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="n">mgrid1</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="n">pattern</span><span class="p">:</span> <span class="n">Raster</span>
+        <span class="n">pixelsize</span><span class="p">:</span> <span class="mf">0.75</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">RaDec</span>
+      <span class="n">runtime</span><span class="p">:</span>
+        <span class="n">ncores</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">policy</span><span class="p">:</span> <span class="n">seq</span>
+      <span class="n">tod</span><span class="p">:</span>
+        <span class="n">despike</span><span class="p">:</span>
+          <span class="n">despikewindow</span><span class="p">:</span> <span class="mi">32</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+          <span class="n">sigma</span><span class="p">:</span> <span class="mf">8.0</span>
+          <span class="n">timeconstant</span><span class="p">:</span> <span class="mf">0.015</span>
+        <span class="n">downsample</span><span class="p">:</span>
+          <span class="n">downsamplefactor</span><span class="p">:</span> <span class="mi">1</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+        <span class="nb">filter</span><span class="p">:</span>
+          <span class="n">agibbs</span><span class="p">:</span> <span class="mf">50.0</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+          <span class="n">fhigh</span><span class="p">:</span> <span class="mf">4.0</span>
+          <span class="n">flow</span><span class="p">:</span> <span class="mf">0.0</span>
+          <span class="n">nterms</span><span class="p">:</span> <span class="mi">32</span>
+        <span class="n">kernel</span><span class="p">:</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+        <span class="n">pcaclean</span><span class="p">:</span>
+          <span class="n">approximateWeights</span><span class="p">:</span> <span class="mi">0</span>
+          <span class="n">cutStd</span><span class="p">:</span> <span class="mf">0.0</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+          <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+          <span class="n">neigToCut</span><span class="p">:</span> <span class="mi">9</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">citlali</span>
+</pre></div>
+</div>
+<p><span class="inputnumrole">In[21]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we are ready to load the pipeline runtime:</span>
+<span class="n">prc</span> <span class="o">=</span> <span class="n">PipelineRuntime</span><span class="p">(</span><span class="n">rootpath</span><span class="o">=</span><span class="n">workdir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Created pipeline runtime </span><span class="si">{</span><span class="n">prc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config files in the rc: </span><span class="si">{</span><span class="n">prc</span><span class="o">.</span><span class="n">config_files</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Config:</span><span class="se">\n</span><span class="si">{</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">prc</span><span class="o">.</span><span class="n">config</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[21]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Created</span> <span class="n">pipeline</span> <span class="n">runtime</span> <span class="n">PipelineRuntime</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="p">)</span>
+<span class="n">Config</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">rc</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/50_setup.yaml&#39;</span><span class="p">),</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/60_simu.yaml&#39;</span><span class="p">),</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/80_reduce.yaml&#39;</span><span class="p">)]</span>
+<span class="n">Config</span><span class="p">:</span>
+
+<span class="n">my_info</span><span class="p">:</span>
+  <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span>
+<span class="n">reduce</span><span class="p">:</span>
+  <span class="n">inputs</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">path</span><span class="p">:</span> <span class="n">toltec_point_source</span>
+  <span class="n">jobkey</span><span class="p">:</span> <span class="n">toltec_point_source_reduced</span>
+  <span class="n">pipeline</span><span class="p">:</span>
+    <span class="n">config</span><span class="p">:</span>
+      <span class="n">kids</span><span class="p">:</span>
+        <span class="n">fitter</span><span class="p">:</span>
+          <span class="n">modelspec</span><span class="p">:</span> <span class="n">gainlintrend</span>
+          <span class="n">weight_window</span><span class="p">:</span>
+            <span class="n">fwhm_Hz</span><span class="p">:</span> <span class="mf">1.5e4</span>
+            <span class="nb">type</span><span class="p">:</span> <span class="n">lorentz</span>
+        <span class="n">solver</span><span class="p">:</span>
+      <span class="nb">map</span><span class="p">:</span>
+        <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+        <span class="n">mgrid0</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="n">mgrid1</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="n">pattern</span><span class="p">:</span> <span class="n">Raster</span>
+        <span class="n">pixelsize</span><span class="p">:</span> <span class="mf">0.75</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">RaDec</span>
+      <span class="n">runtime</span><span class="p">:</span>
+        <span class="n">ncores</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">policy</span><span class="p">:</span> <span class="n">seq</span>
+      <span class="n">tod</span><span class="p">:</span>
+        <span class="n">despike</span><span class="p">:</span>
+          <span class="n">despikewindow</span><span class="p">:</span> <span class="mi">32</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+          <span class="n">sigma</span><span class="p">:</span> <span class="mf">8.0</span>
+          <span class="n">timeconstant</span><span class="p">:</span> <span class="mf">0.015</span>
+        <span class="n">downsample</span><span class="p">:</span>
+          <span class="n">downsamplefactor</span><span class="p">:</span> <span class="mi">1</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+        <span class="nb">filter</span><span class="p">:</span>
+          <span class="n">agibbs</span><span class="p">:</span> <span class="mf">50.0</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+          <span class="n">fhigh</span><span class="p">:</span> <span class="mf">4.0</span>
+          <span class="n">flow</span><span class="p">:</span> <span class="mf">0.0</span>
+          <span class="n">nterms</span><span class="p">:</span> <span class="mi">32</span>
+        <span class="n">kernel</span><span class="p">:</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+        <span class="n">pcaclean</span><span class="p">:</span>
+          <span class="n">approximateWeights</span><span class="p">:</span> <span class="mi">0</span>
+          <span class="n">cutStd</span><span class="p">:</span> <span class="mf">0.0</span>
+          <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+          <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+          <span class="n">neigToCut</span><span class="p">:</span> <span class="mi">9</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">citlali</span>
+  <span class="n">select</span><span class="p">:</span>
+<span class="n">runtime</span><span class="p">:</span>
+  <span class="n">bindir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="nb">bin</span>
+  <span class="n">caldir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">cal</span>
+  <span class="n">logdir</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">rootpath</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span>
+  <span class="n">setup_file</span><span class="p">:</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="mi">50</span><span class="n">_setup</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">setup</span><span class="p">:</span>
+  <span class="n">baz</span><span class="p">:</span> <span class="n">boo</span>
+  <span class="n">created_at</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mf">56.535</span>
+  <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev290</span><span class="o">+</span><span class="n">g46a73af</span>
+<span class="n">simu</span><span class="p">:</span>
+  <span class="n">instrument</span><span class="p">:</span>
+    <span class="n">calobj</span><span class="p">:</span> <span class="n">cal</span><span class="o">/</span><span class="n">calobj_default</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">yaml</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">toltec</span>
+  <span class="n">jobkey</span><span class="p">:</span> <span class="n">toltec_point_source</span>
+  <span class="n">mapping</span><span class="p">:</span>
+    <span class="n">length</span><span class="p">:</span> <span class="s1">&#39;1. arcmin&#39;</span>
+    <span class="n">n_scans</span><span class="p">:</span> <span class="mi">40</span>
+    <span class="n">ref_frame</span><span class="p">:</span> <span class="n">icrs</span>
+    <span class="n">rot</span><span class="p">:</span> <span class="s1">&#39;0. deg&#39;</span>
+    <span class="n">space</span><span class="p">:</span> <span class="s1">&#39;1.5 arcsec&#39;</span>
+    <span class="n">speed</span><span class="p">:</span> <span class="s1">&#39;1. arcmin/s&#39;</span>
+    <span class="n">t0</span><span class="p">:</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">12</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+    <span class="n">t_turnover</span><span class="p">:</span> <span class="s1">&#39;0.1 s&#39;</span>
+    <span class="n">target</span><span class="p">:</span> <span class="s1">&#39;92d -7d&#39;</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">tolteca</span><span class="o">.</span><span class="n">simu</span><span class="p">:</span><span class="n">SkyRasterScanModel</span>
+  <span class="n">obs_params</span><span class="p">:</span>
+    <span class="n">f_smp_data</span><span class="p">:</span> <span class="s1">&#39;122. Hz&#39;</span>
+    <span class="n">f_smp_mapping</span><span class="p">:</span> <span class="s1">&#39;12 Hz&#39;</span>
+    <span class="n">t_exp</span><span class="p">:</span> <span class="s1">&#39;1 ct&#39;</span>
+  <span class="n">sources</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">colname_map</span><span class="p">:</span>
+        <span class="n">a1100</span><span class="p">:</span> <span class="n">flux_a1100</span>
+        <span class="n">a1400</span><span class="p">:</span> <span class="n">flux_a1400</span>
+        <span class="n">a2000</span><span class="p">:</span> <span class="n">flux_a2000</span>
+        <span class="n">dec</span><span class="p">:</span> <span class="n">dec</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">name</span>
+        <span class="n">ra</span><span class="p">:</span> <span class="n">ra</span>
+      <span class="n">filepath</span><span class="p">:</span> <span class="n">toltec_sources</span><span class="o">.</span><span class="n">asc</span>
+      <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">point_source_catalog</span>
+</pre></div>
+</div>
+<p>The pipeline runtime handles the execution of the underlying pipeline
+engine, which is specified to be <code class="docutils literal notranslate"><span class="pre">citlali</span></code> in our case. To proceed, we
+need to make available the citlali executable to the tolteca. This can
+be conveniently done with the helper function
+<code class="docutils literal notranslate"><span class="pre">RuntimeContext.link_to_bindir</span></code>:</p>
+<p>We can inspect the configurations and the engine itself as follows:</p>
+<p><span class="inputnumrole">In[22]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In the environment this tutorial gets rendered, we the compiled citlali</span>
+<span class="c1"># executable is in ~/Codes/toltec/cpp/citlali/build/bin</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">citlali_exec</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/Codes/toltec/cpp/citlali/build/bin/citlali&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+<span class="n">prc</span><span class="o">.</span><span class="n">symlink_to_bindir</span><span class="p">(</span><span class="n">citlali_exec</span><span class="p">,</span> <span class="n">link_name</span><span class="o">=</span><span class="s1">&#39;citlali&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[22]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpqeww9srr/bin/citlali&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="inputnumrole">In[23]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ppl_params</span> <span class="o">=</span> <span class="n">prc</span><span class="o">.</span><span class="n">get_pipeline_params</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pformat_yaml</span><span class="p">(</span><span class="n">ppl_params</span><span class="p">))</span>
+<span class="c1"># we can inspect the engine version</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">ppl_params</span><span class="p">[</span><span class="s1">&#39;engine&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;engine version: </span><span class="si">{</span><span class="n">engine</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[23]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">:</span>
+  <span class="n">kids</span><span class="p">:</span>
+    <span class="n">fitter</span><span class="p">:</span>
+      <span class="n">modelspec</span><span class="p">:</span> <span class="n">gainlintrend</span>
+      <span class="n">weight_window</span><span class="p">:</span>
+        <span class="n">fwhm_Hz</span><span class="p">:</span> <span class="mf">1.5e4</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">lorentz</span>
+    <span class="n">solver</span><span class="p">:</span>
+  <span class="nb">map</span><span class="p">:</span>
+    <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+    <span class="n">mgrid0</span><span class="p">:</span> <span class="mf">0.0</span>
+    <span class="n">mgrid1</span><span class="p">:</span> <span class="mf">0.0</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="mf">0.0</span>
+    <span class="n">pattern</span><span class="p">:</span> <span class="n">Raster</span>
+    <span class="n">pixelsize</span><span class="p">:</span> <span class="mf">0.75</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">RaDec</span>
+  <span class="n">runtime</span><span class="p">:</span>
+    <span class="n">ncores</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="n">policy</span><span class="p">:</span> <span class="n">seq</span>
+  <span class="n">tod</span><span class="p">:</span>
+    <span class="n">despike</span><span class="p">:</span>
+      <span class="n">despikewindow</span><span class="p">:</span> <span class="mi">32</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+      <span class="n">sigma</span><span class="p">:</span> <span class="mf">8.0</span>
+      <span class="n">timeconstant</span><span class="p">:</span> <span class="mf">0.015</span>
+    <span class="n">downsample</span><span class="p">:</span>
+      <span class="n">downsamplefactor</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+    <span class="nb">filter</span><span class="p">:</span>
+      <span class="n">agibbs</span><span class="p">:</span> <span class="mf">50.0</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+      <span class="n">fhigh</span><span class="p">:</span> <span class="mf">4.0</span>
+      <span class="n">flow</span><span class="p">:</span> <span class="mf">0.0</span>
+      <span class="n">nterms</span><span class="p">:</span> <span class="mi">32</span>
+    <span class="n">kernel</span><span class="p">:</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+    <span class="n">pcaclean</span><span class="p">:</span>
+      <span class="n">approximateWeights</span><span class="p">:</span> <span class="mi">0</span>
+      <span class="n">cutStd</span><span class="p">:</span> <span class="mf">0.0</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+      <span class="n">grouping</span><span class="p">:</span> <span class="n">array_name</span>
+      <span class="n">neigToCut</span><span class="p">:</span> <span class="mi">9</span>
+<span class="n">engine</span><span class="p">:</span> <span class="n">Citlali</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpqeww9srr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">citlali</span><span class="p">,</span><span class="n">version</span><span class="o">=</span><span class="n">cc27f77</span><span class="p">)</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">citlali</span>
+
+<span class="n">engine</span> <span class="n">version</span><span class="p">:</span> <span class="n">cc27f77</span>
+</pre></div>
+</div>
+<p>To run the pipelin, simply do:</p>
+<p><span class="inputnumrole">In[24]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">prc</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[24]:</span></p>
+<pre class="literal-block"><a class="reference external" href="mailto:/usr/local/Cellar/python&#37;&#52;&#48;3&#46;8/3&#46;8&#46;9/Frameworks/Python&#46;framework/Versions/3&#46;8/lib/python3&#46;8/subprocess&#46;py">/usr/local/Cellar/python<span>&#64;</span>3<span>&#46;</span>8/3<span>&#46;</span>8<span>&#46;</span>9/Frameworks/Python<span>&#46;</span>framework/Versions/3<span>&#46;</span>8/lib/python3<span>&#46;</span>8/subprocess<span>&#46;</span>py</a>:848: RuntimeWarning: line buffering (buffering=1) isn't supported in binary mode, the default buffer size will be used
+  self.stdout = io.open(c2pread, 'rb', bufsize)
+** logging ** configured with level=debug (debug at compile time; available levels: {trace, debug, info, warning, error, critical, off})
+[2021-05-07 00:00:34.436] [info] [logging.h:129] <strong>timeit</strong> Citlali Process
+[2021-05-07 00:00:34.437] [info] [main.cpp:81] reconfigure logger to level=error</pre>
+<p>The files created are listed as below. The <code class="docutils literal notranslate"><span class="pre">citlali.ecsv</span></code> is the low
+level config file supplied to the citlali call, and the
+<code class="docutils literal notranslate"><span class="pre">toltec*_.fits</span></code> are the reduced maps.</p>
+<p><span class="inputnumrole">In[25]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;outdir&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pformat_paths</span><span class="p">(</span><span class="n">outdir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">),</span> <span class="n">relative_to</span><span class="o">=</span><span class="n">outdir</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[25]:</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">citlali</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">toltec_simu_a1100_science_000001_450100</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">toltec_simu_a1400_science_000001_450100</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">toltec_simu_a2000_science_000001_450100</span><span class="o">.</span><span class="n">fits</span>
+</pre></div>
+</div>
+<p>We can now load back the reduced files and see the sources that we
+initialy put into the simulation.</p>
+<p><span class="inputnumrole">In[26]:</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.visualization</span> <span class="kn">import</span> <span class="n">PercentileInterval</span><span class="p">,</span> <span class="n">ImageNormalize</span><span class="p">,</span> <span class="n">MinMaxInterval</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="n">PercentileInterval</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">n_hdus</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">m_img</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">hdu</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m_img</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_hdus</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1"># label the sources</span>
+    <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">m_point_source</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">m_point_source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span><span class="s1">&#39;icrs&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="c1"># load the output fits file and plot</span>
+    <span class="n">hl</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">outdir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;*_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_*.fits&#39;</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;reduced signal&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="s1">&#39;coverage&#39;</span><span class="p">])):</span>  <span class="c1"># signal (1), weight (2), and int 4</span>
+        <span class="n">hdu</span> <span class="o">=</span> <span class="n">hl</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>  <span class="c1"># signal map is extension 1</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_hdus</span><span class="p">,</span> <span class="n">n_hdus</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">ImageNormalize</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hdu</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="outputnumrole">Out[26]:</span></p>
+<img alt="../_images/tolteca_reduce_48_0.png" src="../_images/tolteca_reduce_48_0.png" />
 <p><span class="inputnumrole">In[None]:</span></p>
 <div id="spacer"></div>
 
