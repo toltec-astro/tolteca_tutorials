@@ -139,8 +139,8 @@ html_sidebars = {'tutorials': ['tutorialfilters.html']}
 
 # # Custom style overrides
 def setup(app):
-    app.add_stylesheet('bootstrap_sandstone.css')
-    app.add_stylesheet('astropy.css')  # may also be an URL
+    app.add_css_file('bootstrap_sandstone.css')
+    app.add_css_file('astropy.css')  # may also be an URL
 
 # -- Run and convert the notebook files to RST --------------------------------
 
