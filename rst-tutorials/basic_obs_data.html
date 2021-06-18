@@ -3,17 +3,18 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="filterTutorials, filterKidsData" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="filterTutorials, filterKidsData" name="keywords" />
 <meta content="filterTutorials," name="keywords" />
 
     <title>Working with raw KIDs data &#8212; tolteca_tutorials v0.0.dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap_sandstone.css" />
     <link rel="stylesheet" type="text/css" href="../_static/astropy.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -101,24 +102,24 @@
 <a href="../_static/basic_obs_data/basic_obs_data.ipynb"><button id="download">Download tutorial notebook</button></a>
 <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/basic_obs_data/basic_obs_data.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
 
-<div id="spacer"></div><div class="section" id="working-with-raw-kids-data">
+<div id="spacer"></div><section id="working-with-raw-kids-data">
 <span id="basic-obs-data"></span><h1>Working with raw KIDs data<a class="headerlink" href="#working-with-raw-kids-data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="authors">
+<section id="authors">
 <h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
 <p>Zhiyuan Ma</p>
-</div>
-<div class="section" id="learning-goals">
+</section>
+<section id="learning-goals">
 <h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Learn the raw KIDs data format</p></li>
 <li><p>Plot the KIDs resonators and timestreams</p></li>
 </ul>
-</div>
-<div class="section" id="keywords">
+</section>
+<section id="keywords">
 <h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
 <p>KIDs data</p>
-</div>
-<div class="section" id="summary">
+</section>
+<section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial, we will download a raw KIDs data file, and visualize
 it.</p>
@@ -136,11 +137,11 @@ it.</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[2]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">downloaded</span> <span class="n">kids</span> <span class="n">data</span> <span class="n">filepath</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">astropy</span><span class="o">-</span><span class="n">download</span><span class="o">-</span><span class="mi">8772</span><span class="o">-</span><span class="n">lgx9m82_</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">downloaded</span> <span class="n">kids</span> <span class="n">data</span> <span class="n">filepath</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">astropy</span><span class="o">-</span><span class="n">download</span><span class="o">-</span><span class="mi">69008</span><span class="o">-</span><span class="n">yj26htb_</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="opening-the-data-file-and-loading-the-data">
+</section>
+<section id="opening-the-data-file-and-loading-the-data">
 <h2>Opening the data file and loading the data<a class="headerlink" href="#opening-the-data-file-and-loading-the-data" title="Permalink to this headline">¶</a></h2>
 <p>The data file that we just downloaded contains the raw KIDs readout,
 which falls into the catagory of the basic obs data (BOD) in the context
@@ -154,7 +155,7 @@ package.</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[3]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BasicObsData</span><span class="p">(</span><span class="n">FileLoc</span><span class="p">(</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">astropy</span><span class="o">-</span><span class="n">download</span><span class="o">-</span><span class="mi">8772</span><span class="o">-</span><span class="n">lgx9m82_</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BasicObsData</span><span class="p">(</span><span class="n">FileLoc</span><span class="p">(</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">astropy</span><span class="o">-</span><span class="n">download</span><span class="o">-</span><span class="mi">69008</span><span class="o">-</span><span class="n">yj26htb_</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The meta data of this bod can be found in the attribute <code class="docutils literal notranslate"><span class="pre">meta</span></code>:</p>
@@ -188,7 +189,7 @@ n_tones: 648
 n_sweepreps: 10
 n_sweepsteps: 176
 n_sweeps_max: 2
-file_loc: FileLoc(/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/<a href="#id7"><span class="problematic" id="id8">astropy-download-8772-lgx9m82_</span></a>)
+file_loc: FileLoc(/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/<a href="#id7"><span class="problematic" id="id8">astropy-download-69008-yj26htb_</span></a>)
 instru: toltec
 interface: toltec0
 master: 1
@@ -553,8 +554,8 @@ computed from the MultiSweep’s S21.</p>
 </div>
 <p><span class="outputnumrole">Out[12]:</span></p>
 <img alt="../_images/basic_obs_data_23_0.png" src="../_images/basic_obs_data_23_0.png" />
-</div>
-<div class="section" id="opening-the-kids-model-file-and-loading-the-model">
+</section>
+<section id="opening-the-kids-model-file-and-loading-the-model">
 <h2>Opening the KIDs model file and loading the model<a class="headerlink" href="#opening-the-kids-model-file-and-loading-the-model" title="Permalink to this headline">¶</a></h2>
 <p>We run a KIDs model fitting to each KIDs sweep data as soon as the data
 is taken. This KIDs model file is used to interpret the time streams
@@ -566,7 +567,7 @@ with the KIDs data file that we just downloaded:</p>
 </pre></div>
 </div>
 <p><span class="outputnumrole">Out[13]:</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">downloaded</span> <span class="n">kids</span> <span class="n">model</span> <span class="n">filepath</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">astropy</span><span class="o">-</span><span class="n">download</span><span class="o">-</span><span class="mi">8772</span><span class="o">-</span><span class="n">z2hvg32k</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">downloaded</span> <span class="n">kids</span> <span class="n">model</span> <span class="n">filepath</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">astropy</span><span class="o">-</span><span class="n">download</span><span class="o">-</span><span class="mi">69008</span><span class="o">-</span><span class="n">nzhczrz9</span>
 </pre></div>
 </div>
 <p>The KIDs model file can be opened as a <code class="docutils literal notranslate"><span class="pre">BasicObsData</span></code> as well:</p>
@@ -601,8 +602,8 @@ equal to the quality factor (Qr) of the detector:</p>
 <div id="spacer"></div>
 
 <a href="../_static/basic_obs_data/basic_obs_data.ipynb"><button id="download">Download tutorial notebook</button></a>
-<a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/basic_obs_data/basic_obs_data.ipynb"><button id="binder">Interactive tutorial notebook</button></a></div>
-</div>
+<a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/basic_obs_data/basic_obs_data.ipynb"><button id="binder">Interactive tutorial notebook</button></a></section>
+</section>
 
 </div>
       </div>
@@ -617,7 +618,7 @@ equal to the quality factor (Qr) of the detector:</p>
       
     </p>
     <p>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.
     &copy; Copyright Astropy.
     </p>
   </div>

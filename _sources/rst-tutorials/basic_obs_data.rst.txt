@@ -74,7 +74,7 @@ Download the example TolTEC raw KIDs data file for this tutorial.
 
 .. parsed-literal::
 
-    downloaded kids data filepath: /var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-8772-lgx9m82_
+    downloaded kids data filepath: /var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-69008-yj26htb_
 
 
 Opening the data file and loading the data
@@ -103,7 +103,7 @@ Let’s open the data file and see the inside of it.
 
 .. parsed-literal::
 
-    BasicObsData(FileLoc(/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-8772-lgx9m82_))
+    BasicObsData(FileLoc(/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-69008-yj26htb_))
 
 
 The meta data of this bod can be found in the attribute ``meta``:
@@ -148,7 +148,7 @@ The meta data of this bod can be found in the attribute ``meta``:
     n_sweepreps: 10
     n_sweepsteps: 176
     n_sweeps_max: 2
-    file_loc: FileLoc(/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-8772-lgx9m82_)
+    file_loc: FileLoc(/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-69008-yj26htb_)
     instru: toltec
     interface: toltec0
     master: 1
@@ -626,7 +626,7 @@ with the KIDs data file that we just downloaded:
 
 .. parsed-literal::
 
-    downloaded kids model filepath: /var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-8772-z2hvg32k
+    downloaded kids model filepath: /var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/astropy-download-69008-nzhczrz9
 
 
 The KIDs model file can be opened as a ``BasicObsData`` as well:
