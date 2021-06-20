@@ -1,5 +1,5 @@
 .. meta::
-    :keywords: filterTutorials, filterDataReduction
+    :keywords: filterTutorials, filterSimulation;DataReduction
 
 None
 
@@ -40,10 +40,17 @@ Learning Goals
 Keywords
 --------
 
-Data reduction
+Simulation; Data reduction
 
 Summary
 -------
+
+**Note**: The tolteca provides a commandline interface for running the
+simuator and reduction, which hides a lot of implementation details and
+is suitable for light users. This notebook aims to provide a in-depth
+overview of some of the key components behind the scene. The commandline
+interface tutorial can be found here:
+https://github.com/toltec-astro/tolteca/blob/main/docs/tolteca/toltec_simu_tutorial.md
 
 In this tutorial, we will create a simulated TolTEC observation and
 reduce it.
@@ -138,8 +145,8 @@ use a temporary directory here:
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml')]
 
 
 To load the config, just access the ``config`` attribute:
@@ -233,13 +240,13 @@ later tolteca runs can recognize the context. To setup,
 
     
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml
     setup:
-      created_at: 2021-06-18T17:50:42.266
+      created_at: 2021-06-19T03:18:35.102
       version: 0.1.dev323+g1c6dc6b
     
 
@@ -270,14 +277,14 @@ an already setup runtime context):
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-06-18T17:50:42.412
+      created_at: 2021-06-19T03:18:35.245
       version: 0.1.dev323+g1c6dc6b
     
 
@@ -308,21 +315,21 @@ how our custom records get loaded as well):
 
 .. parsed-literal::
 
-    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml')]
+    Created runtime context RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml')]
     Config:
     
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-06-18T17:50:42.412
+      created_at: 2021-06-19T03:18:35.245
       version: 0.1.dev323+g1c6dc6b
     
 
@@ -357,8 +364,8 @@ runtime, we do the follows:
 
 .. parsed-literal::
 
-    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml')]
+    Created runtime context SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml')]
 
 
 ::
@@ -535,14 +542,14 @@ correct contents, you can start from this cell.
     my_info:
       foo: bar
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-06-18T17:50:42.412
+      created_at: 2021-06-19T03:18:35.245
       version: 0.1.dev323+g1c6dc6b
     simu:
       instrument:
@@ -740,7 +747,7 @@ observed by the TolTEC instrument:
 
 .. parsed-literal::
 
-    sources: [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/toltec_sources.asc')>, {'a1100': <ArrayLoadingModel(name='a1100_loading')>, 'a1400': <ArrayLoadingModel(name='a1400_loading')>, 'a2000': <ArrayLoadingModel(name='a2000_loading')>}]
+    sources: [<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/toltec_sources.asc')>, {'a1100': <ArrayLoadingModel(name='a1100_loading')>, 'a1400': <ArrayLoadingModel(name='a1400_loading')>, 'a2000': <ArrayLoadingModel(name='a2000_loading')>}]
     model class is:
     <class 'tolteca.simu.base.SourceCatalogModel'>
     Name: SourceCatalogModel
@@ -798,7 +805,7 @@ We can inspect the simulator engine as follows:
 
 .. parsed-literal::
 
-    simulator engine: <tolteca.simu.toltec.ToltecObsSimulator object at 0x10484b3d0>
+    simulator engine: <tolteca.simu.toltec.ToltecObsSimulator object at 0x121106ee0>
        uid      nw  pg ...         x_t                   y_t          
                        ...         deg                   deg          
     ---------- --- --- ... -------------------- ----------------------
@@ -915,7 +922,7 @@ properties:
 
 .. parsed-literal::
 
-    <kidsproc.kidsmodel.simulator.KidsSimulator object at 0x12ff69ac0>
+    <kidsproc.kidsmodel.simulator.KidsSimulator object at 0x133a7d850>
     sweep data x shape: (7718, 176) S21 shape: (7718, 176)
 
 
@@ -923,7 +930,7 @@ properties:
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x12fa0b040>]
+    [<matplotlib.lines.Line2D at 0x1334ac2b0>]
 
 
 
@@ -977,7 +984,7 @@ the internals of these methods:
 
 .. parsed-literal::
 
-    mapping evaluator: <function ToltecObsSimulator.mapping_context.<locals>.evaluate at 0x12f6e2ee0>
+    mapping evaluator: <function ToltecObsSimulator.mapping_context.<locals>.evaluate at 0x133254700>
     signal shape: (7718, 500), unit: MJy / sr
     obs_info keys: dict_keys(['t', 'time_obs', '_ref_frame', '_ref_coord', 'obs_coords', 'hold_flags', 'm_proj_icrs', 'm_proj_native', 'projected_frame', 'native_frame', 'obs_coords_icrs', '_altaz_frame', 'obs_coords_altaz', 'obs_parallactic_angle', 'a', 'm_rot_m3', 'x', 'y', 'lon', 'lat', 'az', 'alt', 's_additive', 's', 'm_source', 'mapping', 'ref_coord', 'ref_frame', 'self', 'sources', 't0', 'tbl', 'x_t', 'y_t'])
 
@@ -986,7 +993,7 @@ the internals of these methods:
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x134eaeac0>
+    <matplotlib.legend.Legend at 0x1354f3820>
 
 
 
@@ -1040,7 +1047,7 @@ the internals of these methods:
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x132e6f8e0>
+    <matplotlib.legend.Legend at 0x135ddbdf0>
 
 
 
@@ -1075,7 +1082,7 @@ simulator engine, as well as the data output module.
 
 .. parsed-literal::
 
-    SimulatorResult(_iterdata=<generator object SimulatorRuntime.run.<locals>.data_generator at 0x12f86ceb0>, _lazy=True, config={'my_info': {'foo': 'bar'}, 'setup': {'baz': 'boo', 'created_at': '2021-06-18T17:50:42.412', 'version': '0.1.dev323+g1c6dc6b'}, 'simu': {'jobkey': 'toltec_point_source', 'sources': [{'filepath': 'toltec_sources.asc', 'grouping': 'array_name', 'type': 'point_source_catalog', 'colname_map': {'a1100': 'flux_a1100', 'a1400': 'flux_a1400', 'a2000': 'flux_a2000', 'dec': 'dec', 'name': 'name', 'ra': 'ra'}}, {'atm_model_name': 'am_q50', 'type': 'toltec_array_loading'}], 'instrument': {'calobj': 'cal/calobj_default/index.yaml', 'name': 'toltec'}, 'mapping': {'length': '1. arcmin', 'n_scans': 40, 'ref_frame': 'icrs', 'rot': '0. deg', 'space': '1.5 arcsec', 'speed': '1. arcmin/s', 't0': datetime.datetime(2020, 4, 12, 0, 0), 't_turnover': '0.1 s', 'target': '92d -7d', 'type': 'tolteca.simu:SkyRasterScanModel'}, 'obs_params': {'f_smp_data': <Quantity 122. Hz>, 'f_smp_mapping': <Quantity 12. Hz>, 't_exp': <Quantity 1. ct>}, 'save': False, 'plot': False, 'mapping_only': False, 'perf_params': {'chunk_size': <Quantity 10. s>, 'mapping_interp_len': <Quantity 1. s>, 'erfa_interp_len': <Quantity 300. s>, 'anim_frame_rate': <Quantity 12. Hz>}}, 'runtime': {'rootpath': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4'), 'bindir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin'), 'caldir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/cal'), 'logdir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/log'), 'setup_file': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml')}}, data_generator=<function SimulatorRuntime.run.<locals>.data_generator at 0x12f80f310>, mapping=<SkyRasterScanModel(length=1. arcmin, space=1.5 arcsec, n_scans=40. , rot=0. deg, speed=1. arcmin / s, t_turnover=0.1 s)>, obs_params={'f_smp_data': <Quantity 122. Hz>, 'f_smp_mapping': <Quantity 12. Hz>, 't_exp': <Quantity 1. ct>}, simctx=SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4), simobj=<tolteca.simu.toltec.ToltecObsSimulator object at 0x132e796d0>, sources=[<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/toltec_sources.asc')>, {'a1100': <ArrayLoadingModel(name='a1100_loading')>, 'a1400': <ArrayLoadingModel(name='a1400_loading')>, 'a2000': <ArrayLoadingModel(name='a2000_loading')>}])
+    SimulatorResult(_iterdata=<generator object SimulatorRuntime.run.<locals>.data_generator at 0x13333e270>, _lazy=True, config={'my_info': {'foo': 'bar'}, 'setup': {'baz': 'boo', 'created_at': '2021-06-19T03:18:35.245', 'version': '0.1.dev323+g1c6dc6b'}, 'simu': {'jobkey': 'toltec_point_source', 'sources': [{'filepath': 'toltec_sources.asc', 'grouping': 'array_name', 'type': 'point_source_catalog', 'colname_map': {'a1100': 'flux_a1100', 'a1400': 'flux_a1400', 'a2000': 'flux_a2000', 'dec': 'dec', 'name': 'name', 'ra': 'ra'}}, {'atm_model_name': 'am_q50', 'type': 'toltec_array_loading'}], 'instrument': {'calobj': 'cal/calobj_default/index.yaml', 'name': 'toltec'}, 'mapping': {'length': '1. arcmin', 'n_scans': 40, 'ref_frame': 'icrs', 'rot': '0. deg', 'space': '1.5 arcsec', 'speed': '1. arcmin/s', 't0': datetime.datetime(2020, 4, 12, 0, 0), 't_turnover': '0.1 s', 'target': '92d -7d', 'type': 'tolteca.simu:SkyRasterScanModel'}, 'obs_params': {'f_smp_data': <Quantity 122. Hz>, 'f_smp_mapping': <Quantity 12. Hz>, 't_exp': <Quantity 1. ct>}, 'mapping_only': False, 'perf_params': {'chunk_size': <Quantity 10. s>, 'mapping_interp_len': <Quantity 1. s>, 'erfa_interp_len': <Quantity 300. s>, 'anim_frame_rate': <Quantity 12. Hz>}, 'plot': False, 'save': False}, 'runtime': {'rootpath': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk'), 'bindir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin'), 'caldir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/cal'), 'logdir': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/log'), 'setup_file': PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml')}}, data_generator=<function SimulatorRuntime.run.<locals>.data_generator at 0x135e60d30>, mapping=<SkyRasterScanModel(length=1. arcmin, space=1.5 arcsec, n_scans=40. , rot=0. deg, speed=1. arcmin / s, t_turnover=0.1 s)>, obs_params={'f_smp_data': <Quantity 122. Hz>, 'f_smp_mapping': <Quantity 12. Hz>, 't_exp': <Quantity 1. ct>}, simctx=SimulatorRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk), simobj=<tolteca.simu.toltec.ToltecObsSimulator object at 0x13328ff10>, sources=[<SourceCatalogModel(name='/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/toltec_sources.asc')>, {'a1100': <ArrayLoadingModel(name='a1100_loading')>, 'a1400': <ArrayLoadingModel(name='a1400_loading')>, 'a2000': <ArrayLoadingModel(name='a2000_loading')>}])
 
 
 The above line creates the ``tolteca.simu.SimulatorResult`` instance
@@ -1107,7 +1114,7 @@ the memory at once:
 
 .. parsed-literal::
 
-    saved simulated data to /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/toltec_point_source
+    saved simulated data to /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/toltec_point_source
 
 
 The files created are listed as below. The ``apt_*.ecsv`` is the array
@@ -1128,22 +1135,22 @@ property table, and the ``toltec*_.nc`` are the raw KIDs data:
 
 .. parsed-literal::
 
-    apt_000001_000_0000_2021_06_18_17_50_51.ecsv
+    apt_000001_000_0000_2021_06_19_03_18_45.ecsv
     simresult.state
-    tel_000001_000_0000_2021_06_18_17_50_51.nc
-    toltec0_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec10_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec11_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec12_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec1_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec2_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec3_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec4_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec5_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec6_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec7_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec8_000001_000_0000_2021_06_18_17_50_51_timestream.nc
-    toltec9_000001_000_0000_2021_06_18_17_50_51_timestream.nc
+    tel_000001_000_0000_2021_06_19_03_18_45.nc
+    toltec0_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec10_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec11_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec12_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec1_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec2_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec3_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec4_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec5_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec6_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec7_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec8_000001_000_0000_2021_06_19_03_18_45_timestream.nc
+    toltec9_000001_000_0000_2021_06_19_03_18_45_timestream.nc
     tolteca.yaml
 
 
@@ -1189,8 +1196,8 @@ familar with. To create the pipeline runtime,
 
 .. parsed-literal::
 
-    Created pipeline runtime PipelineRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/60_simu.yaml')]
+    Created pipeline runtime PipelineRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/60_simu.yaml')]
 
 
 ::
@@ -1354,8 +1361,8 @@ are overriden by those with higher number.
 
 .. parsed-literal::
 
-    Created pipeline runtime PipelineRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4)
-    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/60_simu.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/80_reduce.yaml')]
+    Created pipeline runtime PipelineRuntime(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk)
+    Config files in the rc: [PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/60_simu.yaml'), PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/80_reduce.yaml')]
     Config:
     
     my_info:
@@ -1410,14 +1417,14 @@ are overriden by those with higher number.
         name: citlali
       select:
     runtime:
-      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin
-      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/cal
-      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/log
-      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4
-      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/50_setup.yaml
+      bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin
+      caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/cal
+      logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/log
+      rootpath: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk
+      setup_file: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/50_setup.yaml
     setup:
       baz: boo
-      created_at: 2021-06-18T17:50:42.412
+      created_at: 2021-06-19T03:18:35.245
       version: 0.1.dev323+g1c6dc6b
     simu:
       instrument:
@@ -1483,7 +1490,7 @@ We can inspect the configurations and the engine itself as follows:
 
 .. parsed-literal::
 
-    PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin/citlali')
+    PosixPath('/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin/citlali')
 
 
 
@@ -1548,7 +1555,7 @@ We can inspect the configurations and the engine itself as follows:
           enabled: false
           grouping: array_name
           neigToCut: 9
-    engine: Citlali(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp69u9dys4/bin/citlali,version=cc27f77)
+    engine: Citlali(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp7zys6eqk/bin/citlali,version=cc27f77)
     name: citlali
     
     engine version: cc27f77
@@ -1573,8 +1580,8 @@ To run the pipelin, simply do:
     /usr/local/Cellar/python@3.8/3.8.10/Frameworks/Python.framework/Versions/3.8/lib/python3.8/subprocess.py:848: RuntimeWarning: line buffering (buffering=1) isn't supported in binary mode, the default buffer size will be used
       self.stdout = io.open(c2pread, 'rb', bufsize)
     ** logging ** configured with level=debug (debug at compile time; available levels: {trace, debug, info, warning, error, critical, off})
-    [2021-06-18 13:51:58.298] [info] [logging.h:129] **timeit** Citlali Process
-    [2021-06-18 13:51:58.299] [info] [main.cpp:81] reconfigure logger to level=error
+    [2021-06-18 23:19:50.789] [info] [logging.h:129] **timeit** Citlali Process
+    [2021-06-18 23:19:50.790] [info] [main.cpp:81] reconfigure logger to level=error
     
 
 
@@ -1598,9 +1605,9 @@ level config file supplied to the citlali call, and the
 .. parsed-literal::
 
     citlali.yaml
-    toltec_simu_a1100_science_000001_451121.fits
-    toltec_simu_a1400_science_000001_451121.fits
-    toltec_simu_a2000_science_000001_451121.fits
+    toltec_simu_a1100_science_000001_451131.fits
+    toltec_simu_a1400_science_000001_451131.fits
+    toltec_simu_a2000_science_000001_451131.fits
 
 
 We can now load back the reduced files and see the sources that we
@@ -1735,6 +1742,7 @@ generated along with the simulation.
                            sigma_clip=sigma_clip, bkg_estimator=mmm_bkg)
         ax = fig.add_subplot(3, 3, 3 + i + 1, projection=w)
         ax.imshow(bkg.background)
+        ax.set_title(f'estimated bkg {k}')
         catalog = photometry(
             image=data - bkg.background,
             init_guesses=xy)
@@ -1742,6 +1750,7 @@ generated along with the simulation.
         ax = fig.add_subplot(3, 3, 6 + i + 1, projection=w)
         ax.imshow(photometry.get_residual_image())
         print(catalog[['id', 'x_0', 'y_0', 'flux_fit', 'flux_unc']])
+        ax.set_title(f'residual {k}')
 
 
 :outputnumrole:`Out[27]:`
@@ -1752,27 +1761,27 @@ generated along with the simulation.
     flxscale for a1100: 5.098e+08
     beam fwhm: 5.0 arcsec
     beam fwhm_pix: 6.666666666666678
-     id        x_0               y_0              flux_fit           flux_unc     
-    --- ----------------- ------------------ ------------------ ------------------
-      1             208.0 208.99999999998315 29.314247331801457  1.274468872985275
-      2             208.0 160.99999951253713  8.782050850558184 1.1309014048955588
-      3 160.3577842481555  208.9994933199453  94.68123311588487 1.2577444103869169
+     id        x_0               y_0              flux_fit          flux_unc     
+    --- ----------------- ------------------ ----------------- ------------------
+      1             208.0 208.99999999998315 31.54838450442993 1.3450173732788633
+      2             208.0 160.99999951253713 8.453958633859823 1.1748965151829007
+      3 160.3577842481555  208.9994933199453 93.68762562326465 1.2818049895678545
     flxscale for a1400: 1.419e+08
     beam fwhm: 6.363636363636363 arcsec
     beam fwhm_pix: 8.484848484848499
      id        x_0               y_0              flux_fit           flux_unc     
     --- ----------------- ------------------ ------------------ ------------------
-      1             208.0 208.99999999998315 16.864573230994377  0.854457118914183
-      2             208.0 160.99999951253713  9.856861322254298 0.6949914299095469
-      3 160.3577842481555  208.9994933199453 195.03130880736612 0.8729516873914834
+      1             208.0 208.99999999998315 17.065861259928255 0.8352588276693459
+      2             208.0 160.99999951253713 11.433398770062562 0.6275077158473168
+      3 160.3577842481555  208.9994933199453  193.9052877649744 0.8813505413240258
     flxscale for a2000: 6.13e+07
     beam fwhm: 9.09090909090909 arcsec
     beam fwhm_pix: 12.121212121212139
      id        x_0               y_0              flux_fit           flux_unc     
     --- ----------------- ------------------ ------------------ ------------------
-      1             208.0 208.99999999998315  17.91007335627959 0.7794621433223397
-      2             208.0 160.99999951253713 19.180402960974387 0.7168903155870704
-      3 160.3577842481555  208.9994933199453 297.20076600745773 0.8792448257371716
+      1             208.0 208.99999999998315 17.513887582159672 0.8018449366080853
+      2             208.0 160.99999951253713 18.467919670129323 0.7143871584462086
+      3 160.3577842481555  208.9994933199453  296.3507151107419 0.8493761245612881
 
 
 
