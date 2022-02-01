@@ -1,0 +1,546 @@
+.. meta::
+    :keywords: filterTutorials, filterGeneral;Environment;CommandlineInterface
+
+None
+
+
+
+
+.. raw:: html
+
+    <a href="../_static/tolteca_setup/tolteca_setup.ipynb"><button id="download">Download tutorial notebook</button></a>
+    <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_setup/tolteca_setup.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
+
+    <div id="spacer"></div>
+
+.. meta::
+    :keywords: filterTutorials, 
+
+.. role:: inputnumrole
+.. role:: outputnumrole
+
+.. _tolteca_setup:
+
+Create workdir and load RuntimeContext
+======================================
+
+Authors: Zhiyuan Ma
+
+Objectives
+----------
+
+-  Learn the concept of workdir and ``tolteca.utils.RuntimeContext``.
+-  Create workdir with ``tolteca setup`` commandline.
+-  Create workdir and load ``RuntimeContext`` with Python API.
+-  Load ``RuntimeContext`` in-memory without workdir.
+-  Use ``RuntimeContext`` to access config dict and runtime info.
+-  Use ``RuntimeContext.setup`` to persist runtime info.
+
+Keywords
+--------
+
+General; Environment; Commandline interface
+
+Summary
+-------
+
+In this tutorial, we will walk through the concept and use of the
+so-called “tolteca workdir”, as well as the
+``tolteca.utils.RuntimeContext`` class which interacts with it
+programatically.
+
+A tolteca workdir is a directory prepared by tolteca, which contains
+special sub-directory structure and files that are recognized and
+managed by the tolteca package.
+
+Tolteca workdir provides the user experience similar to a python virtual
+environemnt. User can create many workdirs, each of which has its own
+config setup for a certain task or project.
+
+Tolteca workdir plays a central role for all the commandline interface
+commands tolteca provides. When the ``tolteca ...`` command is invoked,
+a ``tolteca.utils.ConfigLoader`` object is created (the instance is made
+available through global variable ``tolteca.cli.config_loader``), and
+the ``ConfigLoader.runtime_context_dir`` property carries the path to
+the current workdir to be loaded. By default, the
+``runtime_context_dir`` is set to current directory, but can be
+specified via ``tolteca -d <workdir> ...``.
+
+Commandline functionalities (``tolteca.simu``, ``tolteca.reduce``, etc.)
+invoked through the ``tolteca ...`` commandline interface makes use of
+the ``runtime_context_dir`` to initialize a ``RuntimeContext`` object,
+through which it pulls in any configs user may have specified in the
+workdir and carries on the execution.
+
+The tolteca workdir provides the isolation and persistence for keeping
+track of the software version and config dicts, which are needed for
+easy re-producing of previous results. Therefore, this is the
+recommended way of running analysis that involves a lot of config items
+and data files.
+
+``RuntimeContext`` can also be created with config dict or config file
+directly in-memory, without the presence or use of workdir. This mode
+can be useful when the tolteca submodules which expects a
+``RuntimeContext`` object, but are used by other scripts or modules,
+which have their own config dict and runtime info management plan.
+
+Create tolteca workdir
+----------------------
+
+Commandline interface (recommended)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The creation of tolteca workdir is typically done with the commandline:
+
+::
+
+   $ tolteca -d workdir0 setup
+
+This will create a directory named ``workdir0`` in the current
+directory, with some initial contents similar to:
+
+::
+
+   $ cd workdir0 && ls
+   40_setup.yaml README.md bin/ cal/ doc/ log/
+
+Run ``tolteca setup -h`` to see a full list of commandline options.
+
+Python API
+~~~~~~~~~~
+
+For the purpose of this tutorial, we can, however, create the workdir
+directly using the Python API provided by tolteca.
+
+To make the tutorial independent of any user’s own system setup, we use
+a temporary directory:
+
+
+:inputnumrole:`In[1]:`
+
+
+.. code:: python
+
+    import tempfile
+    from pathlib import Path
+    from contextlib import ExitStack
+    
+    es = ExitStack()  # to manage the tempdir
+    workdir = Path(es.enter_context(tempfile.TemporaryDirectory()))
+    print(f"Workdir path: {workdir}")
+    print(f"Contents of workdir: {list(workdir.iterdir())}")
+
+
+:outputnumrole:`Out[1]:`
+
+
+.. parsed-literal::
+
+    Workdir path: /var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p
+    Contents of workdir: []
+
+
+Now that we have an empty directory that we want to use as the workdir,
+we can proceed to populate the directory just like the ``tolteca setup``
+command did. This is done by ``Runtimecontext.from_dir``:
+
+
+:inputnumrole:`In[2]:`
+
+
+.. code:: python
+
+    from tolteca.utils import RuntimeContext, RuntimeContextError
+    
+    # note: the from_dir may fail to re-run, because there may be files already
+    # in the temp folder from previous run. So we use the following
+    # try except so it re-loads the runtime context if already exists.
+    try:
+        rc = RuntimeContext.from_dir(dirpath=workdir, create=True)
+        print(f'Created runtime context: {rc}')
+    except RuntimeContextError:
+        rc = RuntimeContext(workdir)
+    print(f'Contents of workdir after rc creation:\n{[p.name for p in workdir.iterdir()]}')
+
+
+:outputnumrole:`Out[2]:`
+
+
+.. parsed-literal::
+
+    Created runtime context: RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p)
+    Contents of workdir after rc creation:
+    ['bin', 'cal', 'README.md', 'log', 'doc', '40_setup.yaml']
+
+
+Load RuntimeContext
+-------------------
+
+We’ve already touched the ``RuntimeContext.from_dir`` factory method in
+the previous section for creating the workdir in Python. The method
+returns an instance that is mapped to the just-created workdir.
+
+In general, instances of ``RuntimeContext`` class can be constrcuted in
+a number of ways that may or may not relie on actual files on the file
+system.
+
+Construct with workdir
+~~~~~~~~~~~~~~~~~~~~~~
+
+``RuntimeContext`` object can be constructed with existing workdir:
+
+
+:inputnumrole:`In[3]:`
+
+
+.. code:: python
+
+    rc = RuntimeContext(workdir)
+    print(f"Loaded runtime context: {rc}")
+
+
+:outputnumrole:`Out[3]:`
+
+
+.. parsed-literal::
+
+    Loaded runtime context: RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p)
+
+
+Note that this would raise exception if the workdir does not have all
+the pre-defined contents:
+
+
+:inputnumrole:`In[4]:`
+
+
+.. code:: python
+
+    try:
+        rc = RuntimeContext(es.enter_context(tempfile.TemporaryDirectory()))
+    except Exception as e:
+        print(f"error loading rc: {e}")
+
+
+:outputnumrole:`Out[4]:`
+
+
+.. parsed-literal::
+
+    error loading rc: unable to initialize DirConf from /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp9o07a6qe: missing bindir /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmp9o07a6qe/bin. Set create=True to create missing items
+
+
+Construct with config file
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``RuntimeContext`` object can be created with config dict provided as
+YAML file:
+
+
+:inputnumrole:`In[5]:`
+
+
+.. code:: python
+
+    # create a new file in the workdir named some_config.yaml
+    some_config_yaml_file = workdir.joinpath('some_config.yaml')
+    
+    with open(some_config_yaml_file, 'w'):
+        pass
+    # load the runtime context from this yaml file
+    rc_some_config_yaml = RuntimeContext(some_config_yaml_file)
+    print(f"Loaded runtime context from YAML file: {rc_some_config_yaml}")
+
+
+:outputnumrole:`Out[5]:`
+
+
+.. parsed-literal::
+
+    Loaded runtime context from YAML file: RuntimeContext(/private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/some_config.yaml)
+
+
+Construct with Python dict
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``RuntimeContext`` object can be created directly with config dict:
+
+
+:inputnumrole:`In[6]:`
+
+
+.. code:: python
+
+    some_config_dict = {'my_key': 'my_value'}
+    
+    # load the runtime context from this dict
+    rc_some_config_dict = RuntimeContext(some_config_dict)
+    print(f"Loaded runtime context from dict: {rc_some_config_dict}")
+
+
+:outputnumrole:`Out[6]:`
+
+
+.. parsed-literal::
+
+    Loaded runtime context from dict: RuntimeContext(*None)
+
+
+Use RuntimeContext
+------------------
+
+The ``RuntimeContext`` object provies interface to access the config
+dict and a runtime info dict.
+
+The config dict contains the infomation from the valid YAML config files
+in the workdir, the YAML config file, or the config dict, depending on
+the property ``config_backend``, whose type is one of the subclasses of
+``tolteca.utils.runtime_context.ConfigBackend``, which in turn depending
+on the argument type passed to the constructor.
+
+Regardless of the config backend type, the ``RuntimeContext`` provides a
+set of common attributes that are important to the consumer of it.
+
+RuntimeContext.config
+~~~~~~~~~~~~~~~~~~~~~
+
+
+:inputnumrole:`In[7]:`
+
+
+.. code:: python
+
+    print("Keys in RuntimeContext.config dict:")
+    print(f"rc from workdir:\n  {list(rc.config.keys())}")
+    print(f"rc from yaml file:\n  {list(rc_some_config_yaml.config.keys())}")
+    print(f"rc from config dict:\n  {list(rc_some_config_dict.config.keys())}")
+
+
+:outputnumrole:`Out[7]:`
+
+
+.. parsed-literal::
+
+    Keys in RuntimeContext.config dict:
+    rc from workdir:
+      ['_40_setup', 'runtime_info']
+    rc from yaml file:
+      ['runtime_info']
+    rc from config dict:
+      ['my_key', 'runtime_info']
+
+
+While the config dicts from the rc objects we created all contain an
+entry named ``runtime_info`` (see next paragraph for details about the
+runtime info dict), each of them have the contents from the config
+source:
+
+-  rc from workdir: The ``_40_setup`` key comes from the YAML config
+   file ``40_setup.yaml`` automatically generated as part of the workdir
+   creation.
+
+-  rc from YAML config file: ``runtime_info`` is the only key in the
+   config dict, because we did not put any thing in the
+   ``some_config.yaml`` file when we created it.
+
+-  rc from config dict: ``my_key`` is the key we put in the config
+   ``some_config_dict`` we passed to the constructor.
+
+RuntimeContext.runtime_info
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+:inputnumrole:`In[8]:`
+
+
+.. code:: python
+
+    from tollan.utils.fmt import pformat_yaml
+    print("Content of RuntimeContext.runtime_info:")
+    print(f"{pformat_yaml(rc.runtime_info.to_dict())}")
+
+
+:outputnumrole:`Out[8]:`
+
+
+.. parsed-literal::
+
+    Content of RuntimeContext.runtime_info:
+    
+    bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/bin
+    caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/cal
+    cmd: /usr/local/Cellar/python@3.8/3.8.12_1/envs/tolteca/lib/python3.8/site-packages/ipykernel_launcher.py
+      -f /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpsdpmqxj0.json
+    config_info:
+      env_files: []
+      load_sys_config: true
+      load_user_config: true
+      runtime_context_dir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p
+      standalone_config_files: []
+      sys_config_path: /Users/ma/Codes/toltec/py/tolteca/tolteca/data/tolteca.yaml
+      user_config_path: /Users/ma/Library/Application Support/tolteca/tolteca.yaml
+    created_at: '2022-02-01 15:10:20.767964'
+    exec_path: /usr/local/Cellar/python@3.8/3.8.12_1/envs/tolteca/lib/python3.8/site-packages/ipykernel_launcher.py
+    hostname: Zhiyuans-MacBook-Pro.local
+    logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/log
+    python_prefix: /usr/local/Cellar/python@3.8/3.8.12_1/envs/tolteca
+    setup_info:
+      config: {}
+      created_at: '2022-02-01 15:10:20.768326'
+    username: ma
+    version: 1.0.3.dev4+g687a0b7.d20220201
+    
+
+
+The ``runtime_info`` property holds a
+``tolteca.utils.runtime_context.RuntimeInfo`` object that capures
+information related to the current execution enviroments, which is often
+necessary to keep track of for book-keeping purpose and for repeating
+the analysis.
+
+The same runtime info object is also present in the config dict
+``RuntimeContext.config``, under the key ``runtime_info``.
+
+Note that runtime info is *always* dynamically created for each call of
+the RuntimeContext constructor, or the commandline interface
+``tolteca ...``, and is destroyed upon the termination of program. The
+perservation of runtime info is done through the ``setup_info`` dict in
+the runtime info.
+
+RuntimeContext.setup_info
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+:inputnumrole:`In[9]:`
+
+
+.. code:: python
+
+    print("Content of RuntimeContext.setup_info:")
+    print(f"{pformat_yaml(rc.setup_info.to_dict())}")
+
+
+:outputnumrole:`Out[9]:`
+
+
+.. parsed-literal::
+
+    Content of RuntimeContext.setup_info:
+    
+    config: {}
+    created_at: '2022-02-01 15:10:20.768326'
+    
+
+
+The ``setup_info`` property holds a
+``tolteca.utils.runtime_context.SetupInfo`` object that capures
+information related to a *previous* execution enviroments, which is
+checked when necessary to ensure consistency between runs.
+
+The same setup info object is also present in the config dict
+``RuntimeContext.config``, under the key ``runtime_info.setup_info``.
+
+The setup info object contains an empty ``config`` entry by default (the
+case of our ``rc`` object above). The ``RuntimeContext.setup`` method
+shall be used to save the current config dict (thus including the
+runtime info dict) to the setup info.
+
+
+:inputnumrole:`In[10]:`
+
+
+.. code:: python
+
+    try:
+        rc.setup()
+    except RuntimeContextError:
+        # the setup method riases when the setup info is present. To make
+        # re-runing of the cell happy, we capture the exception and discard
+        pass
+    print("Content of RuntimeContext.setup_info after setup")
+    print(f"{pformat_yaml(rc.setup_info.to_dict())}")
+
+
+:outputnumrole:`Out[10]:`
+
+
+.. parsed-literal::
+
+    Content of RuntimeContext.setup_info after setup
+    
+    config:
+      runtime_info:
+        bindir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/bin
+        caldir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/cal
+        cmd: /usr/local/Cellar/python@3.8/3.8.12_1/envs/tolteca/lib/python3.8/site-packages/ipykernel_launcher.py
+          -f /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpsdpmqxj0.json
+        config_info:
+          env_files: []
+          load_sys_config: true
+          load_user_config: true
+          runtime_context_dir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p
+          standalone_config_files: []
+          sys_config_path: /Users/ma/Codes/toltec/py/tolteca/tolteca/data/tolteca.yaml
+          user_config_path: /Users/ma/Library/Application Support/tolteca/tolteca.yaml
+        created_at: 2022-02-01T15:10:20.768
+        exec_path: /usr/local/Cellar/python@3.8/3.8.12_1/envs/tolteca/lib/python3.8/site-packages/ipykernel_launcher.py
+        hostname: Zhiyuans-MacBook-Pro.local
+        logdir: /private/var/folders/zc/33kgh8vx3z37kpp6xf84bzvm0000gn/T/tmpxfy0vf6p/log
+        python_prefix: /usr/local/Cellar/python@3.8/3.8.12_1/envs/tolteca
+        setup_info:
+          config: {}
+          created_at: 2022-02-01T15:10:20.768
+        username: ma
+        version: 1.0.3.dev4+g687a0b7.d20220201
+    created_at: '2022-02-01T15:10:20.768'
+    
+
+
+For ``rc``, which is created from workdir, the setup info is written to
+the ``40_setup.yaml`` file in the workdir. This info is propagated into
+later loading of the runtime context from the same workdir:
+
+
+:inputnumrole:`In[11]:`
+
+
+.. code:: python
+
+    rc_later = RuntimeContext(workdir)
+    print(f"setup info is same: {rc_later.setup_info == rc.setup_info}")
+    print(f"runtime info is same: {rc_later.runtime_info == rc.runtime_info}")
+
+
+:outputnumrole:`Out[11]:`
+
+
+.. parsed-literal::
+
+    setup info is same: True
+    runtime info is same: False
+
+
+For runtime context created via config file or config dict, the
+``RuntimeContext.setup`` method only update the in-memory config dict.
+It will not be saved on the dist by default. To produce a setup file in
+these cases, one may provide a ``setup_filepath`` to the ``setup`` call.
+
+The created setup file will be similar to the 40_setup.yaml file. It can
+be used for creating runtime context object at later times.
+
+
+:inputnumrole:`In[None]:`
+
+
+
+
+
+
+
+.. raw:: html
+
+    <div id="spacer"></div>
+
+    <a href="../_static/tolteca_setup/tolteca_setup.ipynb"><button id="download">Download tutorial notebook</button></a>
+    <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_setup/tolteca_setup.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
+
