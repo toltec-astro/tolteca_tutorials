@@ -1,119 +1,286 @@
+
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TolTECA &#8212; tolteca_tutorials v0.0.dev</title>
+    <title>TolTECA Tutorials &#8212; TolTECA Tutorials</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap_sandstone.css" />
-    <link rel="stylesheet" type="text/css" href="_static/astropy.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/js/jquery-1.11.0.min.js"></script>
-    <script src="_static/js/jquery-fix.js"></script>
-    <script src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="_static/bootstrap-sphinx.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="https://use.fontawesome.com/3168e95f94.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    <link rel="shortcut icon" href="_static/astropy_favicon.ico"/>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <link rel="shortcut icon" href="_static/toltec_favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
-   
+    <link rel="next" title="Create workdir and load RuntimeContext" href="tutorials/tolteca_setup/tolteca_setup.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
 
-  </head><body>
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
+    
 
-<!-- TolTEC banner -->
-<div class="container-fluid landing text-center">
-  <a href="/"><img src="_static/toltec_logo_banner.png" id="toltec-logo"></a>
-  <form class="input-group col-sm-7 m-auto"  id="search-bar" action="search.html" method="get">
-      <div class="input-group-prepend">
-          <button class="input-group-text" type="submit"><i class="fa fa-search fa-fw"></i></button>
-      </div>
-      <input type="text" name="q" id="search-bar-input" class="form-control" placeholder="Search in TolTECA" />
-  </form>
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="#">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/toltec_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tutorials/tolteca_setup/tolteca_setup.html">
+   Create workdir and load RuntimeContext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tutorials/tolteca_simu/tolteca_simu.html">
+   TolTEC observation simulator: Step by Step
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
 
-<!-- Guides, Tutorials, Examples, Documentation Placards -->
-<div class="container-fluid row definition-cards">
-  <div class="card bg-tutorial col-md-3 col-lg-2 p-0 m-2 ml-auto">
-    <div class="card-body">
-        <h2 class="card-title text-center"><a href="tutorials.html" class="text-white">Tutorials</a></h2>
-      <p class="card-text text-center">Tutorials are step-by-step cookbooks for common activities that incorporate several packages. They are more educational and interactive than recipes and scripts.</p>
-    </div>
-  </div>
-  <div class="card bg-documentation col-md-3 col-lg-2 p-0 m-2">
-    <div class="card-body">
-        <h2 class="card-title text-center" style="margin-left: -20px; margin-right: -20px;"><a href="documentation.html" class="text-white">Documentation</a></h2>
-      <p class="card-text text-center">Documentation is the complete description of a package with all requisite details, including usage, dependencies, and examples.</p>
-    </div>
-  </div>
-  <div class="card bg-example col-md-3 col-lg-2 p-0 m-2 mr-auto">
-    <div class="card-body">
-        <h2 class="card-title text-center"><a href="recipes.html" class="text-white">Recipes & Scripts</a></h2>
-      <p class="card-text text-center">Recipes and scripts are utility code snippets that accomplish specific, high-level data related tasks.</p>
-    </div>
-  </div>
 </div>
 
 
+          
 
-<div class="container">
-  <div class="row">
 
+          
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    
-    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/index.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
 
-    <div class="col-md-12">
-      <div class="content-padding card">
-        <div>
-  <div class="section" id="tolteca">
-<h1>TolTECA<a class="headerlink" href="#tolteca" title="Permalink to this headline">¶</a></h1>
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/toltec-astro/tolteca_tutorials"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/toltec-astro/tolteca_tutorials/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started">
+   Get Started
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list-of-tutorials">
+   List of Tutorials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#license">
+   License
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgement">
+   Acknowledgement
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>TolTECA Tutorials</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started">
+   Get Started
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list-of-tutorials">
+   List of Tutorials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#license">
+   License
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgement">
+   Acknowledgement
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="tolteca-tutorials">
+<h1>TolTECA Tutorials<a class="headerlink" href="#tolteca-tutorials" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/toltec-astro">TolTECA</a> is the software stack developed to
 facilitate the data analysis tasks of the
-<a class="reference external" href="http://toltec.astro.umass.edu">TolTEC camera</a>, which is to be mounted on the
+<a class="reference external" href="http://toltec.astro.umass.edu">TolTEC camera</a>, which is mounted on the
 <a class="reference external" href="http://www.lmtgtm.org">Large Millimeter Telescope (LMT)</a> and provides simultaneous,
-polarization-sensitive imaging at wavelengths of 1.1, 1.4 and 2.0mm through its
+polarization-sensitive imaging at wavelengths of 1.1, 1.4 and 2.0 mm through its
 7718 Lumped element Kinetic Inductance Detectors (KIDs). For more detailed
-description, please check out our recent SPIE papers
-<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020SPIE11453E..02W/abstract">TolTEC</a>
-and <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020SPIE11452E..2OM/abstract">TolTECA</a>.</p>
-<p>This site hosts a wide range of learning materials and documentations for those
-who would like to working with TolTEC data. The site is equipped with a search
-box that allows you to filter tutorials by keywords, search for filters, and
-make search queries in tutorials and documentation simultaneously.</p>
-<div class="section" id="installing-tolteca">
-<h2>Installing TolTECA<a class="headerlink" href="#installing-tolteca" title="Permalink to this headline">¶</a></h2>
-<p>The two key components of TolTECA are the Python package <code class="docutils literal notranslate"><span class="pre">tolteca</span></code>, and the
-fast data reduction engine <code class="docutils literal notranslate"><span class="pre">citlali</span></code> written in C++. Tolteca implements the
-general data and pipeline management framework that serves at the highest
-levels, while <code class="docutils literal notranslate"><span class="pre">citlali</span></code> works at the low-level to carry out the actual KIDs
-readout signal interpretation, time-ordered data (TOD) processing, and
-map-making. All the software source codes can be found in the
+description, please check out our recent SPIE papers describing
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020SPIE11453E..02W/abstract">TolTEC</a> and
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020SPIE11452E..2OM/abstract">TolTECA</a>.</p>
+<p>This site includes the learning materials for those who would like to work
+on TolTEC data on their own.</p>
+<div class="section" id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
+<p>The two key components of TolTECA that are related to TolTEC are the Python
+package <code class="docutils literal notranslate"><span class="pre">tolteca</span></code>, and the data reduction engine <code class="docutils literal notranslate"><span class="pre">citlali</span></code> written in C++.
+Tolteca implements the general data and pipeline management framework that
+serves at the highest levels, while <code class="docutils literal notranslate"><span class="pre">citlali</span></code> works at the low-level to carry
+out the actual KIDs readout signal interpretation, time-ordered data (TOD)
+processing, and map-making. All the software source codes can be found in the
 <a class="reference external" href="https://github.com/toltec-astro">toltec-astro</a> Github page.</p>
-<p>To download and run the Jupyter notebook tutorials, one need to install the
-Python package <code class="docutils literal notranslate"><span class="pre">tolteca</span></code> and its dependencies, which can be done as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/toltec-astro/tolteca_tutorials.git
-$ cd tolteca_tutorials
-$ pip install -r pip-requirements.txt
+<p>The tutorials are written in format of Jupyter notebooks. These notebooks are
+pre-rendered and can be viewed by clicking the titles listed in the next
+section. For those who would like to download and run directly in Jupyter, one
+may clone the tolteca_tutorials repository and install the requirements using
+<code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone https://github.com/toltec-astro/tolteca_tutorials.git
+<span class="gp">$ </span><span class="nb">cd</span> tolteca_tutorials
+<span class="gp">$ </span>pip install -r pip-requirements.txt
 </pre></div>
 </div>
 <p>For more detailed instructions of installing <code class="docutils literal notranslate"><span class="pre">tolteca</span></code> and to learn about the
@@ -121,39 +288,59 @@ C++ data reduction engine <code class="docutils literal notranslate"><span class
 <a class="reference external" href="https://github.com/toltec-astro/tolteca">tolteca</a> and
 <a class="reference external" href="https://toltec-astro.github.io/citlali/">citlali</a>.</p>
 </div>
-<div class="section" id="for-contributors">
-<h2>For contributors<a class="headerlink" href="#for-contributors" title="Permalink to this headline">¶</a></h2>
-<p>Feedback, improvements, and new tutorial content are highly appreciated
-via the <a class="reference external" href="https://github.com/toltec-astro/tolteca_tutorials">TolTECA tutorials repository</a>  on
-GitHub. Please feel free to open issues or submit pull requests.</p>
-<p>For more information, please see the contributing documentation:</p>
-<a href="contributing.html"><button id="binder" style="background-color: #fa743b; border-color: #fa743b; margin-bottom: 1rem; cursor: pointer">How to contribute</button></a></div>
+<div class="section" id="list-of-tutorials">
+<h2>List of Tutorials<a class="headerlink" href="#list-of-tutorials" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tolteca_setup/tolteca_setup.html">Create workdir and load RuntimeContext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tolteca_simu/tolteca_simu.html">TolTEC observation simulator: Step by Step</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>3-Clause BSD.</p>
+</div>
 <div class="section" id="acknowledgement">
 <h2>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The TolTEC project is funded by the National Science Foundation, grant #1636621.</p></li>
-<li><p>This site uses the HTML templates and infrastructure developed by <a class="reference external" href="https://learn.astropy.org">Learn Astropy</a>.</p></li>
 </ul>
 </div>
 </div>
 
-</div>
-      </div>
-      
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="tutorials/tolteca_setup/tolteca_setup.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create workdir and load RuntimeContext</p>
     </div>
-  </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-    </p>
-    <p>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.
-    &copy; Copyright Astropy.
-    </p>
-  </div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Zhiyuan Ma<br/>
+    
+        &copy; Copyright 2022–2022, Zhiyuan Ma.<br/>
+  </p>
 </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
   </body>
 </html>
