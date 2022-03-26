@@ -5,4 +5,8 @@ nbconvert
 pandoc
 sphinx_astropy
 sphinx_bootstrap_theme
+nbsphinx
+sphinxcontrib-svg2pdfconverter
+sphinx_last_updated_by_git
+sphinx_codeautolink
 mkdocs
