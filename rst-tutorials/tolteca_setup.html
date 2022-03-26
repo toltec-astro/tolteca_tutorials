@@ -3,15 +3,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta content="filterTutorials, filterGeneral;Environment;CommandlineInterface" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="filterTutorials, filterGeneral;Environment;CommandlineInterface" name="keywords" />
 <meta content="filterTutorials," name="keywords" />
 
     <title>Create workdir and load RuntimeContext &#8212; tolteca_tutorials v0.0.dev</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap_sandstone.css" />
     <link rel="stylesheet" type="text/css" href="../_static/astropy.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -116,10 +114,10 @@
 <a href="../_static/tolteca_setup/tolteca_setup.ipynb"><button id="download">Download tutorial notebook</button></a>
 <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_setup/tolteca_setup.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
 
-<div id="spacer"></div><section id="create-workdir-and-load-runtimecontext">
+<div id="spacer"></div><div class="section" id="create-workdir-and-load-runtimecontext">
 <span id="tolteca-setup"></span><h1>Create workdir and load RuntimeContext<a class="headerlink" href="#create-workdir-and-load-runtimecontext" title="Permalink to this headline">¶</a></h1>
 <p>Authors: Zhiyuan Ma</p>
-<section id="objectives">
+<div class="section" id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Learn the concept of workdir and <code class="docutils literal notranslate"><span class="pre">tolteca.utils.RuntimeContext</span></code>.</p></li>
@@ -129,12 +127,12 @@
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> to access config dict and runtime info.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">RuntimeContext.setup</span></code> to persist runtime info.</p></li>
 </ul>
-</section>
-<section id="keywords">
+</div>
+<div class="section" id="keywords">
 <h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
 <p>General; Environment; Commandline interface</p>
-</section>
-<section id="summary">
+</div>
+<div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial, we will walk through the concept and use of the
 so-called “tolteca workdir”, as well as the
@@ -169,10 +167,10 @@ directly in-memory, without the presence or use of workdir. This mode
 can be useful when the tolteca submodules which expects a
 <code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> object, but are used by other scripts or modules,
 which have their own config dict and runtime info management plan.</p>
-</section>
-<section id="create-tolteca-workdir">
+</div>
+<div class="section" id="create-tolteca-workdir">
 <h2>Create tolteca workdir<a class="headerlink" href="#create-tolteca-workdir" title="Permalink to this headline">¶</a></h2>
-<section id="commandline-interface-recommended">
+<div class="section" id="commandline-interface-recommended">
 <h3>Commandline interface (recommended)<a class="headerlink" href="#commandline-interface-recommended" title="Permalink to this headline">¶</a></h3>
 <p>The creation of tolteca workdir is typically done with the commandline:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tolteca -d workdir0 setup
@@ -185,8 +183,8 @@ directory, with some initial contents similar to:</p>
 </pre></div>
 </div>
 <p>Run <code class="docutils literal notranslate"><span class="pre">tolteca</span> <span class="pre">setup</span> <span class="pre">-h</span></code> to see a full list of commandline options.</p>
-</section>
-<section id="python-api">
+</div>
+<div class="section" id="python-api">
 <h3>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h3>
 <p>For the purpose of this tutorial, we can, however, create the workdir
 directly using the Python API provided by tolteca.</p>
@@ -231,9 +229,9 @@ command did. This is done by <code class="docutils literal notranslate"><span cl
 <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;cal&#39;</span><span class="p">,</span> <span class="s1">&#39;README.md&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;40_setup.yaml&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="load-runtimecontext">
+</div>
+</div>
+<div class="section" id="load-runtimecontext">
 <h2>Load RuntimeContext<a class="headerlink" href="#load-runtimecontext" title="Permalink to this headline">¶</a></h2>
 <p>We’ve already touched the <code class="docutils literal notranslate"><span class="pre">RuntimeContext.from_dir</span></code> factory method in
 the previous section for creating the workdir in Python. The method
@@ -241,7 +239,7 @@ returns an instance that is mapped to the just-created workdir.</p>
 <p>In general, instances of <code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> class can be constrcuted in
 a number of ways that may or may not relie on actual files on the file
 system.</p>
-<section id="construct-with-workdir">
+<div class="section" id="construct-with-workdir">
 <h3>Construct with workdir<a class="headerlink" href="#construct-with-workdir" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> object can be constructed with existing workdir:</p>
 <p><span class="inputnumrole">In[3]:</span></p>
@@ -266,8 +264,8 @@ the pre-defined contents:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="n">loading</span> <span class="n">rc</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">initialize</span> <span class="n">DirConf</span> <span class="kn">from</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp9o07a6qe</span><span class="p">:</span> <span class="n">missing</span> <span class="n">bindir</span> <span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmp9o07a6qe</span><span class="o">/</span><span class="nb">bin</span><span class="o">.</span> <span class="n">Set</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span> <span class="n">to</span> <span class="n">create</span> <span class="n">missing</span> <span class="n">items</span>
 </pre></div>
 </div>
-</section>
-<section id="construct-with-config-file">
+</div>
+<div class="section" id="construct-with-config-file">
 <h3>Construct with config file<a class="headerlink" href="#construct-with-config-file" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> object can be created with config dict provided as
 YAML file:</p>
@@ -286,8 +284,8 @@ YAML file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loaded</span> <span class="n">runtime</span> <span class="n">context</span> <span class="kn">from</span> <span class="nn">YAML</span> <span class="n">file</span><span class="p">:</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">zc</span><span class="o">/</span><span class="mi">33</span><span class="n">kgh8vx3z37kpp6xf84bzvm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">tmpxfy0vf6p</span><span class="o">/</span><span class="n">some_config</span><span class="o">.</span><span class="n">yaml</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="construct-with-python-dict">
+</div>
+<div class="section" id="construct-with-python-dict">
 <h3>Construct with Python dict<a class="headerlink" href="#construct-with-python-dict" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> object can be created directly with config dict:</p>
 <p><span class="inputnumrole">In[6]:</span></p>
@@ -302,9 +300,9 @@ YAML file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loaded</span> <span class="n">runtime</span> <span class="n">context</span> <span class="kn">from</span> <span class="nn">dict</span><span class="p">:</span> <span class="n">RuntimeContext</span><span class="p">(</span><span class="o">*</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="use-runtimecontext">
+</div>
+</div>
+<div class="section" id="use-runtimecontext">
 <h2>Use RuntimeContext<a class="headerlink" href="#use-runtimecontext" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> object provies interface to access the config
 dict and a runtime info dict.</p>
@@ -315,7 +313,7 @@ the property <code class="docutils literal notranslate"><span class="pre">config
 on the argument type passed to the constructor.</p>
 <p>Regardless of the config backend type, the <code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code> provides a
 set of common attributes that are important to the consumer of it.</p>
-<section id="runtimecontext-config">
+<div class="section" id="runtimecontext-config">
 <h3>RuntimeContext.config<a class="headerlink" href="#runtimecontext-config" title="Permalink to this headline">¶</a></h3>
 <p><span class="inputnumrole">In[7]:</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keys in RuntimeContext.config dict:&quot;</span><span class="p">)</span>
@@ -348,8 +346,8 @@ config dict, because we did not put any thing in the
 <li><p>rc from config dict: <code class="docutils literal notranslate"><span class="pre">my_key</span></code> is the key we put in the config
 <code class="docutils literal notranslate"><span class="pre">some_config_dict</span></code> we passed to the constructor.</p></li>
 </ul>
-</section>
-<section id="runtimecontext-runtime-info">
+</div>
+<div class="section" id="runtimecontext-runtime-info">
 <h3>RuntimeContext.runtime_info<a class="headerlink" href="#runtimecontext-runtime-info" title="Permalink to this headline">¶</a></h3>
 <p><span class="inputnumrole">In[8]:</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tollan.utils.fmt</span> <span class="kn">import</span> <span class="n">pformat_yaml</span>
@@ -396,8 +394,8 @@ the RuntimeContext constructor, or the commandline interface
 <code class="docutils literal notranslate"><span class="pre">tolteca</span> <span class="pre">...</span></code>, and is destroyed upon the termination of program. The
 perservation of runtime info is done through the <code class="docutils literal notranslate"><span class="pre">setup_info</span></code> dict in
 the runtime info.</p>
-</section>
-<section id="runtimecontext-setup-info">
+</div>
+<div class="section" id="runtimecontext-setup-info">
 <h3>RuntimeContext.setup_info<a class="headerlink" href="#runtimecontext-setup-info" title="Permalink to this headline">¶</a></h3>
 <p><span class="inputnumrole">In[9]:</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content of RuntimeContext.setup_info:&quot;</span><span class="p">)</span>
@@ -486,9 +484,9 @@ be used for creating runtime context object at later times.</p>
 <div id="spacer"></div>
 
 <a href="../_static/tolteca_setup/tolteca_setup.ipynb"><button id="download">Download tutorial notebook</button></a>
-<a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_setup/tolteca_setup.ipynb"><button id="binder">Interactive tutorial notebook</button></a></section>
-</section>
-</section>
+<a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_setup/tolteca_setup.ipynb"><button id="binder">Interactive tutorial notebook</button></a></div>
+</div>
+</div>
 
 </div>
       </div>

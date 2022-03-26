@@ -28,13 +28,6 @@ readout signal interpretation, time-ordered data (TOD) processing, and
 map-making. All the software source codes can be found in the
 `toltec-astro <https://github.com/toltec-astro>`_ Github page.
 
-.. tip::
-
-    As of March 2021, the repositories are only available to `toltec-astro`
-    organization members. please send email to zhiyuanma (at) umass (dot) edu
-    if you would like to have access.
-
-
 To download and run the Jupyter notebook tutorials, one need to install the
 Python package ``tolteca`` and its dependencies, which can be done as follows:
 

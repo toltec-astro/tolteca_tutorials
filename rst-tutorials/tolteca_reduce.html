@@ -3,15 +3,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta content="filterTutorials, filterSimulation;DataReduction" name="keywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="filterTutorials, filterSimulation;DataReduction" name="keywords" />
 <meta content="filterTutorials," name="keywords" />
 
     <title>Work with the data reduction submodule &#8212; tolteca_tutorials v0.0.dev</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap_sandstone.css" />
     <link rel="stylesheet" type="text/css" href="../_static/astropy.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -104,25 +102,25 @@
 <a href="../_static/tolteca_reduce/tolteca_reduce.ipynb"><button id="download">Download tutorial notebook</button></a>
 <a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_reduce/tolteca_reduce.ipynb"><button id="binder">Interactive tutorial notebook</button></a>
 
-<div id="spacer"></div><section id="work-with-the-data-reduction-submodule">
+<div id="spacer"></div><div class="section" id="work-with-the-data-reduction-submodule">
 <span id="tolteca-reduce"></span><h1>Work with the data reduction submodule<a class="headerlink" href="#work-with-the-data-reduction-submodule" title="Permalink to this headline">¶</a></h1>
-<section id="authors">
+<div class="section" id="authors">
 <h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
 <p>Zhiyuan Ma</p>
-</section>
-<section id="learning-goals">
+</div>
+<div class="section" id="learning-goals">
 <h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Learn the concept of <code class="docutils literal notranslate"><span class="pre">RuntimeContext</span></code>, which is the primary
 interface to run data related tasks.</p></li>
 <li><p>Reduce an example TolTEC observation.</p></li>
 </ul>
-</section>
-<section id="keywords">
+</div>
+<div class="section" id="keywords">
 <h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
 <p>Simulation; Data reduction</p>
-</section>
-<section id="summary">
+</div>
+<div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note</strong>: The tolteca provides a commandline interface for running the
 simuator and reduction, which hides a lot of implementation details and
@@ -167,8 +165,8 @@ simulator stored in
 to the workdir. Once the workdir is in place and has all the necessary
 bits, on can jump right into the second part of the tutorial starting
 <a class="reference external" href="#cell8">Cell 8</a>.</p>
-</section>
-<section id="installing-citlali">
+</div>
+<div class="section" id="installing-citlali">
 <h2>Installing Citlali<a class="headerlink" href="#installing-citlali" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Citlali</span></code> is the TolTEC data reduction pipeline engine, which needs to
 be installed in order to run the part of this tutorial related to data
@@ -176,8 +174,8 @@ reduction (Cell 22). You’ll need to revise the path to the citlali
 executable in Cell 22 to make it avaliable to <code class="docutils literal notranslate"><span class="pre">tolteca.reduce</span></code>. For
 instruction of installing citlali, visit
 <a class="reference external" href="https://github.com/toltec-astro/citlali">https://github.com/toltec-astro/citlali</a>.</p>
-</section>
-<section id="lets-first-create-a-runtime-context-object">
+</div>
+<div class="section" id="lets-first-create-a-runtime-context-object">
 <h2>Let’s first create a runtime context object.<a class="headerlink" href="#lets-first-create-a-runtime-context-object" title="Permalink to this headline">¶</a></h2>
 <p>To make the tutorial independent of any user’s own system setup, we just
 use a temporary directory here:</p>
@@ -347,8 +345,8 @@ how our custom records get loaded as well):</p>
   <span class="n">version</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev323</span><span class="o">+</span><span class="n">g1c6dc6b</span>
 </pre></div>
 </div>
-</section>
-<section id="create-simulated-data">
+</div>
+<div class="section" id="create-simulated-data">
 <h2>Create simulated data<a class="headerlink" href="#create-simulated-data" title="Permalink to this headline">¶</a></h2>
 <p>Tolteca.simu provides a set of tools to create simulated data. To run
 the simulator, we will need our workdir that we just setup, but with
@@ -992,8 +990,8 @@ line interface to invoke the simulator work flow:</p>
 $ tolteca simu
 </pre></div>
 </div>
-</section>
-<section id="reduce-the-simulated-observation">
+</div>
+<div class="section" id="reduce-the-simulated-observation">
 <h2>Reduce the simulated observation<a class="headerlink" href="#reduce-the-simulated-observation" title="Permalink to this headline">¶</a></h2>
 <p>The data reduction is done by using the
 <code class="docutils literal notranslate"><span class="pre">tolteca.reduce.PipelineRuntime</span></code>, a subclass of the
@@ -1507,8 +1505,8 @@ generated along with the simulation.</p>
 <div id="spacer"></div>
 
 <a href="../_static/tolteca_reduce/tolteca_reduce.ipynb"><button id="download">Download tutorial notebook</button></a>
-<a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_reduce/tolteca_reduce.ipynb"><button id="binder">Interactive tutorial notebook</button></a></section>
-</section>
+<a href="https://beta.mybinder.org/v2/gh/astropy/astropy-tutorials/master?filepath=/tutorials/notebooks/tolteca_reduce/tolteca_reduce.ipynb"><button id="binder">Interactive tutorial notebook</button></a></div>
+</div>
 
 </div>
       </div>
