@@ -2,9 +2,9 @@
 
 Executed on 2026-10-19 using the fresh tutorial environment on macOS arm64,
 Python 3.13.9, netCDF4 1.7.5. The complete locked environment is in
-`uv.lock`. This record covers the working tree on `codex/v3-learning-materials`;
-its content identities below avoid treating the uncommitted archive-parent
-revision as the tutorial revision.
+`uv.lock`. These checks exercised the working tree recorded in commit `ec2b5fc`,
+now on `v3.x`. The content identities below identify the tested notebook, lock,
+and input independently of later documentation changes.
 
 | Input or source | Identity |
 | --- | --- |

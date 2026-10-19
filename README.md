@@ -14,14 +14,11 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, and
 [Git LFS](https://git-lfs.com/). Clone the two repositories as siblings:
 
 ```sh
-git clone --branch codex/v3-learning-materials https://github.com/toltec-astro/tolteca_tutorials.git
+git clone --branch v3.x https://github.com/toltec-astro/tolteca_tutorials.git
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/toltec-astro/tolteca_ref_data.git
 cd tolteca_tutorials
 uv sync --locked
 ```
-
-The tutorial branch must be published before the clone command can be used
-remotely. In a local checkout, start with `uv sync --locked`.
 
 Follow [reference-data setup](datasets/README.md) to retrieve the small pinned
 dataset for the first example. Then open JupyterLab:

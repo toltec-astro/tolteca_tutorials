@@ -2,7 +2,7 @@
 
 > Runnable user workflows, ecosystem teaching material, and workshops.
 
-This is a fresh v3 collection on codex/v3-learning-materials. The previous
+This is a fresh v3 collection on v3.x. The previous
 collection remains on the archive branch, currently main; its content and
 dependencies are not part of this branch. Record the checkout revision, the
 environment lock, and each dataset manifest when using a recipe.
