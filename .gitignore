@@ -1,0 +1,14 @@
+.DS_Store
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.ruff_cache/
+.pytest_cache/
+_build/
+outputs/
+node_modules/
+.qa/
+.env
+.jupyter/
+# Inputs belong in the separate data repository, never in this checkout.
+*.nc

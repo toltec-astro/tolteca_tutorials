@@ -1,0 +1,27 @@
+# TolTECA tutorials
+
+> Runnable user workflows, ecosystem teaching material, and workshops.
+
+This is a fresh v3 collection on codex/v3-learning-materials. The previous
+collection remains on the archive branch, currently main; its content and
+dependencies are not part of this branch. Record the checkout revision, the
+environment lock, and each dataset manifest when using a recipe.
+
+## Start and run
+
+- [Quick start](README.md): Clone, install the locked environment, and run JupyterLab.
+- [Reference data](datasets/README.md): Pair with a separate tolteca_ref_data checkout; inputs are read-only.
+- [Data manifest](datasets/reference.toml): Upstream revision and exact starter file identity.
+- [Workflows](workflows/README.md): Runnable starter and planned scientific workflows.
+- [Inspect reference data](workflows/inspect-reference-data/README.md): Verify the environment and one telescope file; this is not a complete reduction recipe.
+- [Validation record](workflows/inspect-reference-data/validation.md): Exercised environment and limits.
+
+## Teaching material
+
+- [Presentations](presentations/README.md): Ecosystem and workflow teaching decks; collection initially empty.
+- [Workshops](workshops/README.md): Teaching sequences with slides and exercises; collection initially empty.
+- [Contributing](CONTRIBUTING.md): Source ownership and validation requirements.
+
+Package-owned guides remain authoritative for software interfaces. Read
+architecture specifications and review decks in the owning package repository
+with their revision and evidence. Proposed behavior is not a supported recipe.

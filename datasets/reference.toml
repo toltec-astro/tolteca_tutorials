@@ -1,0 +1,12 @@
+# The upstream Git LFS pointer at this revision supplies the size and SHA-256.
+repository = "https://github.com/toltec-astro/tolteca_ref_data.git"
+revision = "99711bde64f96d0df042e3c44a1e174ab68dcb4c"
+
+[telescope_scan]
+path = "tel/tel_toltec_2025-10-31_145609_00_0001.nc"
+size_bytes = 1157288
+sha256 = "285f8d5170a1f54cb94d1272ede3abf9f5e4babd26b453cb87a5254bd28551e0"
+obsnum = 145609
+subobsnum = 0
+scannum = 1
+time_samples = 2837

@@ -1,0 +1,27 @@
+[project]
+name = "tolteca-tutorials"
+version = "0.1.0"
+description = "Runnable TolTEC workflows, teaching presentations, and workshops."
+readme = "README.md"
+requires-python = ">=3.13"
+license = "BSD-3-Clause"
+authors = [{ name = "Zhiyuan Ma", email = "zhiyuanma@umass.edu" }]
+dependencies = [
+  "ipykernel>=6.29,<8",
+  "jupyterlab>=4.4,<5",
+  "nbclient>=0.10,<1",
+  "nbformat>=5.10,<6",
+  "netCDF4>=1.7,<2",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.16,<1"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
