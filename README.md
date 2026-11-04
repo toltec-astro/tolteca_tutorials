@@ -52,6 +52,7 @@ reduction recipes are still to be added with their own tested software versions.
 | [Presentations](presentations/README.md) | Ecosystem introductions and workflow teaching decks |
 | [Workshops](workshops/README.md) | Teaching sequences with slides and exercises together |
 | [Reference data](datasets/README.md) | Pair this checkout with versioned data from `tolteca_ref_data` |
+| [Workflow glossary](https://toltec.lmtgtm.org/dr/science/docs/handbook/glossary.html) | Shared observation, calibration, reduction, and product terminology |
 | [Agent index](llms.txt) | Authored discovery material and compatibility status |
 
 Package documentation owns software usage and API details. Maintained software
