@@ -1,14 +1,23 @@
 # Contribute learning material
 
-Organize each contribution around a complete user task. Put runnable workflows
-in `workflows/<task>/`, standalone teaching decks in `presentations/<topic>/`,
-and workshop slides and exercises together in `workshops/<topic>/`.
+Organize each contribution around a complete user task. Put each item in the
+folder for its kind:
+
+| Folder | Holds |
+| --- | --- |
+| `workflows/<task>/` | Runnable workflows |
+| `presentations/<topic>/` | Standalone teaching decks |
+| `workshops/<topic>/` | Workshop slides and exercises together |
+| `architecture/<deck>/` | Developer architecture decks, each with an evidence note and probes ([architecture decks](architecture/README.md)) |
+| `handbook/` | The TolTEC Data Handbook sources; build with `just handbook` |
+| `slides/` | The shared slide toolchain that builds every deck ([slide toolchain](slides/README.md)) |
 
 Each item needs a goal, prerequisites, an executable sequence, expected outputs,
 and checks. Record applicable software versions, data identities, validation
 date and platform, and limitations. Distinguish a draft from an executed example.
-Link package guides for software details and keep architecture specifications
-and review decks in the owning software repository.
+Link package guides for software details. Architecture specifications stay in
+the owning software repository; the decks that review them go in
+`architecture/`.
 
 ## Environment and data
 

@@ -1,0 +1,1136 @@
+# Data products and publication — current presentation evidence
+
+> Moved on 2026-11-07 from `tolteca/design/` to `tolteca_tutorials/architecture/toltec-data-products/`.
+> Commands below record earlier runs with the old paths. Today, run this
+> deck's probes from `architecture/toltec-data-products/probes/` and build from `slides/`.
+
+## Product-model and terminology alignment — 2026-10-24
+
+Reviewed working trees: `tolteca` HEAD `2613923` and `tolteca_db` HEAD `c29e3b6`,
+including their pending model, journal and terminology changes. The deck now has
+14 main slides and 11 appendix/reference slides.
+
+Corrected the nested `DataProdIndex.product` layout, product-owned primary lookup,
+`data_prod_item` storage table, and separate `.runs/by_uid/<uid>/run.yaml` records.
+Added the portable model roles and publication/registration API boundaries.
+Supporting types use `Location`, `Actor`, `WorkflowRun` and `WorkflowRunContext`.
+The inventory relationship uses `DataProdInventoryNamespace`.
+
+Sources: [portable models](../../../tolteca/src/tolteca_datamodels/core/data_prod/index.py),
+[run lifecycle](../../../tolteca/src/tolteca_datamodels/core/data_prod/store.py),
+[publication](../../../tolteca/src/tolteca_datamodels/data_prod/store.py), and the
+[publication guide](../../../tolteca_db/docs/publish-product-example.md).
+
+Verification:
+
+- Rebuilt HTML and PDF with the pinned Marp toolchain; 25 PDF pages rendered and
+  inspected as contact sheets. Browser checks found no section overflow; the new
+  model and API tables were inspected at full size.
+- The publication example registered seven products, two runs and three
+  publications, with two committed journal entries in fresh SQLite.
+- Focused Sphinx build passed with nitpicky references and warnings as errors.
+- Artifacts and logs: `/tmp/product-docs-sync-20261024/`,
+  `/tmp/product-docs-sync-example.log`, `/tmp/product-docs-sync-sphinx.log`.
+
+This check covers the product documentation and companion inventory deck. It does
+not certify unrelated package guides, production deployment, or the historical
+SchemaSpy export. Presenter/offline and smaller-viewport checks were not repeated.
+
+## Earlier presentation evidence — 2026-10-19
+
+Date: 2026-10-19. Scope: requested architecture deck split and current API updates.
+The deck contains 14 main slides and 9 appendix/reference slides.
+
+## Contract and implementation
+
+The specifications remain authoritative. This update changes slide sources,
+build/preview tooling and presentation probes only. Relevant working trees contain
+substantial pre-existing changes; HEAD alone does not identify the inspected code.
+
+HEAD revisions: `tolteca` `486244a`, `tolteca_db` `c29e3b6`, `tolteca_web` `9db03d8`, `tollan` `72d90f5`, `tolteca_deploy` `5e7997c`.
+
+Inspected current sources:
+
+- [tolteca/src/tolteca_datamodels/data_prod_run.py](../../../tolteca/src/tolteca_datamodels/data_prod_run.py)
+- [tolteca/src/tolteca_datamodels/data_prod_store.py](../../../tolteca/src/tolteca_datamodels/data_prod_store.py)
+- [tolteca/src/tolteca_kids/dataprod_output.py](../../../tolteca/src/tolteca_kids/dataprod_output.py)
+- [tolteca/src/tolteca_kids/product.py](../../../tolteca/src/tolteca_kids/product.py)
+- [tolteca_db/src/tolteca_db/models/orm/execution.py](../../../tolteca_db/src/tolteca_db/models/orm/execution.py)
+- [tolteca_db/src/tolteca_db/models/orm/inventory.py](../../../tolteca_db/src/tolteca_db/models/orm/inventory.py)
+
+## Executed examples and scope
+
+Configuration validation passed for the displayed publication settings. The KIDs probe exercised temporary file-only publication and reopened the stored interface subtree. Existing portable-registration and Docker records establish the remaining persistence workflows; those integration suites were not rerun for this documentation update.
+
+Logs and local render artifacts: `run/slides-split-20261019/` in the Python workspace.
+
+## Build and visual review
+
+HTML and PDF exports were rebuilt with Marp CLI 4.5.1 / Marp Core 5.0.2.
+The seven-deck set contains 140 pages. All PDF pages were visually inspected;
+HTML slide geometry and code clipping were checked at presentation and
+1024×768 laptop viewports. Dense reference slides were reformatted without
+changing the shared font sizes.
+
+Contents links, numbered deep links, arrow-key navigation and overview were
+exercised in the workflow deck. No browser console errors were recorded.
+The presenter shortcut was attempted, but the in-app browser did not expose a
+presenter window; presenter-popup behavior remains unverified there. Direct
+file-URL opening is restricted by that browser, so HTML QA used the allowlisted
+localhost preview. Fonts, scripts and diagrams are embedded; a network-disabled
+browser run was not performed.
+
+The presentation probes check reader, KIDs, telescope and configuration examples.
+Focused Ruff E/F/I checks passed for the changed probes and preview script;
+package-wide lint and Docker/Unity execution were outside this slide update.
+Shared commands and the current deck index are in
+[the slide tooling](../README.md).
+
+## Historical evidence before the split
+
+The following records retain their original dates, slide numbering and verification scope.
+They do not describe the current organization.
+
+# TolTEC data products — evidence
+
+## Inventory placement update — 2026-10-19
+
+Updated slides 7–9, 34, 43 and 52 to separate portable namespace identity from
+inventory-specific paths and reported presence. The current deck has 61 slides.
+HTML and PDF were rebuilt with the existing Marp toolchain. The six changed HTML
+slides were visually checked at 1280×720 and checked for content overflow; slide 9
+was shortened after an overflow was found. Other slides retain their prior QA scope.
+The historical SchemaSpy review has not been regenerated for this change.
+
+Implementation and workflow evidence:
+[inventory placement and PostgreSQL verification](../../../tolteca_db/design/inventory-placement-20261019.md).
+
+Updated: 2026-10-15. The [deck](../../_build/slides/architecture/toltec-data-products.html),
+[editable source](toltec-data-products.md) and [PDF](../../_build/slides/architecture/toltec-data-products.pdf)
+contain 58 slides. The association update covers slides 12–19 and the related
+registry, Web and roadmap entries. Earlier evidence below retains its original
+scope and dates; its slide numbers and pending-work statements are historical.
+
+## Association review — 2026-10-15
+
+Contract owner: [association construction](../../../tolteca_db/design/association-rules.md).
+The [product specification](../../../tolteca/design/spec.md#product-associations-and-primary-products)
+links to this owner. New presentation material separates configuration
+composition, class inheritance, execution ownership and read-only queries.
+
+| Slides | Subject | Evidence |
+| --- | --- | --- |
+| 13 | Three exact metadata rules | [AssocRules](../../../tolteca_db/src/tolteca_db/associations/rules.py), [rule tests](../../../tolteca_db/tests/test_assoc_rules.py) |
+| 14 | Per-interface references; missing master; later enrichment | [Acquisition ingestion](../../../tolteca_db/src/tolteca_db/ingest/acquisition.py), [reference lifecycle tests](../../../tolteca_db/tests/test_acquisition_workflow.py) |
+| 15–16 | Configuration composition and class hierarchy | [Configuration](../../../tolteca_db/src/tolteca_db/config.py), [handler](../../../tolteca_db/src/tolteca_db/core.py), [ORM](../../../tolteca_db/src/tolteca_db/models/orm/assoc.py) |
+| 17 | Transactions and shared registration | [Registration](../../../tolteca_db/src/tolteca_db/associations/registration.py), [portable import](../../../tolteca_db/src/tolteca_db/product_index.py) |
+| 18–19 | Exact read queries and Web navigation | [Query API](../../../tolteca_db/src/tolteca_db/api/products.py), [Web page](../../../tolteca_web/src/tolteca_web/obs/association_viewer.py), [integration test](../../../tolteca_web/tests/test_association_viewer.py) |
+
+Inspected working trees: `tolteca` HEAD `e2cefe9`, `tolteca_db` HEAD `c29e3b6`,
+`tolteca_web` HEAD `04f0c73`, plus prior pending work. The turn-start comparison is
+`/tmp/assoc-viewer-before-20261015`; it is not a Git HEAD comparison. Current
+slice details and commands are recorded in the
+[Web verification note](../../../tolteca_web/design/association-viewer-20261015.md).
+
+Verification:
+
+- DB rules, exact query identity and acquisition integration: 16 passing tests.
+- Web lifecycle, product actions, portal and configuration: 18 passing tests.
+- Parquet-backed sweep viewer after obsolete group-helper removal: 7 passing tests.
+- DB and Web strict Sphinx builds: zero warnings using local dependency inventories.
+- The query guide example ran against the cumulative demo through `DB.open_dpdb`.
+- Cumulative demo retains 79 earlier products and 415 sources; it now has 81
+  products and 117 associations, including 11 calibration edges. Reapplying the
+  rules reports 59 unchanged rule-owned edges and one incomplete reference.
+- HTML and PDF rebuilt with the existing Marp toolchain. All 58 PDF pages were
+  rendered and inspected as contact sheets. Browser bounds checks found no slide
+  overflow at 1280×720 or 1024×640 after correcting five older overflowing slides.
+  New rule, composition, inheritance and ownership slides were inspected at full
+  size. Keyboard navigation, section jumps, deep links and overview work.
+  Presenter mode did not produce an inspectable tab in the review browser and
+  remains unverified.
+
+The implemented slice reads stored edges and registered availability. It adds
+no push/poll policy, edge retraction, scientific sequence rules or production
+scaling claim. Other scientific/publishing examples in this deck retain their
+prior verification scope; this update is not a complete audit of every module.
+
+## Historical overview — 2026-10-13
+
+The evidence includes the current working trees, not only the commits below.
+The primary-association and shared-store changes were already present when this
+deck was prepared. The October 7 update added observation collection and
+publication. The October 12 update removes the obsolete reduced-observation
+product type; earlier verification records below retain their dates and scope.
+
+| Repository | HEAD |
+| --- | --- |
+| tolteca | `81f4f9e` |
+| tolteca_db | `c29e3b6` |
+| tolteca_web | `04f0c73` |
+| tollan | `c35054f` |
+
+The naming discussion is recorded in
+[the naming audit](../../../tolteca/design/data-product-naming-audit-20261007.md). Its later decisions
+supersede earlier proposals. The earlier
+[DPDB/archive audit](../../../tolteca/design/data-products-dpdb-and-archive-20261006.md) supplies archive
+background; its proposed product directory layouts are not the current contract.
+
+The current identity contract uses separate namespace identity and relative path.
+A version-group UID is its logical identifier, such as `U_proc` or
+`{dp_type}_{primary.uid}_g{N}`. Each realized product has
+`uid = version_group.uid + '/' + run_id` in the same namespace. Runs are unique
+within one output namespace. Singleton observation/acquisition UIDs remain global.
+Namespace paths are mutable; namespace text is not embedded in product UIDs.
+
+The [current schema review](../../../tolteca_db/design/data-product-schema-review-20261013.md)
+and [specification](../../../tolteca/design/spec.md#data-products) supersede the earlier identity and
+run-ownership proposals in the dated entries below. `dp_version_group` is its own
+registered type in the design, with its managed type in ordinary product metadata.
+The five new core tables and writer/index/DPDB/Web migration remain pending.
+`EventLog` removal is implemented; tag-selection history is deferred and excluded
+from the core illustration. This deck update changes documentation only.
+
+## Historical claim map — 2026-10-13
+
+| Slides | Contract | Evidence |
+| --- | --- | --- |
+| 3–5 | Global singletons, scoped groups and realized-product identities | [Specification](../../../tolteca/design/spec.md#product-identifiers), [schema review](../../../tolteca_db/design/data-product-schema-review-20261013.md) |
+| 6–9 | Paths, namespace identity and import key remapping | [Namespace contract](../../../tolteca/design/spec.md#namespace-identity-and-portability), schema review's Taco-to-Unity example |
+| 10–12 | Associations, primary traversal and direct source ownership | [Index model](../../../tolteca/src/tolteca_datamodels/data_prod.py), [ORM associations](../../../tolteca_db/src/tolteca_db/models/orm/assoc.py), [primary tests](../../../tolteca/tests/tolteca_datamodels/test_data_prod_primary.py) |
+| 13 | Current portable inventory fields | [Index model](../../../tolteca/src/tolteca_datamodels/data_prod.py), [DPDB adapter](../../../tolteca_db/src/tolteca_db/product_index.py) |
+| 14–19 | Scientific contents, target publication ownership and group/version indexes | [Publication contract](../../../tolteca/design/spec.md#publication-ownership-and-atomicity), [writer/reader](../../../tolteca/src/tolteca_kids/product.py), [output step](../../../tolteca/src/tolteca_kids/dataprod_output.py), [Zarr projection](../../../tolteca/src/tolteca_kids/_zarr_input.py) |
+| 20–24 | Relational metadata owners; current workflow/step/result snapshots | [Metadata contract](../../../tolteca/design/spec.md#metadata-ownership), [provenance](../../../tolteca/src/tolteca_kids/product.py), [reduction](../../../tolteca/src/tolteca_kids/_reduction.py), [D21](../../../tolteca/src/tolteca_kidsproc/analysis/d21.py), [PSD](../../../tolteca/src/tolteca_kidsproc/analysis/psd.py) |
+| 25–27 | Current publication and DPDB/Web discovery | [Runner](../../../tolteca/src/tolteca_kids/runner.py), [CLI](../../../tolteca/src/tolteca_kids/cli.py), [executed examples](probes/toltec_data_products.py), [catalog](../../../tolteca_db/src/tolteca_db/sweep_catalog.py), [Web access](../../../tolteca_web/src/tolteca_web/sweep/products.py) |
+| 28–32 | Proposed tables, keys, actors and run-to-DPA context | [Schema review](../../../tolteca_db/design/data-product-schema-review-20261013.md), [illustrative DDL](../../../tolteca_db/design/schema-review-20261013/schema.sql) |
+| 33–35 | Existing registries and proposed additions | [Enums](../../../tolteca_db/src/tolteca_db/constants.py), schema review's type and association proposals |
+| 36–39 | Existing adapter, migration boundaries and reconstructible projections | [Adapter](../../../tolteca_db/src/tolteca_db/product_index.py), [projection contract](../../../tolteca/design/spec.md#logical-model-and-stored-representations), schema review |
+| 40–43 | Namespace-scoped runs, allocation, tag selections and sources | [Allocation contract](../../../tolteca/design/spec.md#run-identity-allocation), [current allocator](../../../tolteca/src/tolteca_datamodels/data_prod_run.py), [store](../../../tolteca/src/tolteca_datamodels/data_prod_store.py), schema review |
+| 44 | Group identifiers and tone-match placement | [Identifier contract](../../../tolteca/design/spec.md#product-identifiers); v2 `taco_recipes/scripts/kids/tone_match.py` |
+| 45 | Archive metadata and file inventory | Local `toltec_astro/dvpipe/dvpipe/pipelines/lmtmetadatablock.py`, `pipelines/lmtslr/data_prod.py`; [archive audit](../../../tolteca/design/data-products-dpdb-and-archive-20261006.md) |
+| 46 | Observation inventory and incremental import | [Product-index operations](../../../tolteca_db/src/tolteca_db/product_index.py), [executable examples](probes/toltec_data_products.py) |
+| 47 | Deferred schema and workflow scope | Schema review's open decisions; [specification](../../../tolteca/design/spec.md#data-products) |
+
+Current limitations remain visible in the slides:
+
+- `dp_obs` collection inventories registered raw products; it does not assert
+  that an observation is complete. Aggregate producers remain separate work.
+- The default DP registry does not yet include `dp_pointing`.
+- Distinguishing directory labels for grouped products are specified. The store
+  still addresses primary/type directories; generalized placement is pending.
+- Version-group/result UIDs, namespace-scoped run relations, association tag selection and
+  corresponding Web discovery require a coordinated implementation migration.
+- Current product indexes inventory sources. A general inventory of every
+  analysis result and its dependencies remains deferred.
+- The writer can retain installed analysis datasets; this deck's numerical
+  example exercises sweep transformation, not every optional analysis.
+- Plot/table exports and optional diagnostic pickles are specified artifacts,
+  not implemented outputs of the current reducer-only publication slice.
+- Tone-match UID/installation, the TolTEC dvpipe adapter, Zarr archive packaging,
+  dependency invalidation and in-place partial updates remain open/deferred.
+- Existing DPDB databases need the `is_primary` column. No database migration
+  or existing operational product is changed by the deck checks.
+
+## 2026-10-12 product-type cleanup
+
+Contract: acquisition transforms and diagnostics use `dp_raw_obs_proc`, UID
+`{uid_raw_obs}_proc`, and `dpa_raw_obs_proc_raw_obs`. The obsolete `dp_reduced_obs`
+type has no active producer and no separate role in the current specification.
+
+Implementation: removed its enum member, metadata class and union variant,
+public export, unused UID constructor, and the raw-UID parser's `-reduced`
+suffix conversion. The Web product-type label and slide 23 use the current
+type. Historical design proposals remain historical; no compatibility alias
+or operational database migration was added. Registry population adds missing
+entries and does not remove rows already stored in an existing database.
+
+The remaining types have the following code owners or declared status:
+
+| Types | Evidence / status |
+| --- | --- |
+| `dp_raw_obs`, `dp_obs` | File ingestion and observation collection in `tolteca_db` |
+| `dp_raw_obs_proc` | KIDs product publication in `tolteca_kids/product.py` |
+| `dp_cal_group`, `dp_drivefit`, `dp_focus_group`, `dp_astig_group`, `dp_oof_group` | Association collators and generator in `tolteca_db/associations/`; grouping does not establish scientific-result production |
+| `dp_named_group` | Named-group metadata and generic index/association operations |
+| `dp_map`, `dp_catalog` | Reserved registry types; producers outside this verified slice |
+
+The retained DPA types cover observation inventories, calibration links,
+processed acquisitions, the five collator groups, and named groups. Group UID
+conformance remains separate work: `associations/state.py` and the group helpers
+in `utils/uid.py` still use earlier naming schemes. This cleanup does not change
+their producers or identifiers.
+
+Verification (working trees at the revisions above):
+
+- 72 DB metadata, enum, UID, product-index and observation tests; 23 product/store
+  tests; 11 Web product/source tests passed.
+- Fresh SQLite initialization produced **11 DP types and 9 DPA types**. Repeated
+  population added no rows. The obsolete DP/DPA labels were absent. The registry
+  docstring's nine executable examples passed.
+- The cumulative reducer workflow passed all four v2 cases: VNA, target sweep,
+  first tune block and last tune block. Values, units and Web traces remained
+  exact through CLI → Zarr → DPDB → Parquet → Web. Report:
+  `/tmp/kids-product-types-20261012/report.json`.
+- The slide Python/YAML/CLI probe passed. HTML and PDF were rebuilt; slide 23
+  was visually inspected in both. Offline HTML navigation and the changed slide
+  passed at 1280×720 and 1024×640. Existing vertical-overflow flags on slides
+  5, 6, 8, 10 and 28 match a rebuild of the pre-cleanup source; they are outside
+  this slide edit. This is not a new full-deck layout certification.
+- Type checking of changed DB modules and the UID tests passed. Ruff reported
+  no new diagnostics against the saved pre-cleanup files; existing findings
+  remain. Full Sphinx documentation was not rebuilt for this cleanup.
+
+Logs, registry snapshot, render checks and a focused diff against the
+start-of-turn working copies are in `/tmp/dp-reduced-obs-cleanup-20261012/`.
+
+## 2026-10-07 executed examples
+
+From the workspace root:
+
+```sh
+./toltec_astro_dev/.venv/bin/python tolteca/design/probes/toltec_data_products.py
+```
+
+The probe extracts the actual Python, YAML and CLI blocks from the slide source.
+It supplies the imports and caller paths documented in the Python slide's notes.
+Outputs and SQLite state live in a temporary directory. The input remains read-only:
+
+```text
+toltec_astro_dev/run/data_lmt/toltec/tcs/toltec0/
+  toltec0_145609_000_0001_2025_10_31_09_26_59_tune.nc
+```
+
+Results on 2026-10-07:
+
+- Python publication and reopening passed; block 0 I has shape `(632, 177)`.
+- The observation example published `scratch/145609/dp_obs.yaml`; its only
+  association in this example is the registered raw product `tcs-145609-0-1`.
+- Both displayed primary APIs passed: `index.get_primary(lookup)` and ORM
+  `product.primary` reached `tcs-145609-0-1`.
+- The displayed YAML association parsed with its typed relationship and
+  `is_primary=True`.
+- Store path/index APIs and a revision index round trip passed.
+- The displayed CLI published `ql/145609-0-1/dp_raw_obs_proc/index_check-a.yaml`.
+- Reopened output contained shared `blocks/index`, `blocks/chan`, `blocks/probe`,
+  two block scopes and each block's `sweep` and `model_params`. No native `raw`
+  leaf was stored for this sweep-only product.
+
+The new run report is `/tmp/toltec-data-products-qa/examples.json`; runtime logs
+are beside it. The cumulative KIDs/DPDB/Web workflow was rerun at
+`/tmp/kids-observation-products-20261007/report.json`: vnasweep, targsweep and two
+tune-block selections still match v2 exactly, and three observation inventories
+are published alongside their acquisition products. These local checks do not
+establish remote-query performance.
+
+## 2026-10-07 database schema and registry inspection
+
+For the database slides, a fresh in-memory SQLite database was populated using
+`Base.metadata.create_all` and `populate_registry_tables`. All 12 DP labels and
+9 DPA labels match the enum values and occur in the deck. SQLAlchemy metadata
+confirmed the source composite primary key `(source_uri, location_fk)`, its
+owner foreign key to `data_prod.pk`, and the association's two product endpoint
+foreign keys. `/tmp/toltec-data-products-qa/schema.json` records every table's
+columns, primary keys and foreign keys, along with the seeded registry labels.
+
+The slides describe the current schema, not the stale type counts and examples
+in some registry/ORM docstrings. Source ownership is stored directly in
+`DataProdSource.data_prod_fk`. Each source references one product and one location.
+Type registration does not establish producer availability. The superseded
+`dpa_reduced_obs_raw_obs` entry was removed from the enum; processed acquisitions
+use `dpa_raw_obs_proc_raw_obs`. Existing operational databases were not modified.
+
+Observation collection passed 62 focused ORM, metadata and product-index tests,
+including the executable guide examples. Another 19 index/store/KIDs tests passed.
+Fresh registry population and a repeated call confirmed the current labels without
+duplicate rows. The deck's Python/YAML/CLI probe passed again.
+
+The wider file-table check has one separate failure:
+`test_mixed_ingest_and_query` selects zero sweep rows instead of three through
+`bits_any_set(data_kind, raw_sweep)` after the DB-to-file-table conversion. The
+other seven file-table checks passed. That conversion was not changed here.
+The strict DB Sphinx build produced HTML with 17 warnings from unreachable external
+inventories and existing README links outside its documentation tree; details are
+in `/tmp/obs-product-docs.log`.
+
+## Build and presentation checks
+
+The shared theme and renderer configuration are unchanged. Versions are pinned
+in [the slide toolchain](../../slides/package.json): Marp CLI 4.5.1, Marp core 5.0.2
+with the full engine, and beautiful-mermaid 1.1.3. Node is 24.10.0. Diagrams are
+editable Mermaid; paths and trees remain text. Local fonts and embedded SVGs
+allow the HTML to open offline.
+
+Build from `tolteca/design/slides/`:
+
+```sh
+npm run build -- ../toltec-data-products.md
+npm run pdf -- ../toltec-data-products.md
+```
+
+Open the HTML directly, or run `npm run preview` and open
+`http://127.0.0.1:8871/toltec-data-products.html`.
+
+Presentation inspection uses local Chrome and Poppler. Temporary screenshots,
+contact sheets, the browser check script and report are under
+`/tmp/toltec-data-products-qa/`.
+
+- HTML: all 29 slides at 1280×720 and 1024×640, including text/diagram fit.
+- PDF: 29 pages at 16:9; changed pages inspected after rasterization.
+- Keyboard navigation, numbered deep links, section-map links and presenter
+  mode checked. Slide 2 provides the overview; no native thumbnail-overview
+  keyboard shortcut is claimed.
+- Offline browser load: no external HTTP(S) requests or page errors.
+- Long diagram chains were shortened so labels remain readable; their detailed
+  relationship semantics stay in the accompanying tables.
+
+The final workspace review is regenerated with `just review` at
+`/tmp/toltec-python-workspace-review.diff`. The repository ignores `design/`;
+these local deck artifacts are reviewed directly and are not included in that
+Git-based diff. No commit is part of this task.
+
+## 2026-10-12 revision and tag publication
+
+The current Markdown and HTML replace flat revision filenames with self-contained
+`{rev:04d}-{key}/` directories. The root inventory lists committed revisions and
+tag selections. The publication slides show early tag ownership, staging and
+atomic inventory replacement. The displayed Python/YAML/CLI examples pass through
+the updated store and KIDs output APIs.
+
+[Revision implementation and evidence](../../../tolteca/design/data-product-revisions-20261012.md) records
+the current working-tree scope, concurrency checks and cumulative ingest/Web
+exercise. Logs are under `/tmp/dataprod-revisions-20261012/`.
+
+The HTML build passed. Browser security rejected opening its local `file://` URL;
+no alternate transport or rendering workaround was used. The presentation checks
+above describe the earlier export, not this revision. The current HTML has not
+had visual/navigation review, and the PDF remains the earlier export.
+
+
+## 2026-10-12 run IDs and tag history
+
+This update supersedes the revision API described in the preceding entry. The
+current Markdown/HTML use opaque run IDs, UUID or counter generation, exact
+`value` requests, persistent reservations, and tag history/current selections.
+Reservation now precedes computation; commit rereads the root inventory.
+
+[Run implementation and verification](../../../tolteca/design/data-product-runs-20261012.md) records the
+accepted contract and current checks. Deck Python/YAML/CLI examples and the HTML
+build passed. The cumulative 16-file workflow passed with six processed products
+and all 11 blocks. The presentation framework and 29-slide layout are retained.
+
+The earlier browser-security restriction still blocks visual/navigation QA. The
+HTML was rebuilt without a rendering workaround; the PDF remains the earlier
+export. Prior visual checks do not certify this update.
+
+## Run-index provenance update, 2026-10-12
+
+The current deck replaces the manifest artifact with run-index provenance.
+The data-product deck includes per-input workflow settings, result snapshots and
+replay limits. HTML was rebuilt with the installed Marp toolchain. Earlier
+manifest descriptions and rendering checks above are historical; no new visual
+browser audit is claimed. See the [implementation and QA record](../../../tolteca/design/product-provenance-audit-20261012.md).
+
+## Metadata ownership and run inventory gap, 2026-10-12
+
+Scope: documentation only. The specification now has one metadata-ownership
+section. Slides 18–21 distinguish the resolved per-input workflow in the pinned
+run index, step execution records in Zarr, and reducer/analysis snapshots on
+their scientific result owners. Slides 30–31 distinguish the observed database
+gap from the [proposed run-inventory model](../../../tolteca/design/data-product-run-inventory-20261012.md).
+No database model, product type, source format or runtime behavior changed.
+
+The proposal preserves `DataProd` as the identity shared by runs. An inventory
+record would describe one store placement; independent namespaces must not merge
+run IDs, tag selections or generator state. Whether the database stores typed
+snapshots or related run/tag rows remains undecided. Publication authority stays
+with the store under the existing contract.
+
+Verification:
+
+- Executed the deck's Python publication/reopening, primary traversal,
+  observation inventory, YAML, store and CLI examples against the reference
+  `toltec0_145609_000_0001_2025_10_31_09_26_59_tune.nc`. All passed.
+- Imported an existing three-run root inventory into temporary in-memory SQLite.
+  DB export retained all six artifact sources, but returned no run records, tags
+  or generator state. A separate pinned-run import/export returned neither the
+  run record nor its provenance. This confirms the documented adapter gap.
+- Reviewed the documentation diff against the accepted storage/configuration
+  contract and current writer, reader, reducer, analysis and DB adapter code.
+- Rebuilt the 35-slide HTML with the installed Marp toolchain. Slide-map links
+  were updated for the inserted slides. Static source/export checks do not
+  establish visual fit or navigation behavior.
+- PDF generation failed because Marp could not launch its browser process.
+  The existing PDF remains an older export. Browser policy separately rejected
+  the local-file preview URL; no alternate browser transport was attempted.
+  No fresh visual, resize, keyboard-navigation or offline browser checks passed.
+
+Reports and a focused diff against the start-of-turn working copies are under
+`/tmp/dataprod-metadata-ownership-20261012/`. The workspace Git-HEAD review is
+regenerated separately; ignored design artifacts require the focused diff.
+
+
+## Relational model and disk projection correction, 2026-10-12
+
+The user rejected storing a root-index snapshot as the database representation.
+The product relations define the model; relational rows/FKs and the disk layout
+are separate representations. This supersedes the preceding entry's proposed
+`DataProdRunInventory` entity and snapshot-versus-relational choice. The earlier
+verification results retain their original scope.
+
+Inspected the constitutional DPDB reference, historical adopted design and task
+comparison, current ORM metadata, index adapter and three published tune runs.
+The current ORM has eleven tables and no task/run table. DPA has typed process
+context but no run FK. All three runs use the same primary processed-to-raw DPA.
+Task tables were deferred in the design trail; the historical `task_context`
+example is not an implemented field on current processed-product metadata.
+
+The revised proposal uses run records and a run-to-DPA junction, preserving
+product-level associations across repeated runs. Run/source ownership and tags
+require foreign keys; configuration values can remain typed metadata on their
+owners. Portable allocation/selection identity and exact DDL remain unresolved.
+No ORM, migration, source format or publication behavior changed.
+
+Slides 31–32 now separate the logical model from its representations and show
+candidate relational roles. Slide 30 retains the observed adapter gap. The
+[specification](../../../tolteca/design/spec.md#logical-model-and-stored-representations) records the
+representation boundary; the [design note](../../../tolteca/design/data-product-run-inventory-20261012.md)
+records sources, cardinalities and unresolved keys.
+
+Current checks: ORM columns and the three actual run association lists are saved
+in `/tmp/dataprod-relational-model-20261012/schema-evidence.json`. The HTML build,
+source/export heading and local-link checks are rerun for 36 slides. Executable
+examples are unchanged from the passing preceding check. Browser/PDF verification
+remains incomplete for the reasons recorded above; no workaround was attempted.
+The focused documentation diff uses this turn's starting working copies.
+
+
+## Shared run identity, tags and portable references, 2026-10-13
+
+User clarification: the run table has no owning-product FK because one run can
+produce several products. `run_id` identifies the run; repeated registrations
+update the same row. This supersedes the proposed single-product run ownership
+in earlier entries. The revised proposed names are `run` and `run_assoc`.
+No ORM or publication implementation changed.
+
+The specification records shared run identity separately from immutable product
+results. The proposal distinguishes run labels from the existing per-product
+current tag selection, using A → P/Q followed by B → P. The root index projects
+relations across products, runs, tags and sources; it is not one run row. Exact
+keys and the per-run/per-product completion relation remain to design.
+
+Read `DataProdIndex.read`/`write`, store publication/tag operations and
+`prepare_run_request`. Published run indexes already use relative location roots.
+Read resolves them in memory; generic write does not rebase them for another
+destination. The portable location example describes published references, not
+an automatic relocation exporter. Current product-local counters still need
+reconciliation with the clarified run identity contract.
+
+Updated slides 3 and 32; added slides 33–34 for tag selections and portable
+locations. Current checks and focused diff are under
+`/tmp/dataprod-run-identity-20261013/`. HTML build and static content/link checks
+are rerun for 38 slides. No new numerical computation is introduced; unchanged
+executable examples retain their preceding verification. The PDF remains an
+older export, and browser visual QA remains incomplete under the recorded policy
+restriction. No bypass was attempted.
+
+## Version groups and first-class products, 2026-10-13
+
+Accepted contract: each realized result is a DataProd with its own UID and sources.
+A version group is a use of the existing named-group construct. Its UID combines
+an output namespace and logical product identifier; a realized UID appends the
+producing run ID. Logical observation/acquisition singletons remain unique per
+entity across namespace copies. The namespace enables independently produced
+output trees to coexist after a disk merge.
+
+A group-owned tag selects an outgoing DPA, unique by group and label. The edge
+identifies the exact target DP; its producing run remains provenance. One run can
+consume and produce products across namespaces and can produce several products
+within one top-level namespace. The complete product namespace is the version
+group UID, not just `ql` or `scratch`.
+
+This supersedes earlier shared-product/run-pair identity, target-run selectors,
+run-qualified source ownership and tags selecting output-junction rows. The
+historical entries above retain the facts checked at their dates. The maintained
+specification, relational design, remote-access note and slides now use the
+accepted group/version distinction. No runtime code, database or published
+product was changed.
+
+Implementation remains pending: coordinated publisher/portable-index/DPDB/Web
+migration; final run-relation keys; tag history and incomplete reservations;
+version-group primary selection; counter allocation consistent with shared global
+run IDs. The deck labels the current Python/CLI publication examples separately
+from the designed identity rules. Metadata ownership for full resolved workflow
+configuration, step records and analysis snapshots is retained.
+
+Verification against the working trees at the revisions above:
+
+- Executed `design/probes/toltec_data_products.py` using the workspace Python and
+  the reference tune file. Python publication/reopening, both primary access
+  examples, observation inventory, store operations, CLI and YAML checks passed.
+  This exercises existing behavior, not the unimplemented identity migration.
+- Rebuilt the 38-slide HTML. Source/export headings, design-map targets, local
+  links, Markdown anchors and removal of active superseded identity claims passed.
+- Reviewed changed specification/slide claims separately from API execution.
+  Historical proposals remain explicitly superseded in their dated evidence.
+- No fresh browser visual/navigation checks were performed: local-file preview
+  remains blocked by the previously recorded policy restriction. No alternate
+  transport or browser bypass was attempted. The PDF remains an older export.
+- Ran `just review` for the workspace Git-HEAD diff. Ignored design files are
+  covered by a separate source-only diff against this turn's starting working
+  copies, not Git HEAD.
+
+Reports, executable-example output and the focused source diff are under
+`/tmp/dataprod-version-groups-20261013/`. The specification remains the contract;
+this evidence record describes what was changed and checked.
+
+## Reconstructible projections, 2026-10-13
+
+The filesystem output is one defined projection of DPDB records, optimized for
+exploration through directories. A tolteca_web DP viewer is another projection.
+Both must preserve identities, associations and group/tag selection semantics.
+The specification now requires complete reconstruction of the filesystem layout
+and indexes from DB records, with payloads materialized from registered sources.
+Original YAML files must not be required to recover their structured contents.
+Filesystem-only publication remains supported, followed by complete ingest.
+
+Updated the relational design's ownership table and acceptance criteria: export
+to a new root without reading original indexes, retain resolved configuration,
+selection/history and allocator state, and compare Web and filesystem selection.
+The remote-access note's earlier dependence on original YAML for complete
+provenance is superseded. Current ingestion/export still lacks full coverage;
+no reconstruction implementation or migration was performed.
+
+Slide 31 now shows the filesystem and DP viewer projections. Rebuilt the HTML;
+38 source/export headings, slide-map targets and 35 local links/anchors passed.
+Executable Python/YAML/CLI blocks are unchanged; their preceding verification is
+retained without a redundant numerical rerun. Browser visual checks remain
+unavailable under the previously recorded restriction; the PDF is unchanged.
+
+Ran `just review`. Reports and a source-only diff against this turn's starting
+working copies are in `/tmp/dataprod-projections-20261013/`. This diff is not a
+Git-HEAD comparison; the workspace review remains separate.
+
+## General version groups and required managed type, 2026-10-13
+
+User clarification: every non-singleton DP has a version group. The group must
+identify its managed DataProdType, and all version members must share that type.
+This supersedes the earlier optional homogeneous-membership constraint. Generic
+named groups may still contain mixed types; version groups use the common
+mechanism with this required invariant. The managed type describes versions,
+independently of the grouping node's own type.
+
+Updated the specification, relational proposal, remote-access note and slides.
+The UID and layout tables now state the general rule before KIDs/grouped-analysis
+examples. Slides 5 and 16 show generic products of managed type T. Slide 33's
+previous mixed-member claim is removed for version groups. The specification
+retains the group's stable logical identity and the realized product's run suffix.
+Schema placement for the managed-type reference and its separation from primary
+placement relationships remain explicit implementation work. No ORM, validator
+or runtime format was changed.
+
+Rebuilt the 38-slide HTML. Source/export headings, navigation targets, 35 local
+links/anchors and removal of superseded active claims passed. Executable
+Python/YAML/CLI blocks are unchanged, so preceding passing results are retained;
+these do not verify the new membership constraint. Browser visual QA remains
+unavailable under the existing preview restriction; the PDF remains unchanged.
+Ran `just review`. Reports and a source-only diff against this turn's starting
+working copies are under `/tmp/dataprod-managed-type-20261013/`.
+
+## Schema synchronization, 2026-10-13
+
+Scope: spec, slide source/HTML, evidence and the schema-review synchronization
+status. Runtime code, schema DDL, operational databases and publication formats
+are unchanged by this update. Inspected the working trees at TolTECA `81f4f9e`
+and TolTECA DB `c29e3b6`, including pending changes.
+
+The maintained documents now follow the schema review: portable namespace identity
+separate from its mutable subpath; namespace-owned allocation; one output namespace
+per run; `dp_version_group` with required managed type in `meta`; first-class
+realizations with namespace separate from UID text; `data_prod_assoc_run`; actor
+creator/modifier references; direct source ownership. Current workflow, step and
+analysis snapshots remain shown separately from proposed relational ownership.
+
+This supersedes the earlier entries' namespace-in-UID convention, global run
+identity, cross-output-namespace invocation and reuse of `dp_named_group` for
+version groups. The portable root inventory no longer owns a per-group counter
+in the target design. Its current implementation still does.
+
+Open boundaries remain explicit: nullable DP namespace column/constraints;
+publication requests/failures before completed outputs exist; namespace descriptor,
+allocator authority and singleton index visibility; actor reuse/attribution
+migration; run states and version-group DPA labels. Tag-selection history is a
+retained deferred proposal, outside the core schema; the portable run list is not
+a complete selection history. Generic EventLog removal is already implemented.
+
+Verification for this update:
+
+- Read the current schema review and its illustrative SQL, compared them with
+  runtime ORM table declarations and the existing allocator/publisher/provenance
+  fields. In-memory SQLite materialization contains the expected 15 core tables;
+  runtime source declares 10. Both maintained documents mention every core table.
+- Rebuilt HTML with the installed shared Marp toolchain. All 47 source headings
+  match the export; section-map targets and local links/anchors passed static
+  checks. Diagrams remain editable Mermaid and render as embedded SVGs.
+- The six Python/YAML/console example blocks are byte-for-byte unchanged from the
+  starting deck. Their prior executable checks retain their original scope; they
+  were not rerun and do not verify the proposed schema migration.
+- Reviewed changed claims separately from the build. Proposed columns and pending
+  APIs remain labeled; the current publication examples retain their status.
+- No fresh browser visual, navigation, viewport or offline-load checks were
+  performed. The previously recorded local-file preview policy restriction remains;
+  no alternative transport or browser workaround was attempted. The PDF is still
+  an older export and is not evidence of this HTML update.
+
+Static reports and a focused source diff against this turn's starting working
+copies are in `/tmp/dataprod-schema-sync-20261013/`. That diff is not against Git
+HEAD. `just review` separately regenerates the workspace Git-HEAD review at
+`/tmp/toltec-python-workspace-review.diff`; ignored design artifacts are covered by
+the focused diff.
+
+## Uniform per-interface storage, 2026-10-13
+
+User correction: every processed acquisition file must remain in an interface
+subtree, including single-interface products. The stored product root and the
+scientific tree returned by an interface reader have different scopes.
+
+Updated the spec and slides 15–16/20 with that boundary. Direct interface children
+(`array.zarr/toltec7/`, for example) are the proposed path choice; a containing
+`interfaces` node has no additional role in this layout. Per-file metadata retains
+`uid_raw_obs_file`; blocks, results and saved step records remain under that file's
+interface node.
+
+Observed implementation: `_write_run` in `tolteca_kids.product` currently places
+one tree at root and multiple trees under `interfaces/<interface>`. `_ProductMapper`
+recognizes those layouts; `open_kids_product` returns the selected scientific
+subtree. DPDB's sweep catalog obtains Zarr paths through `read_product_interfaces`;
+Web opens the chosen interface through the product reader. The migration must
+cover that writer/reader chain and path assertions. Runtime code and current-use
+guides are unchanged by this design correction.
+
+Rebuilt the 47-slide HTML and checked source/export headings, map targets, local
+links and unchanged executable API blocks. This verifies document consistency,
+not the pending storage migration. No new browser visual QA was performed under
+the previously recorded local-file policy restriction; the PDF remains an older
+export. Focused source diff against this turn's starting copies and static results
+are under `/tmp/dataprod-interface-layout-20261013/`. Workspace review is regenerated
+separately with `just review`.
+
+## Interface children at the product root: implementation, 2026-10-13
+
+The user accepted direct interface children. The writer now stores every selected
+file at `array.zarr/<interface>/`, independent of interface count. The product
+mapper resolves the root collection and reads child metadata; the single-tree
+fallback is removed. The reader always detaches the selected interface tree and
+keeps its close callback connected to the opened product. Catalog rows always
+record the interface group path. Existing prototype exports require regeneration;
+no compatibility path or rewrite of published artifacts was added.
+
+The transient input collection used by `run_inputs` remains a separate working
+container. The writer accepts its interface mapping or a single scientific tree
+and produces the same persisted layout for both. This change does not restructure
+per-file processing inputs or move their live step contexts.
+
+Updated current-use documentation, the spec and slide status. Changed tests check
+single/multiple publication equivalence, exact file identity, metadata-only
+interface discovery, single-interface sweep/timestream paths and catalog groups.
+Web resource checks track opened product stores, including failures; counting
+all DataTree.close calls also counts delegation from the detached view.
+
+Verification:
+
+- 84 focused KIDs tests passed; the added timestream storage assertions passed
+  in both borrowed-Dataset and prepared-DataTree cases. The grouped-publication
+  regression passed after its checks were collected into a helper.
+- 18 DPDB publication/catalog tests passed. All 13 selected Web tests passed
+  across the initial run and the corrected resource-ownership test rerun.
+- The cumulative reference workflow passed: 16 input files, six processed
+  acquisitions, all 11 blocks, ten registered runs, portal links and Dash catalog
+  callbacks. Four v2 comparisons preserve exact I/Q, uncertainties, axes and units;
+  their Web traces also match exactly.
+- Inspected all ten published stores without loading signal arrays: root children
+  equal the selected interfaces, root has no dataset variables, and every child
+  retains its input uid_raw_obs_file. All nine sweep-catalog group paths equal
+  their interface names.
+- The deck's runnable Python/YAML/CLI examples passed. HTML rebuild and static
+  heading/link checks passed. No fresh visual browser QA was possible under the
+  previously recorded local-file policy restriction; PDF remains an older export.
+- Ruff lint passed for changed Python files. Format inspection found a preexisting
+  line-wrap difference in the Web fixture's zarr_path expression; that unrelated
+  formatting is retained. The new helper's formatting was corrected.
+
+Products, reports and logs are under `/tmp/kids-interface-root-20261013/`, including
+`vertical-slice/report.json`, `storage-layout.json` and `deck-examples.json`.
+The focused diff uses this turn's starting working copies, not Git HEAD.
+`just review` regenerates the separate workspace review. No production database
+or existing product has been modified.
+
+## Namespace publication and relational projection: implementation, 2026-10-13
+
+Implemented the three approved parts: portable namespace/run contracts,
+namespace-owned publication, and DB/Web/projection integration. The maintained
+[spec](../../../tolteca/design/spec.md#data-products) and [schema review](../../../tolteca_db/design/data-product-schema-review-20261013.md)
+describe ownership and constraints. No existing production database was migrated.
+
+The namespace descriptor is `namespace.yaml`. A batch reserves one invocation;
+individual product publications share its run ID. Failed requests remain run
+context records without completed-product rows. Version groups and realizations
+are separate DPs. Sources belong directly to their exact product. Current tags
+select membership DPAs. Namespace/actor UUIDs survive imports and path renames;
+PKs remain database-local.
+
+Global singleton index representations record their projection namespace in source
+metadata. Export does not duplicate singleton identities. The relational projector
+recreates namespace, group, realization and singleton indexes without the original
+YAML. Copying local payloads is optional. Raw-source queries exclude index artifacts.
+The processed KIDs viewer supports namespace/tag selection and pinned bookmarks.
+
+Verification uses the workspace Python and read-only reference data. Logs and
+products are under `/tmp/dp-version-contract-20261013/`.
+
+| Check | Result / evidence |
+| --- | --- |
+| TolTECA publication, primary resolution, KIDs output/runner/reopen | 63 passed (`tolteca-final.log`) |
+| DB product indexes, projection, observations, schema, sweep registration | 57 passed (`db-verified.log`); the subsequently added tag-FK test and five version regressions passed (`version-verified.log`), giving 58 distinct cases |
+| Web products, sweep sources and selection | 14 passed (`web-final.log`); primary-query consumer rechecked in `primary-web.log` |
+| Primary traversal query regression | Passed after the recursive query change (`primary-query.log`) |
+| Cumulative reference workflow | Passed (`vertical-slice-final/report.json`): 16 files, 7 observations, 9 acquisitions, 6 initial processed products, all 11 blocks, 4 exact v2 comparisons, 10 realized products from 5 invocations |
+| Relational reconstruction | Original generated YAML removed; all 7 observation and 9 acquisition indexes plus processed inventories rebuilt; selected provenance retained |
+| Deck Python/YAML/CLI examples | Passed (`deck-final.log`) |
+| Schema viewer | Rebuilt from runtime ORM: 15 empty tables; zoom/fit controls retained (`schema-build.log`) |
+| Slide build | Marp HTML rebuilt; 49 unique slide headings and local schema link checked |
+| Python lint | Ruff passed for this task's changed runtime/test files |
+
+Strict documentation builds generated HTML but did not pass. With cached external
+inventories, TolTECA reports three unresolved `StringSelector` references outside
+the product API (`tolteca-docs-final2.log`). DB reports 103 cross-reference/inventory
+warnings, including portable-model references and README links
+(`db-docs-strict-final.log`). Web reports two unavailable external inventories
+(`web-docs-strict-final.log`). These warnings were not suppressed. Guide examples
+execute in the passing DB and deck checks. API stubs were regenerated before the
+final builds; generated model fields and CLI sections were inspected in HTML.
+
+Fresh visual browser QA remains unavailable under the previously recorded local-file
+preview restriction. Static inspection and successful HTML generation do not
+establish slide layout readiness. The older PDF has not been regenerated.
+
+The focused review is `/tmp/dp-version-contract-20261013/changes.diff`, against
+working copies saved at this turn's start, not Git HEAD. It excludes generated
+HTML and unrelated concurrent file-store work. `just review` regenerates the
+separate HEAD-based workspace diff. No commits were made. Existing database
+migration, tag-selection history, remote cache/service policy, and the general DP
+graph viewer remain separate work.
+
+## Run identity and readable names: implementation, 2026-10-13
+
+Run identity now has three separate fields: database-local `pk`, portable UUID
+`uid`, and namespace-unique `name`. Counter allocation generates names. Realized
+product UIDs contain the run UID; directories use the run name. Caller-assigned
+UUIDs survive import and relational reconstruction. Import matches the UID and
+rejects a name already assigned to a different UID in the same namespace.
+
+Actor display text is `name`. Product names remain in typed `meta`, exposed by
+the read-only `DataProd.name` property without another database column. Tag and
+registry labels retain their existing meanings. Runtime models, producers,
+import/export, catalogs, Web selectors, public examples, spec, slides and schema
+viewer use the new contract. No existing production database was migrated.
+
+Verification logs and generated products are under `/tmp/run-identity-20261013/`.
+
+| Check | Result / evidence |
+| --- | --- |
+| Publication and KIDs output | Focused suites passed across corrected reruns; caller UID, readable name, collision and CLI cases included (`tolteca-verified.log`, `identity-tests.log`, `runner-final.log`) |
+| KIDs core | 61 passed (`core-verified.log`); completion checks use the namespace run record, preserving the immutable product snapshot |
+| DB import, projection and catalog | Focused suites passed across corrected reruns (`db-verified.log`, `sweep-verified.log`, `batch-index-final.log`); all 8 version tests passed, including cross-database PK remapping (`uid-verified.log`) |
+| Web selection and sources | 14 passed (`web-tests.log`) |
+| Cumulative reference workflow | Passed (`vertical/report.json`): 16 files, all 11 selected blocks, 4 exact v2 comparisons, 10 realized products from 5 invocations; CLI, Zarr, DB, catalog and Web paths exercised |
+| Relational reconstruction | Generated indexes removed and reconstructed from the DB; selected provenance and artifact access retained |
+| Public examples | Deck Python/YAML/CLI examples and all 28 reduction-guide Python blocks passed (`deck-examples2.log`, `guide-examples2.log`) |
+| Generated artifacts | 49-slide Marp HTML and schema viewer rebuilt from the 15-table runtime ORM (`deck-final.log`, `schema-build.log`) |
+| Python lint | Ruff passed for the task's changed runtime/test files |
+
+Strict documentation builds generated HTML but retain existing failures: two
+unresolved `StringSelector` references in TolTECA, 102 cross-reference/inventory
+warnings in DB, and two unavailable external inventories in Web. The new
+`RunUid` reference is documented and resolved. Warnings were not suppressed.
+Fresh browser layout inspection remains unavailable under the previously recorded
+local-file preview restriction; the older PDF has not been regenerated.
+
+The focused `/tmp/run-identity-20261013/changes.diff` uses this turn's saved
+starting working copies, not Git HEAD. It excludes generated HTML and examples
+not included in that starting snapshot. The separate `just review` diff is
+HEAD-based and includes other pending workspace work. No commits were made.
+
+## Namespace ownership and acquisition interfaces: slide correction, 2026-10-13
+
+Scope: slide copy and the maintained specification, using the uncommitted working
+copies at TolTECA HEAD `67e1ae5` and DB HEAD `c29e3b6`. Runtime models and writers
+are unchanged.
+
+- Slide 4 labels namespace ownership separately from UID uniqueness. A realization
+  remains in its group's namespace; its UID includes a globally unique run UUID.
+  The ORM still uses namespace-scoped product references and uniqueness constraints.
+- Slides describe a version group's contents as versions sharing one declared
+  product type. `content_data_prod_type` is a proposed replacement for the runtime
+  field `VersionGroupMeta.managed_data_prod_type`; no field rename is implemented
+  in this presentation change.
+- Slide 16 and the specification define the processed-acquisition Zarr root as
+  one subtree per enabled acquisition interface, including HWPR. Internal subtree
+  layouts belong to each interface. The following slide explicitly identifies
+  its block/axis layout as KIDs-specific.
+- The current producer accepts selected KIDs interface trees. It does not yet
+  provide HWPR publication or complete enabled-interface coverage. The slide
+  states this gap; existing KIDs workflow checks do not verify the broader contract.
+
+Evidence: `tolteca_kids/dataprod_output.py`, `tolteca_kids/product.py`,
+`tolteca_datamodels/toltec/hwpr.py`, and DB `models/orm/data_prod.py` and
+`models/metadata.py`. HWPR reader support does not establish processed publication.
+
+Marp HTML rebuilt successfully. Static checks preserve all 49 slides and their
+deep-link IDs, and verify the updated slides 4, 16 and 17. No runnable API example
+changed. Fresh visual/navigation inspection remains unavailable under the recorded
+local-file preview restriction; the PDF remains the older export.
+
+The focused `/tmp/dataprod-slide-scope-20261013/changes.diff` compares these three
+source documents with this turn's starting working copies, not Git HEAD. The
+workspace review is regenerated separately with `just review`. No commits were made.
+
+## Version-group content type: implementation, 2026-10-13
+
+The field rename proposed in the preceding entry is implemented:
+`VersionGroupMeta.content_data_prod_type` identifies the registered product type
+required for every version. Store publication, membership and tag validation, DB
+ingestion/export, and filesystem projection use the new field. There is no alias
+for the old key. Existing stored metadata was not migrated. Interface publication
+behavior is unchanged; HWPR processing remains outside this change.
+
+The existing publication and reconstruction tests now assert the value in the
+portable group index, the persisted typed DB metadata, and the reconstructed
+group index. Verification used the workspace Python; logs and the focused diff
+are under `/tmp/version-content-type-20261013/`.
+
+- 29 publication/store/KIDs-output tests passed (`tolteca-tests.log`).
+- 50 DB index/version/metadata tests passed (`db-tests.log`).
+- Ruff passed for the seven changed Python files.
+- Marp HTML and the 15-table schema viewer rebuilt. Static inspection confirms
+  the new field in slides, schema annotations and generated API documentation.
+- The strict DB documentation build produced HTML with the same 102 existing
+  warnings as the preceding build; warnings were not suppressed. No runnable
+  guide example changed.
+- Active source, tests, docs, spec, deck and schema-viewer artifacts contain no
+  references to the old field. Earlier evidence entries retain historical names.
+
+Fresh visual/navigation QA remains unavailable under the recorded local-file
+preview restriction. The PDF was not regenerated. The focused `changes.diff`
+compares this turn's starting working copies; `just review` separately regenerates
+the HEAD-based workspace diff. No commits were made.
+
+## Site/Unity remote-read slice, 2026-10-13
+
+This update implements the DB-backed scientific read path and tests the two
+transfer outcomes specified by the user: copied site products under
+`taco/{ql,scratch}` and independent Unity reductions under `unity/{ql,scratch}`.
+Repository HEADs remain TolTECA `67e1ae5`, tolteca_db `c29e3b6` and tolteca_web
+`04f0c73`, with earlier uncommitted work preserved. No production DB, archive,
+site service, or reference input was changed.
+
+Workflow evidence: the user-authored
+[data-flow requirements](../../../refs/tolteca_db_design_v3_202604/toltec_data_file_and_data_flow.md)
+and [SPIE draft](../../../refs/zma_spie2026_v2.pdf), sections 2.1–2.4, require site
+processing, independent off-site processing, a comprehensive Unity catalog and
+cached access across the constrained site link. The current user clarification
+supplies the exact namespace projection. Earlier paper claims about deployments,
+Parquet and EventLog do not establish current implementation behavior.
+
+Implementation:
+
+- `DataProdIndex.get_source_uri` resolves registered artifact locations.
+  `get_data_prod_sources` replaces the index-only source query with an explicit
+  artifact-format filter. Existing filesystem catalog callers request index
+  sources; the DB-backed Web reader requests Zarr sources.
+- Shared KIDs readers accept a pinned descriptor or a filesystem index. The Web
+  service obtains descriptors from DB records and reads no YAML. Interface
+  discovery reads hierarchy metadata only. Opening a selected interface creates
+  its coordinate indexes and leaves scientific arrays lazy.
+- Local artifacts use local storage. HTTP uses FsspecStore; optional simplecache
+  retains retrieved immutable objects across opens. The portal cache is under
+  `TOLTECA_WEB_CACHE_ROOT/product-objects`.
+- The integration test exposed an HTTP failure hazard: simplecache's existence
+  check used HTTPFileSystem's non-strict default, mapping a 503 to an absent
+  chunk. A private HTTP adapter enables fsspec's existing strict check. HTTP
+  failures propagate to the viewer's visible error state. Cache adaptation is
+  confined to the read path; publication is unchanged.
+
+Verification artifacts: `/tmp/remote-products-20261013/`.
+
+| Check | Result |
+| --- | --- |
+| `tolteca_web/tests/test_remote_products.py` and existing processed-product tests | 7 passed. Two SQLite DBs; four namespaces; JSON descriptor import; local PK remapping; one shared raw acquisition; independent runs; repeated import; tag advance before copy; pinned old reads; later local source registration; preservation on refresh. |
+| Remote read conditions | Exact selected I values; no YAML reads; no unselected block signal reads; repeated warm read makes zero HTTP requests; uncached reads work; metadata and cached selection survive a simulated outage; uncached read raises; Dash displays HTTP 503; local copy makes no HTTP requests. |
+| DB index and version-product tests | 23 passed. |
+| KIDs product-store tests | 7 passed, including existing indexed-coordinate comparisons and multiple-interface publication. |
+| Cumulative `kids_vertical_slice.py` | 16 raw files, 6 initial products, all 11 blocks; four exact v2 numerical/unit comparisons; 10 realized products from 5 invocations; CLI, DPDB, Parquet, Web, no-op and projection checks pass. |
+| Public examples | New DB-descriptor example, Web figure example and existing deck examples executed against recorded inputs. |
+| Ruff | Passed for changed reader/query/viewer/test modules. Portal has a narrowly scoped cache configuration edit; its pre-existing unrelated lint findings remain. |
+| Documentation | Fresh API stubs and strict HTML builds: TolTECA 2 warnings, DB 100, Web 2. Existing cross-reference/inventory findings remain; no warning suppressions added. Generated HTML contains the new APIs and guide sections. |
+| Slides | Marp HTML rebuilt with 51 slides. Static text checks only; no fresh visual/navigation QA under the previously recorded preview restriction. PDF unchanged. |
+
+The local test explicitly maps namespace paths and storage roots before import.
+It is not a deployed metadata service. Endpoint/authentication design, refresh
+cadence/cursors, removals, freshness display and deployment mapping configuration
+remain open. Cache byte-volume, concurrency, interrupted-download recovery and
+retention checks remain production acceptance work. Cache objects do not register
+as durable artifact copies. No automatic source fallback or preference is added.
+
+`turn.diff` compares this turn's starting working copies, not HEAD. `just review`
+regenerates the separate HEAD-based workspace diff. No commit was made.
+# Local deployment-location round, 2026-10-13
+
+Scope: the user deferred HTTP Zarr and requested two local DPDBs and two
+`dataprod_toltec` roots. Deployment location means a software environment;
+DPDB `Location` means a storage root. No deployment configuration, metadata
+service, scheduler, automatic source selection or new synchronization API was
+introduced. Existing DB descriptor export/import provides explicit refresh.
+
+Inspected working copies: TolTECA `67e1ae5`, tolteca_db `c29e3b6`, tolteca_web
+`04f0c73`, with pre-existing uncommitted changes. This round separates local
+discovery/transfer coverage from the existing HTTP/cache test and updates the
+specification and usage guide. The viewer now counts distinct products and
+sources rather than labeling each copy as a run.
+
+## Evidence
+
+- `tolteca_web/tests/test_product_locations.py`: two local DBs/roots, shared raw
+  identity, independent `ql`/`scratch` results, namespace relocation with stable
+  UUIDs, explicit metadata refresh, stale-tag import, transferred copies,
+  preservation of local results/sources, origin unavailability after transfer,
+  and distinct selectable copies in the Dash callback.
+- `tolteca/design/probes/dpdb_locations.py`: extends the completed cumulative
+  recorded-data workflow at `/tmp/remote-products-20261013/vertical`; retains
+  all 16 input files' 9 raw acquisitions and 7 observations, imports 10 site
+  realizations, and processes the same inputs into 6 Unity realizations/11
+  blocks. Copy registration leaves 16 realized products and 6 runs, with 26
+  Zarr sources. Source/copy and independent-reduction plot arrays agree exactly.
+  DB discovery and viewing run with `DataProdIndex.read` disabled.
+- Current output: `/tmp/local-dpdb-20261013/unity-final`, with `dpdb.sqlite`,
+  `dataprod_toltec/{taco,unity}/scratch`, and `report.json`.
+- QA: 23 DB tests and 8 Web tests passed, including executable guide examples;
+  changed Python files pass Ruff. HTTP/cache tests were separated but not run
+  in this local-only round.
+- Documentation: fresh strict DB/Web HTML builds completed with 120 and 15
+  warnings respectively. Existing unresolved API/README references and
+  inaccessible external inventories prevent clean builds. Generated content
+  was inspected for the changed guide/API text; no browser visual QA is claimed.
+
+## Remaining boundary
+
+The local example maps namespace paths and artifact roots explicitly. It is not
+a general replication driver or live query federation. Periodic refresh,
+freshness display, deletion/availability propagation and production authority
+policies remain unimplemented. An imported source record does not prove current
+file reachability. Readers choose a registered copy explicitly.
+
+## Explicit inventory refresh entry point, 2026-10-13
+
+Scope: the user approved a supported Python/CLI entry point following the local
+two-DB workflow. Repository HEADs remain TolTECA `67e1ae5`, tolteca_db `c29e3b6`
+and tolteca_web `04f0c73`; unrelated working-tree changes are preserved.
+
+`tolteca_db.product_refresh.refresh_data_products` now imports the portable
+inventory using the existing descriptor and namespace adapters. Its caller owns
+the transaction. `tolteca_db index refresh` uses Tollan runtime configuration and
+commits the batch only after successful import. `DataProdRefreshConfig` supplies
+the namespace prefix and storage-root mappings. The cumulative probe and local
+integration test use this API; their handwritten transfer/mapping helpers were
+removed. The separate HTTP test also uses the shared API, but was not executed
+in this local-only round.
+
+The implementation collects portable descriptors and orders their association
+dependencies before writing. Missing targets or cycles prevent import. Root
+mapping covers descendant locations and absolute source references; the longest
+matching root wins. It preserves relative references, portable identities,
+existing copies, independent results and recorded input provenance. The portable
+descriptor boundary excludes quality annotations and product lifecycle/deletion
+propagation. This entry point does not establish a general replication policy.
+
+Verification artifacts: `/tmp/dpdb-refresh-20261013/`.
+
+| Check | Result |
+| --- | --- |
+| Product refresh, index and version-product tests | 29 passed, including executable guide examples. New cases cover caller rollback, repeat import, nested/absolute/relative root placement, invalid configuration, CLI runtime configuration and whole-batch rollback on a later conflict. |
+| Local location and processed-viewer tests | 8 passed. Site tag advancement, stale-tag protection, transferred copies, independent Unity results and DB-only viewing remain covered. |
+| Cumulative `probes/dpdb_locations.py` | Passed with the supported API. Retained 9 raw acquisitions, 7 observations and 10 site realizations from the earlier recorded-input workflow; added 6 Unity realizations covering all 11 blocks. Final inventory: 16 processed products, 6 runs and 26 Zarr sources. Selected plot arrays agree exactly; YAML reads are disabled during DB viewing. |
+| Ruff | Seven changed Python files pass lint and format checks. |
+| Type checking | `ty` passes for the new module, CLI and refresh tests. |
+| Documentation | Fresh strict Sphinx HTML build emits 135 warnings: preceding offline build had 120; 15 additional reference occurrences concern the new API/model, including Session, DataProd, NamespacePath, optional, CycleError and inherited Pydantic references. No suppressions were added. Generated HTML contains the guide, command help, API and configuration fields. |
+| Browser QA | File-URL preview was rejected by browser security policy. No alternate serving route was attempted; visual/navigation QA remains unverified. |
+
+The new public parameter documentation follows the existing NumPy convention;
+the guide demonstrates caller transactions and CLI configuration. Design notes
+retain import ordering and implementation boundaries. There are no generated API
+stubs in this documentation tree; its direct autodoc/model/CLI directives were
+regenerated by the fresh build.
+
+Scheduling, ownership/freshness records, Web freshness display, deletion policy,
+remote metadata service and HTTP/cache acceptance remain outside this change.
+`turn.diff` compares this turn's starting working copies, not HEAD. `just review`
+regenerates the separate workspace diff against repository HEADs. No commit was
+requested or made.
+
+
+## 2026-10-15 — intrinsic calibration groups
+
+Updated rule switches, unscoped product identities, the persistent lineage /
+acquisition projection boundary, earlier-VNA identity with redirects, and the
+membership query / Web entry point. Added two calibration-group slides. Source
+contract: `../../tolteca_db/design/association-rules.md`; implementation and measured
+acceptance evidence: `../../tolteca_db/design/calibration-groups-20261015.md`.
+
+Marp HTML builds successfully. Changed calibration rule and group slides were
+visually inspected at 1280×720; their query example ran against the cumulative
+DPDB. This is targeted verification of the changed content, not a re-audit of
+all existing slides. Temporary HTML serving exposes only generated documentation
+and a copy of the rendered deck.
+
+## 2026-10-19 — global version groups and explicit selections
+
+Updated the existing deck for the accepted global version-group contract. Groups
+have no namespace; their realized members retain producing namespaces. The
+namespace filesystem tree projects that namespace's members. Tags select exact
+membership edges: one label per group, with publisher labels and import renaming
+explicitly configured. No label is inferred from a namespace.
+
+Implementation, decision trail, association merge boundaries and measured SQL
+counts are recorded in
+[the merge review](../../../tolteca_db/design/version-group-merge-review-20261019.md).
+That review identifies working-tree revisions and test artifacts; this deck adds
+no separate contract.
+
+Marp build passed. Browser inspection of the current build verified the product
+identity, version-group association and tag-selection slides at 1280×720. A DOM
+height check found no overflow in those changed slides. It also found a preexisting
+34-pixel overflow on slide 16 (calibration-group access), outside this edit's
+visual review. The complete 60-slide deck was not visually re-audited. The guide's
+updated YAML configuration and selection table were also inspected in the browser.
+Local preview: `http://127.0.0.1:8940/toltec-data-products.html#47`.
+
+
+## 2026-10-19 — association execution and tag conventions
+
+The maintained specification and association contract now use `AssocRules`,
+`AssocPool`, `AssocGenerator` and concrete `CollatorBase` implementations. Slides
+18–20 show configuration, incoming facts, shared ingestion/import execution and
+explicit reconciliation. Slide 48 documents local hyphen qualifiers and explicit
+remote-origin colon qualifiers. Namespace and source-location semantics are
+unchanged. The deck contains 61 slides after adding incremental work selection.
+
+Build: Marp CLI 4.5.1 / Core 5.0.2 through `design/slides/package.json`. Browser
+inspection checked the class hierarchy, execution diagram, usage example and tag
+slide. The execution slide's note overlapped its footer on the first render;
+shorter edge labels and removal of a redundant table row corrected it.
+
+The guide example ran with the 120 recorded ToltecDB interface rows. Targeted
+behavioral checks and the two-fixture performance probe are recorded in
+[association implementation verification](../../../tolteca_db/design/association-implementation-20261019.md).
+This update changes association work selection, not the scientific relationships.
+
+Preview: http://127.0.0.1:8941/toltec-data-products.html#18

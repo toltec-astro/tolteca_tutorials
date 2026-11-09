@@ -1,0 +1,73 @@
+/* @theme kids-review */
+@import 'default';
+
+section {
+  --ink: #17283d;
+  --muted: #516276;
+  --accent: #007c83;
+  --blue: #245bc0;
+  --rule: #dce4eb;
+  --paper: #f4f7fa;
+  width: 1280px;
+  height: 720px;
+  padding: 48px 66px 52px;
+  background: #fff;
+  color: var(--ink);
+  font: 26px/1.4 Arial, Helvetica, sans-serif;
+  justify-content: flex-start;
+  letter-spacing: -0.02em;
+}
+h1, h2, h3 { color: var(--ink); font-weight: 700; }
+h1 { font-size: 44px; line-height: 1.15; margin: 0 0 22px; padding: 0; letter-spacing: -0.035em; }
+h2 { font-size: 28px; margin: 0 0 18px; }
+h3 { font-size: 23px; margin: 0 0 10px; color: var(--accent); }
+p { margin: 0 0 18px; }
+strong { color: var(--ink); }
+a { color: var(--blue); text-decoration: none; }
+ul, ol { padding-left: 25px; margin: 8px 0 16px; }
+li { margin-bottom: 10px; }
+code, pre { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; letter-spacing: -0.035em; }
+code { font-size: 0.82em; background: #edf2f6; color: #173958; padding: 2px 5px; border-radius: 4px; }
+pre { font-size: 20px; line-height: 1.5; border: 1px solid var(--rule); border-radius: 10px; padding: 16px; margin: 0 0 18px; background: var(--paper); }
+pre code { background: transparent; padding: 0; font-size: 1em; }
+table { display: table; width: 100%; font-size: 22px; line-height: 1.4; border-collapse: collapse; margin: 8px 0 20px; }
+thead th { background: #eaf2f6; color: #28475f; text-align: left; }
+th, td { padding: 12px 16px; border: 0; border-bottom: 1px solid var(--rule); }
+tr:nth-child(even) { background: #f7f9fb; }
+td:first-child { font-weight: 600; }
+header { font-size: 15px; top: 20px; left: 66px; color: var(--muted); letter-spacing: 0.06em; }
+footer { font-size: 14px; color: var(--muted); bottom: 17px; left: 66px; }
+section::after { font-size: 14px; color: var(--muted); bottom: 17px; right: 45px; }
+.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 0.13em; font-size: 16px; font-weight: 700; margin-bottom: 18px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: start; }
+.cols.wide-left { grid-template-columns: 1.23fr 1fr; }
+.cols.wide-right { grid-template-columns: 1fr 1.23fr; }
+.panel { background: var(--paper); padding: 24px; border-radius: 12px; border-top: 4px solid var(--accent); }
+.panel p:last-child { margin-bottom: 0; }
+.note { font-size: 21px; color: var(--muted); margin-top: 15px; }
+.takeaway { padding: 16px 22px; background: #e9f5f3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 23px; margin-top: 20px; }
+.tag { display: inline-block; color: #07686d; background: #e6f3f2; font-size: 17px; font-weight: 700; padding: 4px 9px; border-radius: 5px; }
+.tag.open { background: #fff0db; color: #84500d; }
+.tree { white-space: pre; font-size: 21px; line-height: 1.5; }
+.tree b { color: var(--accent); }
+.tree .muted { color: var(--muted); }
+.compact pre, pre.compact { font-size: 18px; }
+.diagram { display: flex; justify-content: center; align-items: center; min-height: 240px; margin: 4px 0 20px; }
+.diagram > p { width: 100%; margin: 0; }
+.diagram svg { width: 100%; max-height: 320px; }
+.diagram.tall svg { max-height: 370px; }
+.diagram.small { min-height: 170px; }
+.diagram.small svg { max-height: 220px; }
+.path { font-size: 20px; color: var(--accent); font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }
+.metric { font-size: 48px; font-weight: 700; color: var(--accent); line-height: 1.2; }
+.legend { font-size: 18px; color: var(--muted); }
+section.cover { justify-content: center; background: linear-gradient(115deg, #f4faf9 0%, #fff 66%); }
+section.cover h1 { font-size: 73px; max-width: 1000px; line-height: 1.07; margin-bottom: 30px; }
+section.cover .subtitle { font-size: 31px; color: var(--muted); max-width: 980px; }
+section.cover .meta { font-size: 18px; color: var(--muted); margin-top: 30px; }
+section.section-title { justify-content: center; background: #eef5f8; }
+section.section-title h1 { font-size: 64px; }
+.small { font-size: 21px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.three .panel { padding: 22px; }
+.three p { font-size: 22px; }

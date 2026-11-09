@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-26",
+  "helpdesk_base": "fffcf5c",
+  "inputs": {
+    "package_docs": "toltec_astro_dev/run/tolteca_dr/docs/build-awz2dvyl/html/tolteca_web",
+    "inventory_sha256": "23b8e6cc22df26b51d222f171ec97209d8fc048e225c9f7aae4febafab0ff879",
+    "chapter_sha256": "cdf2622fdc56513d8031b4b2992af28b1a0a6c41022aa981fdf5d0ec6c5179b0",
+    "glossary_sha256": "ee00213cc52742c4d56d114ba250c2652ee4a83bf92fea915338c1c42bc87ada"
+  },
+  "python_packages": {
+    "sphinx": "9.1.0",
+    "myst-parser": "5.1.0",
+    "pydata-sphinx-theme": "0.20.0"
+  },
+  "myst_cli": "1.11.0",
+  "node": "24.10.0",
+  "tex_live": "2025",
+  "results": {
+    "sphinx": {
+      "typed_term_consumer_exit": 0,
+      "missing_reference_exit": 1,
+      "static_targets_checked": 21,
+      "http_targets_checked": 20,
+      "static_errors": [],
+      "pdf_glossary_definitions": {
+        "observation": true,
+        "acquisition": true,
+        "calibration item": true
+      }
+    },
+    "myst": {
+      "typed_term_consumer_exit": 1,
+      "generic_label_consumer_exit": 0,
+      "missing_reference_exit": 1,
+      "static_targets_checked": 27,
+      "http_targets_checked": 27,
+      "static_errors": [],
+      "pdf_glossary_definitions": {
+        "observation": false,
+        "acquisition": false,
+        "calibration item": false
+      }
+    }
+  },
+  "myst_pdf": {
+    "exit_code": 0,
+    "unknown_glossary_identifiers": [
+      "term-observation",
+      "term-acquisition",
+      "term-calibration item"
+    ],
+    "glossary_first_export": "same errors and absent definitions"
+  },
+  "browser_checks": {
+    "sphinx": ["chapter layout", "glossary search result"],
+    "myst": ["chapter layout", "glossary search result"]
+  },
+  "artifacts": {
+    "sphinx/_build/latex/handbook.pdf": {
+      "bytes": 201919,
+      "sha256": "66422a4da2f2207921d04f5e604b96e0458d1f3b65df01a4f7197d714526f402"
+    },
+    "myst/exports/handbook.pdf": {
+      "bytes": 60542,
+      "sha256": "c60e299d4f4a50ea9fd14903751dbd848ea0f6f17b719453b015fc2e9b1bc4bd"
+    },
+    "myst/_build/templates/site/myst/book-theme/template.zip": {
+      "bytes": 12663599,
+      "sha256": "b090c1e7d05bd1c7f9cf50308bae286bbe0509e9d311f2dd1d5ffb008581681d"
+    },
+    "myst/_build/templates/tex/myst/plain_latex_book/template.zip": {
+      "bytes": 33945,
+      "sha256": "c3b9280971cb5d973a4e65b7993848a44ca529ca460c2ef8cb182116cc9873b5"
+    }
+  }
+}

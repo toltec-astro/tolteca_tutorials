@@ -1,0 +1,1552 @@
+{
+  "captured_utc": "2026-10-26T16:42:30.494122+00:00",
+  "root": "/nese/toltec/data_lmt",
+  "netcdf4_version": "1.7.5",
+  "files": [
+    {
+      "path": "toltec/tcs/toltec0/toltec0_145609_000_0001_2025_10_31_09_26_59_tune.nc",
+      "size_bytes": 18264744,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 145609
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 4
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 488.28125
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 524288
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 632
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 145608
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Data.Toltec.Is": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [3540, 632],
+          "attributes": {}
+        },
+        "Data.Toltec.Qs": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [3540, 632],
+          "attributes": {}
+        },
+        "Data.Toltec.SampleType": {
+          "dtype": "int32",
+          "dimensions": ["time"],
+          "shape": [3540],
+          "attributes": {
+            "long_name": "0=Timestream, 1=Sweep"
+          }
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [3540, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [3540],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Header.Toltec.ToneFreq": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [2, 632],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "tone frequency"
+          }
+        },
+        "Header.Toltec.TonePhase": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [2, 632],
+          "attributes": {
+            "units": "radian",
+            "long_name": "tone phases"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 3540,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "loclen": 684,
+        "iqlen": 632,
+        "tlen": 6,
+        "numSweeps": 2,
+        "toneFreqLen": 632,
+        "stringlencmd": 64,
+        "modelParamsNum": 15,
+        "modelParamsHeaderItemSize": 32,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "toltec/tcs/toltec0/toltec0_145609_000_0002_2025_10_31_09_27_57.nc",
+      "size_bytes": 39887600,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 145609
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 0
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 122.0703125
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2097152
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 632
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 145609
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Data.Toltec.Is": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [7802, 632],
+          "attributes": {}
+        },
+        "Data.Toltec.Qs": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [7802, 632],
+          "attributes": {}
+        },
+        "Data.Toltec.SampleType": {
+          "dtype": "int32",
+          "dimensions": ["time"],
+          "shape": [7802],
+          "attributes": {
+            "long_name": "0=Timestream, 1=Sweep"
+          }
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [7802, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [7802],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Header.Toltec.ToneFreq": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [1, 632],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "tone frequency"
+          }
+        },
+        "Header.Toltec.TonePhase": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [1, 632],
+          "attributes": {
+            "units": "radian",
+            "long_name": "tone phases"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 7802,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "loclen": 684,
+        "iqlen": 632,
+        "tlen": 6,
+        "numSweeps": 1,
+        "toneFreqLen": 632,
+        "stringlencmd": 64,
+        "modelParamsNum": 15,
+        "modelParamsHeaderItemSize": 32,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "toltec/tcs/toltec7/toltec7_156755_000_0001_2026_05_16_12_32_26_tune.nc",
+      "size_bytes": 16117832,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 4
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 7
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 488.28125
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 524288
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 557
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156754
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Data.Toltec.Is": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [3540, 557],
+          "attributes": {}
+        },
+        "Data.Toltec.Qs": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [3540, 557],
+          "attributes": {}
+        },
+        "Data.Toltec.SampleType": {
+          "dtype": "int32",
+          "dimensions": ["time"],
+          "shape": [3540],
+          "attributes": {
+            "long_name": "0=Timestream, 1=Sweep, 2=SecondTargSweep"
+          }
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [3540, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [3540],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Header.Toltec.ToneFreq": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [2, 557],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "tone frequency"
+          }
+        },
+        "Header.Toltec.TonePhase": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [2, 557],
+          "attributes": {
+            "units": "radian",
+            "long_name": "tone phases"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 3540,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "loclen": 676,
+        "iqlen": 557,
+        "tlen": 6,
+        "numSweeps": 2,
+        "toneFreqLen": 557,
+        "stringlencmd": 64,
+        "modelParamsNum": 15,
+        "modelParamsHeaderItemSize": 32,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "toltec/tcs/toltec7/toltec7_156755_000_0002_2026_05_16_12_33_28.nc",
+      "size_bytes": 36139048,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 0
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 7
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 122.0703125
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2097152
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 557
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Data.Toltec.Is": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [8012, 557],
+          "attributes": {}
+        },
+        "Data.Toltec.Qs": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [8012, 557],
+          "attributes": {}
+        },
+        "Data.Toltec.SampleType": {
+          "dtype": "int32",
+          "dimensions": ["time"],
+          "shape": [8012],
+          "attributes": {
+            "long_name": "0=Timestream, 1=Sweep, 2=SecondTargSweep"
+          }
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [8012, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [8012],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Header.Toltec.ToneFreq": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [1, 557],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "tone frequency"
+          }
+        },
+        "Header.Toltec.TonePhase": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [1, 557],
+          "attributes": {
+            "units": "radian",
+            "long_name": "tone phases"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 8012,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "loclen": 676,
+        "iqlen": 557,
+        "tlen": 6,
+        "numSweeps": 1,
+        "toneFreqLen": 557,
+        "stringlencmd": 64,
+        "modelParamsNum": 15,
+        "modelParamsHeaderItemSize": 32,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "toltec/tcs/toltec11/toltec11_156755_000_0001_2026_05_16_12_32_26_tune.nc",
+      "size_bytes": 13739928,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 4
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 11
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 488.28125
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 524288
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 474
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156754
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Data.Toltec.Is": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [3540, 474],
+          "attributes": {}
+        },
+        "Data.Toltec.Qs": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [3540, 474],
+          "attributes": {}
+        },
+        "Data.Toltec.SampleType": {
+          "dtype": "int32",
+          "dimensions": ["time"],
+          "shape": [3540],
+          "attributes": {
+            "long_name": "0=Timestream, 1=Sweep, 2=SecondTargSweep"
+          }
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [3540, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [3540],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Header.Toltec.ToneFreq": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [2, 474],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "tone frequency"
+          }
+        },
+        "Header.Toltec.TonePhase": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [2, 474],
+          "attributes": {
+            "units": "radian",
+            "long_name": "tone phases"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 3540,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "loclen": 544,
+        "iqlen": 474,
+        "tlen": 6,
+        "numSweeps": 2,
+        "toneFreqLen": 474,
+        "stringlencmd": 64,
+        "modelParamsNum": 15,
+        "modelParamsHeaderItemSize": 32,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "toltec/tcs/toltec11/toltec11_156755_000_0002_2026_05_16_12_33_28.nc",
+      "size_bytes": 30804352,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 0
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 11
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 122.0703125
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2097152
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 474
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 1
+        },
+        "Data.Toltec.Is": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [8012, 474],
+          "attributes": {}
+        },
+        "Data.Toltec.Qs": {
+          "dtype": "int32",
+          "dimensions": ["time", "iqlen"],
+          "shape": [8012, 474],
+          "attributes": {}
+        },
+        "Data.Toltec.SampleType": {
+          "dtype": "int32",
+          "dimensions": ["time"],
+          "shape": [8012],
+          "attributes": {
+            "long_name": "0=Timestream, 1=Sweep, 2=SecondTargSweep"
+          }
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [8012, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [8012],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Header.Toltec.ToneFreq": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [1, 474],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "tone frequency"
+          }
+        },
+        "Header.Toltec.TonePhase": {
+          "dtype": "float64",
+          "dimensions": ["numSweeps", "toneFreqLen"],
+          "shape": [1, 474],
+          "attributes": {
+            "units": "radian",
+            "long_name": "tone phases"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 8012,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "loclen": 544,
+        "iqlen": 474,
+        "tlen": 6,
+        "numSweeps": 1,
+        "toneFreqLen": 474,
+        "stringlencmd": 64,
+        "modelParamsNum": 15,
+        "modelParamsHeaderItemSize": 32,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "toltec/tcs/hwpr/hwpr_156755_000_0002_2026_05_16_12_33_28.nc",
+      "size_bytes": 882992,
+      "variables": {
+        "Header.Toltec.Master": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=TCS, 1=ICS, 2=CLIP, 3=TCS_SIM"
+          },
+          "value": 0
+        },
+        "Header.Toltec.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 156755
+        },
+        "Header.Toltec.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 2
+        },
+        "Header.Toltec.ObsType": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "0=Nominal, 1=Timestream, 2=VNA, 3=TARG, 4=TUNE"
+          },
+          "value": 0
+        },
+        "Header.Toltec.RoachIndex": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 13
+        },
+        "Header.Toltec.SampleFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz",
+            "long_name": "SampleFreq=FpgaFreq/AccumLen"
+          },
+          "value": 2.0
+        },
+        "Header.Toltec.FpgaFreq": {
+          "dtype": "float64",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "units": "Hz"
+          },
+          "value": 256000000.0
+        },
+        "Header.Toltec.AccumLen": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 524288
+        },
+        "Header.Toltec.NumKidsActual": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepSubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Header.Toltec.TargSweepScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {},
+          "value": 0
+        },
+        "Data.Toltec.Ts": {
+          "dtype": "int32",
+          "dimensions": ["time", "tlen"],
+          "shape": [131, 6],
+          "attributes": {
+            "long_name": "ClockTime (sec), PpsCount (pps ticks), ClockCount (clock ticks), PacketCount (packet ticks), PpsTime (clock ticks), ClockTimeNanoSec (nsec)"
+          }
+        },
+        "Data.Toltec.RecvTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [131],
+          "attributes": {
+            "units": "sec",
+            "long_name": "RecvTime (sec)"
+          }
+        },
+        "Data.Toltec.HwprEncVal": {
+          "dtype": "int32",
+          "dimensions": ["time", "enclen"],
+          "shape": [131, 500],
+          "attributes": {}
+        },
+        "Data.Toltec.HwprEncTs": {
+          "dtype": "int32",
+          "dimensions": ["time", "enclen"],
+          "shape": [131, 500],
+          "attributes": {}
+        },
+        "Data.Toltec.HwprEncUts": {
+          "dtype": "int32",
+          "dimensions": ["time", "enclen"],
+          "shape": [131, 500],
+          "attributes": {}
+        }
+      },
+      "dimensions": {
+        "time": 131,
+        "stringlen64": 64,
+        "stringlen": 512,
+        "enclen": 500,
+        "zeroptlen": 10,
+        "ppslen": 4,
+        "senslen": 32,
+        "tlen": 6,
+        "adcSnapDim": 2,
+        "adcSnapDataDim": 4096
+      },
+      "absent_variables": [
+        "Header.Dcs.ObsNum",
+        "Header.Dcs.SubObsNum",
+        "Header.Dcs.ScanNum",
+        "Data.Toltec.Is",
+        "Data.Toltec.Qs",
+        "Data.Toltec.SampleType",
+        "Header.Toltec.ToneFreq",
+        "Header.Toltec.TonePhase",
+        "Data.TelescopeBackend.TelTime"
+      ]
+    },
+    {
+      "path": "tel/tel_toltec_2025-10-31_145609_00_0001.nc",
+      "size_bytes": 1157288,
+      "variables": {
+        "Header.Dcs.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "Current observation number"
+          },
+          "value": 145609
+        },
+        "Header.Dcs.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "Current sub observation number"
+          },
+          "value": 0
+        },
+        "Header.Dcs.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "Current scan number"
+          },
+          "value": 1
+        },
+        "Data.TelescopeBackend.TelTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [2837],
+          "attributes": {
+            "units": "sec",
+            "long_name": "TelTime"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 2837,
+        "Header.File.Name_slen": 128,
+        "Header.XmlParser.State_slen": 32,
+        "Header.Source.SourceName_slen": 128,
+        "Header.Source.Az_xlen": 2,
+        "Header.Source.El_xlen": 2,
+        "Header.Source.Ra_xlen": 2,
+        "Header.Source.Dec_xlen": 2,
+        "Header.Source.L_xlen": 2,
+        "Header.Source.B_xlen": 2,
+        "Header.Source.LineList_slen": 128,
+        "Header.Source.BaselineList_slen": 128,
+        "Header.Sky.AzReq_xlen": 2,
+        "Header.Sky.ElReq_xlen": 2,
+        "Header.Sky.AzOff_xlen": 2,
+        "Header.Sky.ElOff_xlen": 2,
+        "Header.Sky.RaOff_xlen": 2,
+        "Header.Sky.DecOff_xlen": 2,
+        "Header.Sky.LOff_xlen": 2,
+        "Header.Sky.BOff_xlen": 2,
+        "Header.Telescope.Operator_slen": 24,
+        "Header.M1.ActPos_xlen": 720,
+        "Header.M1.CmdPos_xlen": 720,
+        "Header.M1.ReqPos_xlen": 720,
+        "Header.M1.ModelPos_xlen": 720,
+        "Header.M1.ZernikePos_xlen": 720,
+        "Header.M1.ActuatorStatus_xlen": 720,
+        "Header.M1.ZernikeC_xlen": 18,
+        "Header.M2.XCoeff_xlen": 3,
+        "Header.M2.YCoeff_xlen": 3,
+        "Header.M2.ZCoeff_xlen": 3,
+        "Header.M2.TipCoeff_xlen": 3,
+        "Header.M2.TiltCoeff_xlen": 3,
+        "Header.M2.XCoeff_32m_xlen": 3,
+        "Header.M2.YCoeff_32m_xlen": 3,
+        "Header.M2.ZCoeff_32m_xlen": 3,
+        "Header.M2.TipCoeff_32m_xlen": 3,
+        "Header.M2.TiltCoeff_32m_xlen": 3,
+        "Header.M2.AzCoeff_xlen": 3,
+        "Header.M2.ElCoeff_xlen": 3,
+        "Header.M2.AzCoeff_32m_xlen": 3,
+        "Header.M2.ElCoeff_32m_xlen": 3,
+        "Header.M2.ReceiverOffsets_xlen": 5,
+        "Header.TimePlace.Clock_slen": 128,
+        "Header.Gps.TimeLock_slen": 128,
+        "Header.PointModel.A_xlen": 5,
+        "Header.PointModel.E_xlen": 6,
+        "Header.Dcs.ObsPgm_slen": 128,
+        "Header.Dcs.Receiver_slen": 128,
+        "Header.Dcs.Backend_slen": 512,
+        "Header.Dcs.Timer_xlen": 5,
+        "Header.Dcs.ProjectId_slen": 128,
+        "Header.Dcs.ObsGoal_slen": 128,
+        "Header.Dcs.ObsDesc_slen": 128,
+        "Header.TempSens.TempSens_xlen": 64,
+        "Header.TempSens.Scan_xlen": 4,
+        "Header.Weather.UpdateDate_slen": 128,
+        "Header.Radiometer.UpdateDate_slen": 128,
+        "Header.Radiometer.UpdateDate2_slen": 128,
+        "Header.Toltec.PointCorDr_xlen": 2,
+        "Header.Toltec.PointCorDu_xlen": 2,
+        "Header.Toltec.HostPort_slen": 128,
+        "Header.TelescopeBackend.ProjectId_slen": 128,
+        "Header.TelescopeBackend.ObsGoal_slen": 128,
+        "Header.TelescopeBackend.ObsPgm_slen": 128,
+        "Header.TelescopeBackend.Receiver_slen": 128
+      },
+      "absent_variables": [
+        "Header.Toltec.Master",
+        "Header.Toltec.ObsNum",
+        "Header.Toltec.SubObsNum",
+        "Header.Toltec.ScanNum",
+        "Header.Toltec.ObsType",
+        "Header.Toltec.RoachIndex",
+        "Header.Toltec.SampleFreq",
+        "Header.Toltec.FpgaFreq",
+        "Header.Toltec.AccumLen",
+        "Header.Toltec.NumKidsActual",
+        "Header.Toltec.TargSweepObsNum",
+        "Header.Toltec.TargSweepSubObsNum",
+        "Header.Toltec.TargSweepScanNum",
+        "Data.Toltec.Is",
+        "Data.Toltec.Qs",
+        "Data.Toltec.SampleType",
+        "Data.Toltec.Ts",
+        "Data.Toltec.RecvTime",
+        "Header.Toltec.ToneFreq",
+        "Header.Toltec.TonePhase",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts"
+      ]
+    },
+    {
+      "path": "tel/tel_toltec_2025-10-31_145609_00_0002.nc",
+      "size_bytes": 1389256,
+      "variables": {
+        "Header.Dcs.ObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "Current observation number"
+          },
+          "value": 145609
+        },
+        "Header.Dcs.SubObsNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "Current sub observation number"
+          },
+          "value": 0
+        },
+        "Header.Dcs.ScanNum": {
+          "dtype": "int32",
+          "dimensions": [],
+          "shape": [],
+          "attributes": {
+            "long_name": "Current scan number"
+          },
+          "value": 2
+        },
+        "Data.TelescopeBackend.TelTime": {
+          "dtype": "float64",
+          "dimensions": ["time"],
+          "shape": [3427],
+          "attributes": {
+            "units": "sec",
+            "long_name": "TelTime"
+          }
+        }
+      },
+      "dimensions": {
+        "time": 3427,
+        "Header.File.Name_slen": 128,
+        "Header.XmlParser.State_slen": 32,
+        "Header.Source.SourceName_slen": 128,
+        "Header.Source.Az_xlen": 2,
+        "Header.Source.El_xlen": 2,
+        "Header.Source.Ra_xlen": 2,
+        "Header.Source.Dec_xlen": 2,
+        "Header.Source.L_xlen": 2,
+        "Header.Source.B_xlen": 2,
+        "Header.Source.LineList_slen": 128,
+        "Header.Source.BaselineList_slen": 128,
+        "Header.Sky.AzReq_xlen": 2,
+        "Header.Sky.ElReq_xlen": 2,
+        "Header.Sky.AzOff_xlen": 2,
+        "Header.Sky.ElOff_xlen": 2,
+        "Header.Sky.RaOff_xlen": 2,
+        "Header.Sky.DecOff_xlen": 2,
+        "Header.Sky.LOff_xlen": 2,
+        "Header.Sky.BOff_xlen": 2,
+        "Header.Telescope.Operator_slen": 24,
+        "Header.M1.ActPos_xlen": 720,
+        "Header.M1.CmdPos_xlen": 720,
+        "Header.M1.ReqPos_xlen": 720,
+        "Header.M1.ModelPos_xlen": 720,
+        "Header.M1.ZernikePos_xlen": 720,
+        "Header.M1.ActuatorStatus_xlen": 720,
+        "Header.M1.ZernikeC_xlen": 18,
+        "Header.M2.XCoeff_xlen": 3,
+        "Header.M2.YCoeff_xlen": 3,
+        "Header.M2.ZCoeff_xlen": 3,
+        "Header.M2.TipCoeff_xlen": 3,
+        "Header.M2.TiltCoeff_xlen": 3,
+        "Header.M2.XCoeff_32m_xlen": 3,
+        "Header.M2.YCoeff_32m_xlen": 3,
+        "Header.M2.ZCoeff_32m_xlen": 3,
+        "Header.M2.TipCoeff_32m_xlen": 3,
+        "Header.M2.TiltCoeff_32m_xlen": 3,
+        "Header.M2.AzCoeff_xlen": 3,
+        "Header.M2.ElCoeff_xlen": 3,
+        "Header.M2.AzCoeff_32m_xlen": 3,
+        "Header.M2.ElCoeff_32m_xlen": 3,
+        "Header.M2.ReceiverOffsets_xlen": 5,
+        "Header.TimePlace.Clock_slen": 128,
+        "Header.Gps.TimeLock_slen": 128,
+        "Header.PointModel.A_xlen": 5,
+        "Header.PointModel.E_xlen": 6,
+        "Header.Dcs.ObsPgm_slen": 128,
+        "Header.Dcs.Receiver_slen": 128,
+        "Header.Dcs.Backend_slen": 512,
+        "Header.Dcs.Timer_xlen": 5,
+        "Header.Dcs.ProjectId_slen": 128,
+        "Header.Dcs.ObsGoal_slen": 128,
+        "Header.Dcs.ObsDesc_slen": 128,
+        "Header.TempSens.TempSens_xlen": 64,
+        "Header.TempSens.Scan_xlen": 4,
+        "Header.Weather.UpdateDate_slen": 128,
+        "Header.Radiometer.UpdateDate_slen": 128,
+        "Header.Radiometer.UpdateDate2_slen": 128,
+        "Header.Toltec.PointCorDr_xlen": 2,
+        "Header.Toltec.PointCorDu_xlen": 2,
+        "Header.Toltec.HostPort_slen": 128,
+        "Header.TelescopeBackend.ProjectId_slen": 128,
+        "Header.TelescopeBackend.ObsGoal_slen": 128,
+        "Header.TelescopeBackend.ObsPgm_slen": 128,
+        "Header.TelescopeBackend.Receiver_slen": 128,
+        "Header.Lissajous.CoordSys_slen": 128
+      },
+      "absent_variables": [
+        "Header.Toltec.Master",
+        "Header.Toltec.ObsNum",
+        "Header.Toltec.SubObsNum",
+        "Header.Toltec.ScanNum",
+        "Header.Toltec.ObsType",
+        "Header.Toltec.RoachIndex",
+        "Header.Toltec.SampleFreq",
+        "Header.Toltec.FpgaFreq",
+        "Header.Toltec.AccumLen",
+        "Header.Toltec.NumKidsActual",
+        "Header.Toltec.TargSweepObsNum",
+        "Header.Toltec.TargSweepSubObsNum",
+        "Header.Toltec.TargSweepScanNum",
+        "Data.Toltec.Is",
+        "Data.Toltec.Qs",
+        "Data.Toltec.SampleType",
+        "Data.Toltec.Ts",
+        "Data.Toltec.RecvTime",
+        "Header.Toltec.ToneFreq",
+        "Header.Toltec.TonePhase",
+        "Data.Toltec.HwprEncVal",
+        "Data.Toltec.HwprEncTs",
+        "Data.Toltec.HwprEncUts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="A published run stores data, configuration and step records; tags select runs">
+<title>A published run stores data, configuration and step records; tags select runs</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="5" width="635" height="465" rx="20" fill="#f0eafd" fill-opacity=".35" stroke="#7653b7" stroke-opacity=".5" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="22" y="37" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#7653b7">PUBLISHED RUN</text>
+<rect x="28" y="65" width="280" height="105" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="168.0" y="111.82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#316cc5">Zarr datasets</text>
+<text x="168.0" y="149" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">interfaces → blocks</text>
+<rect x="328" y="65" width="280" height="105" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="468.0" y="111.82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#7653b7">Figures + index</text>
+<text x="468.0" y="149" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">portable output</text>
+<rect x="28" y="200" width="580" height="95" rx="16" fill="#f0f4f8" stroke="#52677b" stroke-width="2"/>
+<text x="318.0" y="256.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#52677b">Resolved workflow configuration</text>
+<rect x="28" y="319" width="580" height="118" rx="16" fill="#f0f4f8" stroke="#52677b" stroke-width="2"/>
+<text x="318.0" y="372.32" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#52677b">Step records + analysis settings</text>
+<text x="318.0" y="416" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">inputs · run UID · software / runtime info</text>
+<rect x="695" y="5" width="455" height="465" rx="20" fill="#f0eafd" fill-opacity=".35" stroke="#7653b7" stroke-opacity=".5" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="717" y="37" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#7653b7">PRODUCT DATABASE</text>
+<rect x="732" y="65" width="380" height="85" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="922.0" y="116.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Version group</text>
+<rect x="732" y="212" width="170" height="85" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="817.0" y="263.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Run A</text>
+<rect x="942" y="212" width="170" height="85" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="1027.0" y="263.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Run B</text>
+<polyline points="832,150 832,200" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1017,150 1017,200" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="932" y="363" width="190" height="70" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="1027.0" y="406.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">main</text>
+<polyline points="1027,363 1027,307" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1080" y="335" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">selects</text>
+<text x="818" y="391" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">other runs</text>
+<text x="818" y="420" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">remain available</text>
+</svg>

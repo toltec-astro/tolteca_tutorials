@@ -16,12 +16,19 @@ environment lock, and each dataset manifest when using a recipe.
 - [Inspect reference data](workflows/inspect-reference-data/README.md): Verify the environment and one telescope file; this is not a complete reduction recipe.
 - [Validation record](workflows/inspect-reference-data/validation.md): Exercised environment and limits.
 
+## Reference
+
+- [Data Handbook](handbook/index.md): Scientific interpretation of TolTEC data, from measurement to products; draft edition.
+- [Glossary](handbook/glossary.md): Shared scientific and workflow terminology.
+
 ## Teaching material
 
 - [Presentations](presentations/README.md): Ecosystem and workflow teaching decks; collection initially empty.
 - [Workshops](workshops/README.md): Teaching sequences with slides and exercises; collection initially empty.
+- [Architecture](architecture/README.md): Developer architecture review decks with their evidence and probes.
 - [Contributing](CONTRIBUTING.md): Source ownership and validation requirements.
 
 Package-owned guides remain authoritative for software interfaces. Read
-architecture specifications and review decks in the owning package repository
-with their revision and evidence. Proposed behavior is not a supported recipe.
+architecture specifications in the owning package repository; each review deck
+names the specification and revision it presents. Proposed behavior is not a
+supported recipe.

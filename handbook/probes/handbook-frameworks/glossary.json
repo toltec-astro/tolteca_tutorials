@@ -1,0 +1,5 @@
+{
+  "observation": "Observing activity identified by an observation number within an acquisition-master context. It can contain several acquisitions and interfaces.",
+  "acquisition": "One recorded acquisition identified by master, observation number, subobservation number, and scan number. It groups participating interfaces; their samples need not be time aligned.",
+  "calibration item": "A selected calibration artifact or resolved correction with a stated application scope."
+}

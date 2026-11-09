@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Python, CLI and Dagster invoke the same configured workflow">
+<title>Python, CLI and Dagster invoke the same configured workflow</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="30" y="18" width="300" height="105" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="180.0" y="65.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Python</text>
+<text x="180.0" y="102" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">analysis + notebooks</text>
+<polyline points="180,125 180,168 576,168 576,197" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="425" y="18" width="300" height="105" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="575.0" y="65.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">CLI</text>
+<text x="575.0" y="102" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">manual processing + QA</text>
+<polyline points="575,125 575,168 576,168 576,197" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="820" y="18" width="300" height="105" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="970.0" y="65.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Dagster</text>
+<text x="970.0" y="102" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">sensors + automation</text>
+<polyline points="970,125 970,168 576,168 576,197" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="285" y="210" width="582" height="130" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="576.0" y="271.24" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#008278">Configured application workflow</text>
+<text x="576.0" y="319" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">input selection → steps → publication</text>
+<rect x="90" y="405" width="385" height="70" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="282.5" y="448.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Artifacts + portable index</text>
+<rect x="675" y="405" width="385" height="70" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="867.5" y="448.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Optional DB registration</text>
+<polyline points="440,340 440,371 282,371 282,395" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="710,340 710,371 867,371 867,395" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>

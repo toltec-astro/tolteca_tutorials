@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Service processes submit and supervise Slurm workers sharing storage">
+<title>Service processes submit and supervise Slurm workers sharing storage</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="5" width="450" height="333" rx="20" fill="#fff2de" fill-opacity=".35" stroke="#a45b0b" stroke-opacity=".5" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="22" y="37" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#a45b0b">SERVICE CONTAINER</text>
+<rect x="25" y="64" width="395" height="92" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="222.5" y="104.32" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#a45b0b">Dagster + code locations</text>
+<text x="222.5" y="135" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">sensors · partitions · run supervision</text>
+<rect x="25" y="196" width="395" height="90" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="222.5" y="249.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#a45b0b">Web + APIs + PostgreSQL</text>
+<rect x="685" y="5" width="465" height="333" rx="20" fill="#e6f5f0" fill-opacity=".35" stroke="#008278" stroke-opacity=".5" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="707" y="37" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#008278">SLURM COMPUTE NODES</text>
+<rect x="715" y="64" width="405" height="92" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="917.5" y="104.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">Workflow worker</text>
+<text x="917.5" y="135" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">same Python / CLI implementation</text>
+<rect x="715" y="196" width="405" height="90" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="917.5" y="249.32" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#008278">Interactive QA allocation</text>
+<polyline points="450,110 674,110" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="562" y="90" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">submit</text>
+<polyline points="685,168 461,168" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="562" y="195" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">state + logs</text>
+<rect x="150" y="400" width="850" height="80" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="575.0" y="448.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#316cc5">Shared /nese/ · inputs, products, execution records</text>
+<polyline points="225,333 225,390" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="917,333 917,390" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="565" y="281" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#52677b">Policies select</text>
+<text x="565" y="311" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#52677b">resources + limits</text>
+</svg>

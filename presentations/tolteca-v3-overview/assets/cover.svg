@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="220" viewBox="0 0 1152 220" role="img" aria-label="Acquire, process, publish and explore">
+<title>Acquire, process, publish and explore</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="40" width="240" height="125" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="120.0" y="97.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#316cc5">Acquire</text>
+<text x="120.0" y="144" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">files + records</text>
+<polyline points="244,102 289,102" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="300" y="40" width="240" height="125" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="420.0" y="97.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">Process</text>
+<text x="420.0" y="144" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">blocks + diagnostics</text>
+<polyline points="544,102 589,102" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="600" y="40" width="240" height="125" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="720.0" y="97.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Publish</text>
+<text x="720.0" y="144" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">products + provenance</text>
+<polyline points="844,102 889,102" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="900" y="40" width="240" height="125" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="1020.0" y="97.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Explore</text>
+<text x="1020.0" y="144" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">observer + curator</text>
+</svg>

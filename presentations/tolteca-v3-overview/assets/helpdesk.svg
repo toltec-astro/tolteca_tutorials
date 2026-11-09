@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Task guidance, source-grounded human assistance and independent agent access">
+<title>Task guidance, source-grounded human assistance and independent agent access</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="30" width="330" height="120" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="165.0" y="85.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#316cc5">Authored sources</text>
+<text x="165.0" y="129" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">package guides + tutorials</text>
+<rect x="420" y="30" width="310" height="120" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="575.0" y="84.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Workflow guidance</text>
+<text x="575.0" y="129" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">science / operations</text>
+<polyline points="330,90 409,90" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="820" y="30" width="330" height="120" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="985.0" y="85.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#a45b0b">People</text>
+<text x="985.0" y="129" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">FAQ + source documents</text>
+<polyline points="730,90 809,90" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="420" y="250" width="310" height="130" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="575.0" y="310.28" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#008278">AI provider API</text>
+<text x="575.0" y="359" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">retrieved source passages</text>
+<rect x="820" y="250" width="330" height="130" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="985.0" y="310.28" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#a45b0b">Draft + citations</text>
+<text x="985.0" y="359" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">TolTEC AI Assistant</text>
+<polyline points="575,150 575,239" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="640" y="201" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">optional</text>
+<polyline points="730,315 809,315" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="0" y="250" width="330" height="130" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="165.0" y="309.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Software assistants</text>
+<text x="165.0" y="359" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">offline · HTTP · MCP</text>
+<polyline points="165,150 165,239" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="250" y="201" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">authored text</text>
+<text x="575" y="455" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#12283f">Guides remain available independently of AI inference.</text>
+</svg>

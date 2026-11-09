@@ -16,12 +16,17 @@ dependencies = [
 
 [dependency-groups]
 dev = ["ruff>=0.16,<1"]
+handbook = ["sphinx>=9.1", "myst_parser>=5.1", "sphinx_book_theme"]
 
 [tool.uv]
 package = false
 
 [tool.ruff]
 extend-include = ["*.ipynb"]
+
+[tool.ruff.format]
+# Code blocks in slide decks are laid out for the slide, not for ruff's line width.
+exclude = ["architecture/*/*.md", "presentations/*/*.md"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "UP", "B"]

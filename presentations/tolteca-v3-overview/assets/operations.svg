@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Telescope acquisition triggers independent ingestion and quicklook workflows; MC reads registered feedback">
+<title>Telescope acquisition triggers independent ingestion and quicklook workflows; MC reads registered feedback</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="100" width="240" height="110" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="120.0" y="149.96" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#316cc5">Telescope</text>
+<text x="120.0" y="189" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">ToltecDB + raw files</text>
+<rect x="300" y="100" width="225" height="110" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="412.5" y="149.96" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#a45b0b">Dagster</text>
+<text x="412.5" y="189" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">readiness sensor</text>
+<polyline points="240,155 289,155" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="610" y="30" width="260" height="90" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="740.0" y="83.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">Raw ingestion</text>
+<rect x="610" y="190" width="260" height="100" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="740.0" y="234.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">KIDs quicklook</text>
+<text x="740.0" y="269" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">reduce · check · plot</text>
+<polyline points="525,155 565,155 565,75 599,75" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="565,155 565,240 599,240" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="563" y="54" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#52677b">records</text>
+<text x="558" y="285" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#52677b">files ready</text>
+<rect x="945" y="100" width="200" height="170" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="1045.0" y="162.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Register</text>
+<text x="1045.0" y="197.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">feedback</text>
+<text x="1045.0" y="249" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">DPDB + artifacts</text>
+<polyline points="870,75 908,75 908,140 934,140" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="870,240 934,240" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="740" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#52677b">Independent workflows</text>
+<rect x="0" y="365" width="275" height="95" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="137.5" y="407.46" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#a45b0b">Telescope MC</text>
+<text x="137.5" y="439" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">observer display</text>
+<rect x="520" y="350" width="350" height="115" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="695.0" y="402.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Quicklook HTTP API</text>
+<text x="695.0" y="444" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">tolteca_web · FastAPI</text>
+<polyline points="275,388 509,388" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="392" y="370" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">obsnum / ObsSpec</text>
+<polyline points="520,435 286,435" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="395" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">state + image URLs</text>
+<polyline points="1045,270 1045,407 882,407" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="950" y="334" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">query + read</text>
+</svg>

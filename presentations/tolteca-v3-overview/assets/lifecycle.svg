@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Acquisition through processing, publication, inspection and reprocessing">
+<title>Acquisition through processing, publication, inspection and reprocessing</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="72" width="205" height="132" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="102.5" y="132.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Plan</text>
+<text x="102.5" y="183" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">coverage + time</text>
+<polyline points="207,138 225,138" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="235" y="72" width="205" height="132" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="337.5" y="132.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#316cc5">Acquire</text>
+<text x="337.5" y="183" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">files + records</text>
+<polyline points="442,138 460,138" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="470" y="72" width="205" height="132" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="572.5" y="132.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">Process</text>
+<text x="572.5" y="183" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">reduce + check</text>
+<polyline points="677,138 695,138" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="705" y="72" width="205" height="132" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="807.5" y="132.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Publish</text>
+<text x="807.5" y="183" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">arrays + figures</text>
+<polyline points="912,138 930,138" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="940" y="72" width="205" height="132" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="1042.5" y="132.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#a45b0b">Inspect</text>
+<text x="1042.5" y="183" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">quicklook + viewer</text>
+<rect x="420" y="310" width="465" height="100" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="652.5" y="354.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#7653b7">Data Product Database</text>
+<text x="652.5" y="389" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">identity · provenance · relationships</text>
+<polyline points="337,204 337,360 409,360" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="280" y="290" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">catalog</text>
+<polyline points="807,204 807,299" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="860" y="255" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">register</text>
+<polyline points="885,360 1042,360 1042,215" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="966" y="341" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">discover</text>
+<polyline points="1042,72 1042,22 572,22 572,61" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="792" y="14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">select inputs + configure another run</text>
+<text x="575" y="457" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#52677b">Files and products remain usable through Python and CLI workflows.</text>
+</svg>

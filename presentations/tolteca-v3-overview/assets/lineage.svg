@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Interface calibration references produce acquisition links and calibration groups">
+<title>Interface calibration references produce acquisition links and calibration groups</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="25" y="10" width="1102" height="325" rx="20" fill="#f0eafd" fill-opacity=".35" stroke="#7653b7" stroke-opacity=".5" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="47" y="42" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#7653b7">ONE CALIBRATION GROUP · ILLUSTRATIVE RELATIONSHIPS</text>
+<rect x="60" y="95" width="210" height="130" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="165.0" y="168.64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#316cc5">VNA A</text>
+<rect x="350" y="60" width="245" height="95" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="472.5" y="116.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">Tune C</text>
+<rect x="350" y="210" width="245" height="95" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="472.5" y="266.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#316cc5">VNA B</text>
+<rect x="805" y="60" width="270" height="95" rx="16" fill="#e6f5f0" stroke="#008278" stroke-width="2"/>
+<text x="940.0" y="116.14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#008278">Timestream D</text>
+<polyline points="350,108 282,152" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="302" y="90" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">toltec0</text>
+<polyline points="472,155 472,199" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="536" y="187" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">toltec1</text>
+<polyline points="805,108 606,108" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="700" y="91" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">calibration</text>
+<text x="817" y="252" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" fill="#12283f">An acquisition can use</text>
+<text x="817" y="285" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" fill="#12283f">multiple calibrations.</text>
+<rect x="25" y="393" width="315" height="82" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="182.5" y="442.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#316cc5">Per-interface references</text>
+<rect x="420" y="393" width="310" height="82" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="575.0" y="442.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Acquisition links</text>
+<rect x="810" y="393" width="315" height="82" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="967.5" y="442.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Connected groups</text>
+<polyline points="340,434 409,434" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="730,434 799,434" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>

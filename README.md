@@ -50,15 +50,17 @@ reduction recipes are still to be added with their own tested software versions.
 | --- | --- |
 | [Workflows](workflows/README.md) | Complete tasks with inputs, executable steps, outputs, and checks |
 | [Presentations](presentations/README.md) | Ecosystem introductions and workflow teaching decks |
+| [Architecture](architecture/README.md) | Developer architecture review decks with their evidence |
 | [Workshops](workshops/README.md) | Teaching sequences with slides and exercises together |
 | [Reference data](datasets/README.md) | Pair this checkout with versioned data from `tolteca_ref_data` |
-| [Workflow glossary](https://toltec.lmtgtm.org/dr/science/docs/handbook/glossary.html) | Shared observation, calibration, reduction, and product terminology |
+| [Data Handbook](handbook/index.md) | Scientific interpretation of TolTEC data, from measurement to products; build with `just handbook` |
+| [Workflow glossary](handbook/glossary.md) | Shared observation, calibration, reduction, and product terminology ([published](https://toltec.lmtgtm.org/dr/science/docs/handbook/glossary.html)) |
 | [Agent index](llms.txt) | Authored discovery material and compatibility status |
 
 Package documentation owns software usage and API details. Maintained software
-specifications and architecture review decks stay in each owning repository's
-`design/` directory. The TolTEC landing page and helpdesk link to this collection
-for complete learning workflows.
+specifications stay in each owning repository's `design/` directory. The TolTEC
+landing page and helpdesk link to this collection and serve its built
+materials.
 
 See [Contributing](CONTRIBUTING.md) to add material, and
 [the project design](design/spec.md) for ownership and reproducibility decisions.

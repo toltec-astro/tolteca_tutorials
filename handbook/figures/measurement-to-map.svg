@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="344" viewBox="0 0 900 344" role="img" aria-labelledby="title description">
+  <title id="title">From a TolTEC observation to a sky map</title>
+  <desc id="description">Three schematic panels show scanning a sky field, recording detector signals over time, and reconstructing a map with timing, pointing, and calibration information.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#34546c"/></marker>
+    <radialGradient id="source"><stop stop-color="#ce8a39" stop-opacity="0.85"/><stop offset="1" stop-color="#ce8a39" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="900" height="344" rx="8" fill="#f5f8fa"/>
+  <g font-family="sans-serif" fill="#19374d">
+    <g fill="white" stroke="#bacbd7"><rect x="24" y="24" width="250" height="220" rx="6"/><rect x="325" y="24" width="250" height="220" rx="6"/><rect x="626" y="24" width="250" height="220" rx="6"/></g>
+    <g font-size="21" font-weight="600" text-anchor="middle"><text x="149" y="60">Scan the field</text><text x="450" y="60">Record signals</text><text x="751" y="60">Reconstruct a map</text></g>
+    <circle cx="156" cy="133" r="43" fill="url(#source)"/>
+    <path d="M55 95 H240 L55 125 H240 L55 155 H240 L55 185 H240" fill="none" stroke="#397491" stroke-width="2.5"/>
+    <circle cx="152" cy="155" r="15" fill="none" stroke="#19374d" stroke-width="2" stroke-dasharray="4 3"/>
+    <g fill="none" stroke="#7b8f9d" stroke-width="1.5"><path d="M348 92 V188 H553"/><path d="M650 91 V189 H852"/></g>
+    <path d="M350 160 L364 155 L379 162 L393 148 L407 158 C422 157 427 106 440 109 C454 110 455 158 469 153 L484 160 L500 149 L515 156 L533 153 L551 161" fill="none" stroke="#397491" stroke-width="3"/>
+    <path d="M350 176 L366 170 L382 175 L400 168 L418 177 L432 169 C447 171 451 128 463 125 C479 128 482 173 497 169 L512 176 L533 167 L551 174" fill="none" stroke="#b57228" stroke-width="2.5"/>
+    <circle cx="751" cy="140" r="38" fill="url(#source)"/>
+    <g stroke="#c5d3dd" stroke-width="1"><path d="M675 90 V189 M700 90 V189 M725 90 V189 M750 90 V189 M775 90 V189 M800 90 V189 M825 90 V189 M650 115 H852 M650 140 H852 M650 165 H852"/></g>
+    <g font-size="17" text-anchor="middle"><text x="149" y="223">Moving lines of sight</text><text x="450" y="223">Detector time series</text><text x="751" y="223">Estimated sky brightness</text></g>
+    <g stroke="#34546c" stroke-width="2" marker-end="url(#arrow)"><path d="M282 133 H315"/><path d="M583 133 H616"/></g>
+    <path d="M750 280 V250" stroke="#34546c" stroke-width="2" marker-end="url(#arrow)"/>
+    <g text-anchor="middle" font-size="18"><text x="450" y="304">Timing · telescope pointing · detector positions · calibration</text></g>
+    <text x="875" y="333" font-size="12" text-anchor="end" fill="#526b7c">Schematic</text>
+  </g>
+</svg>

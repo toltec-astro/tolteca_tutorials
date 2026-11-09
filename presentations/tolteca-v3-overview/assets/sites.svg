@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="490" viewBox="0 0 1152 490" role="img" aria-label="Independent Taco, transferred and Unity inventories combine into a unified inventory">
+<title>Independent Taco, transferred and Unity inventories combine into a unified inventory</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#70869a"/></marker></defs>
+<rect x="0" y="5" width="305" height="128" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="152.5" y="63.31999999999999" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#316cc5">Taco live</text>
+<text x="152.5" y="112" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">site processing</text>
+<rect x="350" y="5" width="225" height="128" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="462.5" y="63.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Own inventory</text>
+<text x="462.5" y="112" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">DB + artifact tree</text>
+<polyline points="305,69 339,69" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="575,69 630,69 630,234 685,234" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="0" y="170" width="305" height="128" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="152.5" y="228.32" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#316cc5">Taco copy on Unity</text>
+<text x="152.5" y="277" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">transferred artifacts</text>
+<rect x="350" y="170" width="225" height="128" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="462.5" y="228.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Own inventory</text>
+<text x="462.5" y="277" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">DB + artifact tree</text>
+<polyline points="305,234 339,234" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="575,234 630,234 630,234 685,234" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="0" y="335" width="305" height="128" rx="16" fill="#e9f1ff" stroke="#316cc5" stroke-width="2"/>
+<text x="152.5" y="393.32" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#316cc5">Unity native</text>
+<text x="152.5" y="442" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">archive reprocessing</text>
+<rect x="350" y="335" width="225" height="128" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="462.5" y="393.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#7653b7">Own inventory</text>
+<text x="462.5" y="442" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">DB + artifact tree</text>
+<polyline points="305,399 339,399" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="575,399 630,399 630,234 685,234" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="695" y="168" width="430" height="130" rx="16" fill="#f0eafd" stroke="#7653b7" stroke-width="2"/>
+<text x="910.0" y="228.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#7653b7">Unified inventory</text>
+<text x="910.0" y="277" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">merge records · retain locations</text>
+<rect x="745" y="372" width="330" height="92" rx="16" fill="#fff2de" stroke="#a45b0b" stroke-width="2"/>
+<text x="910.0" y="427.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#a45b0b">Web viewer</text>
+<polyline points="910,298 910,361" fill="none" stroke="#70869a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="964" y="341" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#52677b">query</text>
+<text x="910" y="76" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#12283f">Independent sources</text>
+<text x="910" y="111" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#52677b">Local and remote artifact access</text>
+</svg>
