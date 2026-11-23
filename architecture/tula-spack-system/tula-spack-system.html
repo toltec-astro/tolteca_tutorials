@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TolTEC C++ Spack system — technical reference</title>
+  <style>
+    :root {
+      --ink: #172630;
+      --muted: #586a75;
+      --line: #c8d3d9;
+      --paper: #f6f8f9;
+      --panel: #ffffff;
+      --accent: #176b87;
+      --accent-soft: #e4f0f4;
+      --code: #10232d;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    body { overflow: hidden; }
+    .deck { height: calc(100vh - 54px); }
+    .slide {
+      display: none;
+      height: 100%;
+      padding: 34px 46px 38px;
+      overflow: auto;
+      background:
+        linear-gradient(90deg, transparent 0 45px, rgba(23,107,135,.08) 45px 46px, transparent 46px),
+        var(--paper);
+    }
+    .slide.active { display: block; }
+    .slide-head { border-bottom: 1px solid var(--line); margin-bottom: 22px; padding-bottom: 10px; }
+    .section { color: var(--accent); font: 700 12px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    h1 { font-size: clamp(42px, 6vw, 76px); line-height: 1.02; margin: 14px 0 22px; letter-spacing: -.04em; }
+    h2 { font-size: clamp(27px, 3vw, 41px); line-height: 1.08; margin: 5px 0 0; letter-spacing: -.025em; }
+    h3 { font-size: 17px; margin: 0 0 9px; }
+    p, li, td, th { font-size: 15px; line-height: 1.45; }
+    .lead { max-width: 900px; font-size: 22px; line-height: 1.45; color: var(--muted); }
+    .muted { color: var(--muted); }
+    .small { font-size: 13px; }
+    .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); padding: 16px 18px; }
+    .callout { margin-top: 20px; padding: 14px 18px; border-left: 4px solid var(--accent); background: var(--accent-soft); font-size: 15px; line-height: 1.45; }
+    pre {
+      margin: 0;
+      padding: 16px 18px;
+      overflow: auto;
+      background: var(--code);
+      color: #e8f0f3;
+      border-radius: 2px;
+      font: 13px/1.48 var(--mono);
+      white-space: pre-wrap;
+    }
+    code { font-family: var(--mono); font-size: .92em; color: #114f68; }
+    pre code { color: inherit; }
+    table { width: 100%; border-collapse: collapse; background: var(--panel); }
+    th { text-align: left; color: var(--accent); font-weight: 700; background: #edf3f5; }
+    th, td { padding: 10px 12px; border: 1px solid var(--line); vertical-align: top; }
+    ul { margin: 8px 0; padding-left: 21px; }
+    .flow { display: flex; align-items: stretch; gap: 10px; margin: 15px 0; }
+    .flow .node { flex: 1; border: 1px solid var(--line); background: var(--panel); padding: 14px; min-width: 0; }
+    .flow .arrow { align-self: center; color: var(--accent); font: 700 22px/1 var(--mono); }
+    .artifact { display: inline-block; margin: 3px 2px; padding: 4px 7px; border: 1px solid var(--line); background: white; font: 600 11px/1.2 var(--mono); }
+    .title-grid { display: grid; grid-template-columns: 1.4fr .8fr; gap: 42px; align-items: center; min-height: 90%; }
+    .toc div { display: grid; grid-template-columns: 42px 1fr; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .toc span:first-child { color: var(--accent); font: 700 13px/1.3 var(--mono); }
+    .nav {
+      height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+    .nav button, .index button {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      padding: 8px 11px;
+      font: 600 12px/1 var(--sans);
+      cursor: pointer;
+    }
+    .nav button:hover, .index button:hover { border-color: var(--accent); }
+    .nav-title { color: var(--muted); margin-left: 8px; font-size: 12px; }
+    .spacer { flex: 1; }
+    .progress { width: 180px; height: 4px; background: #dbe3e7; }
+    .progress div { height: 100%; background: var(--accent); }
+    .counter { font: 600 12px/1 var(--mono); }
+    .index {
+      display: none;
+      position: fixed;
+      z-index: 5;
+      inset: 0 0 54px auto;
+      width: min(480px, 92vw);
+      padding: 24px;
+      overflow: auto;
+      background: white;
+      border-left: 1px solid var(--line);
+      box-shadow: -8px 0 30px rgba(0,0,0,.12);
+    }
+    .index.open { display: block; }
+    .index ol { list-style: none; padding: 0; }
+    .index li { margin: 6px 0; }
+    .index button { width: 100%; text-align: left; }
+    @media (max-width: 900px) {
+      .slide { padding: 22px 24px 28px; }
+      .cols-2, .cols-3, .title-grid { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; }
+      .flow .arrow { transform: rotate(90deg); }
+      .nav-title, .progress { display: none; }
+    }
+    @media print {
+      body { overflow: visible; }
+      .deck { height: auto; }
+      .slide { display: block; min-height: 100vh; page-break-after: always; }
+      .nav, .index { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<main class="deck">
+  <section class="slide active" data-title="Current reference model">
+    <div class="title-grid">
+      <div>
+        <div class="section">TolTEC C++ build system · technical reference · 2026-08-31</div>
+        <h1>Spack graph,<br>explicit CMake components</h1>
+        <p class="lead">The verified TulaCMake, Tula, Kidscpp, Citlali, and Tlaloc
+          system: target namespaces, package ownership, minimal dependency
+          closures, installed discovery, behavior tests, and the complete
+          observation runtime.</p>
+        <div class="callout">Measured under GCC 14 and LLVM 20 in C++23 mode,
+          including OpenMP-enabled and disabled component graphs, installed
+          production consumers, the Citlali CLI, and the narrow Tlaloc ECSV
+          integration. Observation 149101 also completes under GCC 14.</div>
+      </div>
+      <div class="toc">
+        <div><span>01</span><span>responsibility and namespace boundary</span></div>
+        <div><span>02</span><span>repository and package structure</span></div>
+        <div><span>03</span><span>Tula component closure</span></div>
+        <div><span>04</span><span>generated and installed artifacts</span></div>
+        <div><span>05</span><span>tests and measured evidence</span></div>
+        <div><span>06</span><span>release and Unity deployment boundary</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Authority boundary">
+    <div class="slide-head"><span class="section">01 · responsibility</span><h2>Each layer has one kind of authority</h2></div>
+    <div class="cols-3">
+      <div class="panel"><h3>Spack</h3><ul><li>versions and sources</li><li>variants and conditional edges</li><li>compiler and platform</li><li>concrete DAG and prefixes</li></ul></div>
+      <div class="panel"><h3>TulaCMake</h3><ul><li>target-scoped compiler defaults</li><li>configured/version headers</li><li>target inspection and logging</li><li>relocatable package export</li></ul></div>
+      <div class="panel"><h3>Project CMake</h3><ul><li>source and public targets</li><li>ordinary <code>find_package</code></li><li>component definitions</li><li>behavior tests</li></ul></div>
+    </div>
+    <div class="callout">No wrapper CLI, Python model, provider manifest,
+      FetchContent dispatch, or second dependency graph is present.</div>
+  </section>
+
+  <section class="slide" data-title="Target namespaces">
+    <div class="slide-head"><span class="section">01 · public API</span><h2>The namespace communicates the abstraction level</h2></div>
+    <table>
+      <thead><tr><th>Namespace</th><th>Example</th><th>Contract</th></tr></thead>
+      <tbody>
+        <tr><td>CMake functions</td><td><code>tula_cmake_install_package()</code></td><td>Build mechanics; no runtime dependency API</td></tr>
+        <tr><td><code>tula_deps::*</code></td><td><code>tula_deps::yaml_cpp</code></td><td>Provider-faithful target spelling and discovery</td></tr>
+        <tr><td><code>tula::*</code></td><td><code>tula::ecsv</code>, <code>tula::perflibs</code></td><td>Higher-level Tula headers and behavior</td></tr>
+      </tbody>
+    </table>
+    <div class="cols-2" style="margin-top:20px">
+      <pre># dependency only
+find_package(TulaYamlCpp CONFIG REQUIRED)
+target_link_libraries(app PRIVATE
+  tula_deps::yaml_cpp)</pre>
+      <pre># Tula behavior
+find_package(tula 3.1 CONFIG REQUIRED
+  COMPONENTS ecsv)
+target_link_libraries(app PRIVATE
+  tula::ecsv)</pre>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Workspace structure">
+    <div class="slide-head"><span class="section">02 · filesystem</span><h2>Editable repositories remain siblings; installed boundaries remain real</h2></div>
+    <div class="cols-2">
+      <pre>/workspaces/cpp/
+├── tolteca_deploy/    location + packaged profiles
+├── tula_cmake/       build tools + shared adapters
+├── tula/             base C++ library + recipe
+├── kidscpp/          next downstream boundary
+├── citlali/          final production boundary
+├── tlaloc/           readout app + owned Spack recipe
+└── tolteca_test_data/ real fixtures</pre>
+      <pre>tula_cmake/
+├── cmake/            installed helper modules
+├── packages/
+│   ├── tula_logging/
+│   ├── tula_yaml_cpp/
+│   ├── tula_eigen3/
+│   ├── tula_netcdf_cxx4/
+│   └── tula_perflibs/
+├── spack_repo/.../packages/
+│   └── tula_csv_parser/
+├── spack_repo/develop.yaml
+├── environments/integration/tula_ecsv/
+├── environments/integration/tula_perflibs/
+├── environments/acceptance/development/
+├── environments/acceptance/snapshot/
+├── tests/deps_consumer/
+└── design/</pre>
+    </div>
+    <p class="muted">Each repository's <code>spack_repo/develop.yaml</code>
+      maps its development specs to repo-relative source paths. The deployment
+      environment composes those declarations; build stages, prefixes, and
+      views do not become source dependencies.</p>
+  </section>
+
+  <section class="slide" data-title="Adapter packages">
+    <div class="slide-head"><span class="section">02 · package ownership</span><h2>Five small packages establish the low-level dependency contract</h2></div>
+    <table>
+      <thead><tr><th>Spack package</th><th>Config package</th><th>Exported target</th><th>Backed by</th></tr></thead>
+      <tbody>
+        <tr><td><code>tula-logging</code></td><td><code>TulaLogging</code></td><td><code>tula_deps::logging</code></td><td>fmt + spdlog</td></tr>
+        <tr><td><code>tula-yaml-cpp</code></td><td><code>TulaYamlCpp</code></td><td><code>tula_deps::yaml_cpp</code></td><td>yaml-cpp</td></tr>
+        <tr><td><code>tula-csv-parser</code></td><td><code>TulaCsvParser</code></td><td><code>tula_deps::csv_parser</code></td><td>pinned csv-parser headers</td></tr>
+        <tr><td><code>tula-eigen3</code></td><td><code>TulaEigen3</code></td><td><code>tula_deps::eigen3</code></td><td>Eigen 3</td></tr>
+        <tr><td><code>tula-perflibs</code></td><td><code>TulaPerflibs</code></td><td><code>tula_deps::perflibs</code></td><td>Threads + optional resolved OpenMP runtime</td></tr>
+        <tr><td><code>tula-netcdf-cxx4</code></td><td><code>TulaNetcdfCxx4</code></td><td><code>tula_deps::netcdf_cxx4</code></td><td>NetCDF C++4 + NetCDF C</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">The adapter does not translate YAML APIs or replace
+      Eigen semantics. Provider-shaped names are therefore intentional.</div>
+  </section>
+
+  <section class="slide" data-title="Export helper correction">
+    <div class="slide-head"><span class="section">02 · TulaCMake implementation</span><h2>Package export preserves target-owned usage requirements</h2></div>
+    <div class="cols-2">
+      <pre>install(
+  TARGETS ${package_TARGETS}
+  EXPORT "${package_EXPORT}"
+  ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+  LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+  RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+)</pre>
+      <div class="panel">
+        <h3>Why this matters</h3>
+        <ul>
+          <li>The helper no longer injects <code>&lt;prefix&gt;/include</code>.</li>
+          <li>Pure interface adapters may install no headers of their own.</li>
+          <li>Header-owning targets declare explicit build/install interfaces.</li>
+          <li>An installed consumer caught the previous nonexistent-path error.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Tula component graph">
+    <div class="slide-head"><span class="section">03 · component model</span><h2>ECSV pulls only the higher-level and provider targets its headers use</h2></div>
+    <pre>tula::ecsv
+├── tula::logging ───────> tula_deps::logging ─────> fmt + spdlog
+├── tula::yaml ──────────> tula_deps::yaml_cpp ────> yaml-cpp
+├── tula::eigen ─────────> tula_deps::eigen3 ──────> Eigen
+└────────────────────────> tula_deps::csv_parser
+
+tula::core  (C++23 traits, concepts, metadata, generated config)</pre>
+    <div class="callout"><code>tula::eigen</code> depends on
+      <code>tula::logging</code> because its public formatter headers use fmt.
+      The first matrix compile detected and formalized this real header edge.</div>
+  </section>
+
+  <section class="slide" data-title="CMake component construction">
+    <div class="slide-head"><span class="section">03 · project CMake</span><h2>Each exported target carries its complete transitive contract</h2></div>
+    <pre>if(TULA_ENABLE_LOGGING)
+  find_package(TulaLogging CONFIG REQUIRED)
+  tula_add_module(logging tula_deps::logging)
+endif()
+
+if(TULA_ENABLE_YAML)
+  find_package(TulaYamlCpp CONFIG REQUIRED)
+  tula_add_module(yaml tula::logging tula_deps::yaml_cpp)
+endif()
+
+if(TULA_ENABLE_ECSV)
+  find_package(TulaCsvParser CONFIG REQUIRED)
+  tula_add_module(ecsv
+    tula::logging tula::yaml tula::eigen
+    tula_deps::csv_parser)
+endif()</pre>
+    <p class="muted">There is no generic <code>csv</code> Tula component:
+      csv-parser is a concrete dependency used by the higher-level ECSV API.</p>
+  </section>
+
+  <section class="slide" data-title="Perflibs component graph">
+    <div class="slide-head"><span class="section">03 · component model</span><h2>Perflibs keeps Tula capability separate from platform facts</h2></div>
+    <div class="cols-2">
+      <pre>tula::perflibs
+└── tula_deps::perflibs
+    ├── Threads::Threads
+    └── OpenMP::OpenMP_CXX  # +openmp only
+        └── llvm-openmp@20.1.8  # Darwin
+
+# minimal roots
+tula+perflibs+openmp
+tula+perflibs~openmp</pre>
+      <table>
+        <thead><tr><th>Owner</th><th>Generated header facts</th></tr></thead>
+        <tbody>
+          <tr><td>Tula</td><td><code>TULA_HAS_PERFLIBS</code><br><code>TULA_HAS_OPENMP</code></td></tr>
+          <tr><td>adapter</td><td><code>TULA_PERFLIBS_HAS_THREADS</code><br><code>TULA_PERFLIBS_HAS_OPENMP</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><code>tula-perflibs</code> alone resolves and exports
+      OpenMP. Its installed config preserves the selected flags, header, and
+      library; Citlali and Kidscpp consume <code>tula::perflibs</code> without
+      another <code>find_package(OpenMP)</code>. The focused test requires
+      <code>_OPENMP</code> and calls <code>omp_get_max_threads()</code>.</div>
+  </section>
+
+  <section class="slide" data-title="Spack closure">
+    <div class="slide-head"><span class="section">03 · concretization</span><h2>Component edges are agreed before any CMake configure starts</h2></div>
+    <div class="cols-2">
+      <pre>for required in ("logging", "yaml", "eigen"):
+    requires(f"+{required}", when="+ecsv")
+
+requires("+logging", when="+yaml")
+requires("+logging", when="+eigen")
+
+depends_on("tula-csv-parser", when="+ecsv")
+depends_on("tula-yaml-cpp", when="+yaml")
+depends_on("tula-eigen3", when="+eigen")</pre>
+      <pre># concrete Tula variants
++logging +yaml +eigen +ecsv
+
+~netcdf ~enum ~cli
+~perflibs ~openmp
+~grppi ~fitting
+
+# explicitly absent
+ceres-solver
+netcdf-cxx4</pre>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Artifact lifecycle">
+    <div class="slide-head"><span class="section">04 · lifecycle</span><h2>The abstract request becomes installed CMake contracts in distinct stages</h2></div>
+    <div class="flow">
+      <div class="node"><h3><code>spack.yaml</code></h3><p>root spec, compiler, repo composition, develop paths</p></div><div class="arrow">→</div>
+      <div class="node"><h3><code>spack.lock</code></h3><p>exact DAG, variants, hashes, externals</p></div><div class="arrow">→</div>
+      <div class="node"><h3>package stages</h3><p>isolated configure, build, test, install</p></div><div class="arrow">→</div>
+      <div class="node"><h3>prefixes</h3><p><code>*Config.cmake</code>, targets, headers</p></div>
+    </div>
+    <div>
+      <span class="artifact">TulaLoggingConfig.cmake</span>
+      <span class="artifact">TulaYamlCppConfig.cmake</span>
+      <span class="artifact">TulaCsvParserConfig.cmake</span>
+      <span class="artifact">TulaEigen3Config.cmake</span>
+      <span class="artifact">TulaPerflibsConfig.cmake</span>
+      <span class="artifact">tulaConfig.cmake</span>
+      <span class="artifact">tulaTargets.cmake</span>
+      <span class="artifact">tula/config.h</span>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Required component check">
+    <div class="slide-head"><span class="section">04 · installed discovery</span><h2>An installed package reports only targets that actually exist</h2></div>
+    <div class="cols-2">
+      <pre>include(tulaTargets.cmake)
+
+foreach(component
+    core logging yaml ecsv eigen ...)
+  if(TARGET "tula::${component}")
+    set("tula_${component}_FOUND" TRUE)
+  endif()
+endforeach()
+
+check_required_components(tula)</pre>
+      <div class="panel">
+        <h3>Observed behavior</h3>
+        <ul>
+          <li><code>COMPONENTS ecsv</code> configures and builds.</li>
+          <li>The imported ECSV target reconstructs adapter dependencies.</li>
+          <li>A fabricated required component sets <code>tula_FOUND</code> false.</li>
+          <li>No umbrella target masks a feature mismatch.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Test boundaries">
+    <div class="slide-head"><span class="section">05 · regression design</span><h2>Each test is attached to the boundary most likely to fail</h2></div>
+    <table>
+      <thead><tr><th>Fixture</th><th>Boundary</th><th>Failure detected in this round</th></tr></thead>
+      <tbody>
+        <tr><td>manifest path gate</td><td>repository-owned Spack includes</td><td>stale pre-rename acceptance-config paths</td></tr>
+        <tr><td>TulaCMake unit</td><td>installed helper → producer → consumer</td><td>export helper remains relocatable</td></tr>
+        <tr><td>adapter consumer</td><td><code>Tula*</code> configs without Tula</td><td>synthetic nonexistent include directory</td></tr>
+        <tr><td>Tula package CTests</td><td>component-linked header behavior</td><td>missing fmt edge from Eigen component</td></tr>
+        <tr><td>installed ECSV example</td><td><code>find_package(tula COMPONENTS ecsv)</code></td><td>exported dependency reconstruction</td></tr>
+        <tr><td>installed perflibs example</td><td><code>find_package(tula COMPONENTS perflibs)</code></td><td>OpenMP capability and link interface</td></tr>
+        <tr><td>missing component</td><td>negative configure contract</td><td>required component correctly rejected</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide" data-title="Real tune-report flow">
+    <div class="slide-head"><span class="section">05 · real data</span><h2>The ECSV gate exercises the actual tune-report shape and metadata model</h2></div>
+    <div class="flow">
+      <div class="node"><h3><code>*_tune.txt</code></h3><p>Astropy ECSV header + 14 columns</p></div><div class="arrow">→</div>
+      <div class="node"><h3><code>ECSVHeader::read</code></h3><p>YAML datatype and ordered-map metadata</p></div><div class="arrow">→</div>
+      <div class="node"><h3><code>CsvParser</code></h3><p>stream rows with header delimiter</p></div><div class="arrow">→</div>
+      <div class="node"><h3><code>ECSVTable</code></h3><p>typed Eigen-backed columns</p></div>
+    </div>
+    <div class="cols-2">
+      <div class="panel"><h3>Assertions</h3><p>14 columns; nonzero rows; expected first/last columns; finite <code>f_out</code> and <code>Qr</code>.</p></div>
+      <div class="panel"><h3>Metadata</h3><p><code>meta_to_map&lt;string,int&gt;</code> decodes Astropy's YAML ordered map and verifies observation identifiers.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Measured result">
+    <div class="slide-head"><span class="section">05 · evidence</span><h2>The same acceptance recipe passes in both supported container lanes</h2></div>
+    <table>
+      <thead><tr><th>Lane</th><th>Package tests</th><th>Adapter-only consumer</th><th>Installed ECSV consumer</th><th>Negative component</th></tr></thead>
+      <tbody>
+        <tr><td>GCC 14.2 · C++23</td><td>10/10</td><td>pass</td><td>pass</td><td>rejected as expected</td></tr>
+        <tr><td>LLVM/Clang 20.1.2 · C++23</td><td>10/10</td><td>pass</td><td>pass</td><td>rejected as expected</td></tr>
+      </tbody>
+    </table>
+    <pre style="margin-top:20px">cd /workspaces/cpp/tula_cmake
+just unit
+just tula-component-matrix spack
+just tula-perflibs-matrix spack</pre>
+    <p class="muted">The real-data test selects valid work-directory symlinks
+      when available; the current container uses eleven regular
+      <code>data_lmt/toltec/reduced</code> tune reports.</p>
+  </section>
+
+  <section class="slide" data-title="Perflibs measured matrix">
+    <div class="slide-head"><span class="section">05 · evidence</span><h2>Four roots prove that optional OpenMP is a real graph choice</h2></div>
+    <table>
+      <thead><tr><th>Compiler</th><th>Root</th><th>Concrete adapter</th><th>Package tests</th><th>Installed consumer</th></tr></thead>
+      <tbody>
+        <tr><td>GCC 14.2</td><td><code>tula+perflibs+openmp</code></td><td><code>tula-perflibs+openmp</code></td><td>pass</td><td>pass</td></tr>
+        <tr><td>GCC 14.2</td><td><code>tula+perflibs~openmp</code></td><td><code>tula-perflibs~openmp</code></td><td>pass</td><td>pass</td></tr>
+        <tr><td>LLVM 20.1.2</td><td><code>tula+perflibs+openmp</code></td><td><code>tula-perflibs+openmp</code></td><td>pass</td><td>pass</td></tr>
+        <tr><td>LLVM 20.1.2</td><td><code>tula+perflibs~openmp</code></td><td><code>tula-perflibs~openmp</code></td><td>pass</td><td>pass</td></tr>
+      </tbody>
+    </table>
+    <pre style="margin-top:20px">just tula-perflibs-matrix spack
+
+# rejected in every graph:
+logging yaml csv-parser eigen Ceres NetCDF</pre>
+  </section>
+
+  <section class="slide" data-title="Enum and CLI measured matrix">
+    <div class="slide-head"><span class="section">05 · evidence</span><h2>Enum and CLI remain separate, minimal installed contracts</h2></div>
+    <div class="cols-2">
+      <pre>tula::enum
+├── tula::logging
+├── tula_deps::bitmask
+└── tula_deps::meta_enum
+
+# explicitly absent
+tula_deps::clipp</pre>
+      <pre>tula::cli
+├── tula::logging
+├── tula::enum
+└── tula_deps::clipp
+
+# no YAML, Eigen, ECSV,
+# NetCDF, perflibs, GrPPI, Ceres</pre>
+    </div>
+    <table>
+      <thead><tr><th>Root</th><th>GCC 14 package/consumer</th><th>LLVM 20 package/consumer</th></tr></thead>
+      <tbody>
+        <tr><td><code>tula+enum</code></td><td>pass / pass</td><td>pass / pass</td></tr>
+        <tr><td><code>tula+cli</code></td><td>pass / pass</td><td>pass / pass</td></tr>
+      </tbody>
+    </table>
+    <pre style="margin-top:18px">just tula-enum-cli-matrix spack</pre>
+  </section>
+
+  <section class="slide" data-title="NetCDF component boundary">
+    <div class="slide-head"><span class="section">05 · evidence</span><h2>NetCDF C++ discovery is normalized once and exported transitively</h2></div>
+    <div class="flow">
+      <div class="node"><h3><code>tula::netcdf</code></h3><p>Tula type dispatch, scalar access, diagnostics</p></div><div class="arrow">→</div>
+      <div class="node"><h3><code>tula_deps::netcdf_cxx4</code></h3><p>CMake-discovered header + C++/C libraries</p></div><div class="arrow">→</div>
+      <div class="node"><h3><code>netcdf-cxx4</code></h3><p>Spack owns C++ and C package graph</p></div>
+    </div>
+    <div class="cols-2">
+      <pre># exact Tula closure
++netcdf +eigen +logging
+
+~yaml ~ecsv ~enum ~cli
+~perflibs ~openmp
+~grppi ~fitting</pre>
+      <div class="panel"><h3>Installed test</h3><p><code>find_package(tula COMPONENTS netcdf)</code>, create a real NetCDF file, write an integer scalar, read it through <code>tula::nc_utils</code>, and remove it.</p></div>
+    </div>
+    <table>
+      <thead><tr><th>GCC 14</th><th>LLVM 20</th><th>Command</th></tr></thead>
+      <tbody><tr><td>package + consumer pass</td><td>package + consumer pass</td><td><code>just tula-netcdf-matrix</code></td></tr></tbody>
+    </table>
+  </section>
+
+  <section class="slide" data-title="GrPPI execution boundary">
+    <div class="slide-head"><span class="section">05 · evidence</span><h2>GrPPI’s adapter is provider-only; Tula owns execution policy</h2></div>
+    <div class="cols-2">
+      <pre>tula::grppi
+├── tula::logging
+├── tula::enum
+├── tula::perflibs
+└── tula_deps::grppi
+
+tula_deps::grppi
+└── upstream GrPPI headers</pre>
+      <div class="panel"><h3>Behavior gate</h3><ul><li>sequential map always executes</li><li><code>+openmp</code> exposes and executes <code>omp</code></li><li><code>~openmp</code> rejects <code>omp</code></li><li>installed consumer sees the same mode list</li></ul></div>
+    </div>
+    <table>
+      <thead><tr><th>Compiler</th><th><code>+grppi+openmp</code></th><th><code>+grppi~openmp</code></th></tr></thead>
+      <tbody>
+        <tr><td>GCC 14.2</td><td>package + consumer pass</td><td>package + consumer pass</td></tr>
+        <tr><td>LLVM 20.1.2</td><td>package + consumer pass</td><td>package + consumer pass</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide" data-title="Fitting component boundary">
+    <div class="slide-head"><span class="section">05 · evidence</span><h2>Fitting adds Ceres without pulling unrelated Tula capabilities</h2></div>
+    <div class="cols-2">
+      <pre>tula::fitting
+├── tula::logging
+├── tula::eigen
+└── Ceres::ceres
+
+# canonical upstream target:
+# no tula_deps adapter required</pre>
+      <pre># concrete Tula variants
++fitting +eigen +logging
+
+~yaml ~ecsv ~netcdf
+~enum ~cli
+~perflibs ~openmp ~grppi</pre>
+    </div>
+    <table>
+      <thead><tr><th>Boundary</th><th>GCC 14</th><th>LLVM 20</th></tr></thead>
+      <tbody>
+        <tr><td>focused package test</td><td>pass</td><td>pass</td></tr>
+        <tr><td>installed <code>tula::fitting</code> consumer</td><td>pass</td><td>pass</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide" data-title="Development acceptance chain">
+    <div class="slide-head"><span class="section">06 · acceptance</span><h2>Package tests and installed consumers close every compiled boundary</h2></div>
+    <div class="flow">
+      <div class="node"><strong>Tula 3.1</strong><small>16/16 component tests</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Kidscpp 3.1</strong><small>7/7 reader, PSD, solver</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Citlali 4.1</strong><small>6/6 engine + CLI</small></div>
+    </div>
+    <div class="cols-2">
+      <div class="panel">
+        <h3>Both compiler lanes</h3>
+        <table>
+          <thead><tr><th>Boundary</th><th>GCC 14</th><th>LLVM 20</th></tr></thead>
+          <tbody>
+            <tr><td>package tests</td><td>16 + 7 + 6 pass</td><td>16 + 7 + 6 pass</td></tr>
+            <tr><td>installed consumers</td><td>3/3 pass</td><td>3/3 pass</td></tr>
+            <tr><td>installed CLI</td><td>pass</td><td>pass</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <h3>Ownership checked in code</h3>
+        <pre>Citlali
+├── observation orchestration
+├── mapmaking + FITS output
+└── calls kids::toltec reader
+
+Kidscpp
+├── NetCDF metadata + slices
+├── PSD
+└── timestream solver</pre>
+      </div>
+    </div>
+    <div class="callout">Every consumer configures against an installed prefix.
+      The gate also requires exact 16/7/6 totals, named real-data cases, and no
+      skipped tests; an in-tree build or absent fixture cannot pass accidentally.</div>
+  </section>
+
+  <section class="slide" data-title="Citlali observation lifecycle">
+    <div class="slide-head"><span class="section">06 · real execution</span><h2>Observation 149101 traverses the complete installed runtime</h2></div>
+    <div class="flow">
+      <div class="node"><strong>read-only inputs</strong><small>11 TolTEC NetCDF + telescope + APT</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Kidscpp</strong><small>metadata, slices, KID solve</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Citlali</strong><small>123 scans, OpenMP, maps</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>/tmp output</strong><small>raw + filtered FITS, PSD, indices</small></div>
+    </div>
+    <div class="cols-2">
+      <pre>tolteca_test_data/
+  └── tolteca_workdir/
+      ├── data/
+      │   ├── 11 TolTEC streams
+      │   ├── telescope stream
+      │   └── APT ECSV + tune reports
+      └── redu/
+          └── runtime YAML
+
+inputs are resolved at runtime
+outputs remain isolated under /tmp</pre>
+      <pre>cd tolteca_workdir
+citlali redu/citlali_o149101_0_2_c1.yaml
+
+result
+├── 123 / 123 scans
+├── a1100 raw + filtered FITS
+├── a1400 raw + filtered FITS
+├── a2000 raw + filtered FITS
+└── exit 0 in 2m52s
+
+FITS headers retain source + DAG provenance</pre>
+    </div>
+    <div class="callout"><code>just citlali-real-workdir</code> reproduces the
+      invocation, records the full log, and asserts the three filtered output
+      products. Science data is runtime input, never a package/build input.</div>
+  </section>
+
+  <section class="slide" data-title="Tlaloc dependency closure">
+    <div class="slide-head"><span class="section">07 · Tlaloc graph</span><h2>Tlaloc consumes one Tula component and owns its remaining dependencies</h2></div>
+    <div class="cols-2">
+      <pre>tlaloc
+├── tula+ecsv
+│   ├── tula-logging
+│   ├── tula-yaml-cpp
+│   ├── tula-csv-parser
+│   └── tula-eigen3
+├── tula-netcdf-cxx4
+├── tlaloc-katcp
+├── fftw
+└── mysql (client)</pre>
+      <div class="panel"><h3>Graph assertions</h3><ul><li>all unrelated Tula variants are disabled</li><li>Kidscpp is absent</li><li>Ceres is absent</li><li>KATCP source is pinned to a commit</li><li>the full readout executable is installed</li></ul></div>
+    </div>
+    <div class="callout">This is a separate application root, not an extension
+      of the Citlali graph. Spack composes it from the project-owned
+      <code>toltec.tlaloc</code>, <code>toltec.tula</code>, and
+      <code>toltec.tula_cmake</code> repositories. Revalidated 2026-08-25:
+      GCC 14.2 and LLVM 20.1.2 both installed <code>tlaloc_clip</code> and
+      passed the real tune reader test 1/1.</div>
+  </section>
+
+  <section class="slide" data-title="Tlaloc CMake boundary">
+    <div class="slide-head"><span class="section">07 · code contract</span><h2>The CMake boundary states exactly which layer supplies each target</h2></div>
+    <div class="cols-2">
+      <pre>find_package(tula 3.1 CONFIG REQUIRED
+  COMPONENTS ecsv)
+find_package(TulaNetcdfCxx4 1.0
+  CONFIG REQUIRED)
+
+target_link_libraries(tlaloc_clip PRIVATE
+  tula::ecsv
+  tula_deps::netcdf_cxx4
+  tlaloc_katcp
+  PkgConfig::FFTW
+  PkgConfig::MySQL)</pre>
+      <pre># package.py
+depends_on("tula@3.1:3+ecsv")
+depends_on("tula-netcdf-cxx4@1.0:1")
+depends_on("tlaloc-katcp@2018.07.30")
+depends_on("fftw@3.3.10:")
+depends_on("mysql@8.0+client_only")
+
+def cmake_args(self):
+    return [self.define(
+      "TLALOC_BUILD_TESTS", self.run_tests)]</pre>
+    </div>
+    <div class="callout">Tula provides tune-report semantics. Tlaloc retains
+      NetCDF writing, FFTW processing, database access, KATCP control, and all
+      remaining readout behavior. The old Kidscpp IQ/Rx model path is removed.</div>
+  </section>
+
+  <section class="slide" data-title="Tune report artifact flow">
+    <div class="slide-head"><span class="section">07 · data path</span><h2>A real tune report crosses the same public API used by downstream code</h2></div>
+    <div class="flow">
+      <div class="node"><strong>tune.txt</strong><small>ECSV header + 14 data columns</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>ECSVHeader</strong><small>delimiter, schema, YAML metadata</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>csv-parser</strong><small>stream data rows</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>ECSVTable</strong><small>typed column storage</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Tlaloc</strong><small>row-major values + Obs/SubObs/Scan</small></div>
+    </div>
+    <div class="cols-2">
+      <pre>auto header = ECSVHeader::read(input);
+auto rows = CsvParser(input)
+  .delimiter(header.delimiter());
+auto table = ECSVTable(std::move(header));
+table.load_rows(rows);</pre>
+      <div class="panel"><h3>Lifetime correction</h3><p><code>header_view()</code>, <code>header()</code>, <code>loader()</code>, and the loader reference index now return const references to table-owned state. Lazy column views no longer retain references into a destroyed temporary.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="CCfits adapter and provider matrix">
+    <div class="slide-head"><span class="section">08 · dependency adapter</span><h2>CCfits is the public contract; CFITSIO is its implementation dependency</h2></div>
+    <div class="flow">
+      <div class="node"><strong>CFITSIO 4.3+</strong><small>C implementation · external 4.3.1 or source 4.6.3</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>CCfits 2.6</strong><small>public C++ API · external or source</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>TulaCcfits</strong><small>installed config package</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>tula_deps::ccfits</strong><small>single relocatable target</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Citlali</strong><small>no repeated pkg-config discovery</small></div>
+    </div>
+    <div class="cols-2">
+      <pre>find_package(TulaCcfits 1 CONFIG REQUIRED)
+
+target_link_libraries(citlali
+  PUBLIC tula_deps::ccfits)</pre>
+      <div class="panel"><h3>Four independent Linux roots</h3><table><tr><th>Compiler</th><th>External</th><th>Source</th></tr><tr><td>GCC 14</td><td>/usr 4.3.1 + 2.6</td><td>Spack 4.6.3 + 2.6</td></tr><tr><td>LLVM 20</td><td>/usr 4.3.1 + 2.6</td><td>Spack 4.6.3 + 2.6</td></tr></table><p>Each case builds and runs a separate consumer that calls both APIs.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Deployment package structure">
+    <div class="slide-head"><span class="section">09 · deployment ownership</span><h2>The deployment package composes peers; recipes remain decentralized</h2></div>
+    <div class="cols-2">
+      <pre>cpp/
+├── tolteca_deploy/
+│   └── src/tolteca_deploy/data/spack/
+│       ├── development.yaml
+│       ├── config/{unity-devcontainer,unity-source,macos-homebrew-llvm20}/
+│       ├── fixtures/citlali-observation-149101.yaml
+│       ├── profiles/development/
+│       │   ├── linux-{gcc14,llvm20}/
+│       │   ├── unity-source-gcc14/
+│       │   └── macos-homebrew-llvm20*/
+│       └── releases/2026.08-rc1/
+│           ├── manifest.yaml
+│           └── profiles/
+│               ├── unity-gcc14/{spack.yaml,spack.lock}
+│               └── unity-llvm20/{spack.yaml,spack.lock}
+├── tula_cmake/
+│   ├── spack_repo/develop.yaml
+│   └── environments/acceptance/
+│       ├── development/{gcc14,llvm20}/
+│       └── snapshot/unity/{gcc14,llvm20}/
+├── tula/
+│   └── spack_repo/develop.yaml
+├── kidscpp/
+│   └── spack_repo/develop.yaml
+└── citlali/
+    └── spack_repo/develop.yaml</pre>
+      <div><div class="panel"><h3>Deployment-owned</h3><p>Mutable development defaults and immutable candidate/release composition are separate. A release bundle owns Spack, recipe-repository revisions, profiles, locks, and accepted lock digests. Each location keeps <code>spack/&lt;mode&gt;/[&lt;release&gt;/]&lt;profile&gt;/{spack.yaml,spack.lock,.spack-env/view}</code> together; store and cache are user-shared by default or location-scoped by policy.</p></div><div class="panel"><h3>Project-owned</h3><p>Source, CMake targets, package recipes, variants, patches, behavior tests, and local-development package paths remain in each project repository. Each recipe—not the deployment manifest—pins its package-source commit.</p></div></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Release candidate identity">
+    <div class="slide-head"><span class="section">09 · deployment ownership</span><h2>Recipe metadata, package source, and deployment composition are different identities</h2></div>
+    <div class="flow">
+      <div class="node"><strong>2026.08-rc1 manifest</strong><small>candidate status · Spack 1.2.2 · recipe repo commits</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>repository-owned recipe</strong><small>package version · immutable source commit</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>profile + spack.lock</strong><small>GCC 14 or LLVM 20 concrete DAG</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>installed location</strong><small>digest-verified graph + bound runtime identity</small></div>
+    </div>
+    <div class="cols-2">
+      <div class="panel"><h3>Why the commits differ</h3><pre>package source commit → metadata-only recipe commit → release manifest</pre><p>A recipe cannot select the commit containing itself. The later recipe commit intentionally points to the preceding clean source snapshot. Treating both as one <code>tested_commit</code> creates the false mismatch.</p></div>
+      <div class="panel"><h3>Candidate promotion</h3><pre>candidate → acceptance → same bundle marked released</pre><p>While development continues, <code>2026.08-rc1</code> remains a candidate. Promotion does not change source pins, recipe revisions, profiles, or locks. Any graph change creates a new candidate identity.</p></div>
+    </div>
+    <div class="callout">Development profiles remain mutable and may use sibling <code>develop:</code> paths. Release mode rejects repository overrides, verifies the packaged lock digest, and never concretizes with <code>--force</code>.</div>
+  </section>
+
+  <section class="slide" data-title="Clean machine and macOS LLVM workflow">
+    <div class="slide-head"><span class="section">10 · developer UX</span><h2>Bootstrap is explicit, local, and validates the exact compiler</h2></div>
+    <div class="cols-2">
+      <div class="panel"><h3>Linux stack-managed location</h3><pre>git clone .../tolteca_deploy.git
+bootstrap.sh \
+  --stack-root /work/toltec/opt/toltec_astro \
+  --preset unity_toltec_astro_dev
+source /work/toltec/opt/toltec_astro/
+  develop/dotbashrc
+just cpp-install</pre><p>The bootstrap needs only Git, curl, and system GCC 13. It installs uv, Python 3.13, and just below the stack; validates the exact root; then uses the ordinary location CLI. The location pins Spack 1.2.2 and keeps configuration, build stage, environment, lock, and view location-specific while sibling locations share the compiled store and download caches.</p></div>
+      <div class="panel"><h3>Native macOS arm64</h3><pre>brew install llvm@20 gcc cmake ninja
+/opt/homebrew/opt/llvm@20/bin/clang++ \
+  --version
+
+tolteca_deploy setup --config location.yaml
+cd LOCATION &amp;&amp; source dotbashrc
+just run update
+just cpp-install</pre><p>The packaged profile requires Homebrew LLVM 20.1.8 by absolute path. Before concretizing it runs native <code>spack compiler find /opt/homebrew/opt/gcc/bin</code>, so the current Homebrew GCC supplies only Fortran edges without a stale major-version path. The measured graph detected GCC 15.2.0 for Fortran and retained Clang 20.1.8 for C/C++. Spack builds exact <code>llvm-openmp@20.1.8</code>, isolated <code>pkgconf@2.5.1</code>, and source NetCDF C 4.9.3; Homebrew's global pkg-config directory cannot leak a different HDF5 into the graph. The installed Citlali CLI and its package checks pass. AppleClang and unversioned LLVM cannot silently satisfy it.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Darwin OpenMP artifact flow">
+    <div class="slide-head"><span class="section">10 · developer UX</span><h2>The graph chooses the runtime once and the installed target carries it forward</h2></div>
+    <pre>macOS packages.yaml                  Spack DAG
+┌──────────────────────────┐        ┌──────────────────────────────┐
+│ llvm external @20.1.8    │───────▶│ Homebrew clang++ 20.1.8     │
+│ llvm-openmp @20.1.8      │───────▶│ source-built libomp 20.1.8  │
+│ compiler find gcc prefix │───────▶│ detected Fortran frontend   │
+│ source pkgconf @2.5.1    │───────▶│ isolated NetCDF/HDF5 search │
+└──────────────────────────┘        └──────────────┬───────────────┘
+                                                  │
+                         tula-perflibs configure  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ FindOpenMP → -fopenmp + omp.h + libomp.dylib                   │
+│ TulaPerflibsConfig.cmake records those resolved inputs          │
+└──────────────────────────────┬──────────────────────────────────┘
+                               ▼
+ tula::perflibs → kidscpp → citlali → installed CLI</pre>
+    <div class="cols-2" style="margin-top:18px">
+      <div class="panel"><h3>Capability</h3><p><code>+openmp</code> / <code>~openmp</code> is a solved transitive package choice.</p></div>
+      <div class="panel"><h3>Provider policy</h3><p>Source build versus reviewed external is selected in <code>packages.yaml</code>; CMake targets do not change.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Clean-source artifact flow">
+    <div class="slide-head"><span class="section">11 · clean-source graph</span><h2>Immutable composition uses the same recipes without local development paths</h2></div>
+    <div class="flow">
+      <div class="node"><strong>Git commit snapshots</strong><small>exact SHA per TolTEC-owned package</small></div><div class="arrow">→</div>
+      <div class="node"><strong>project recipes</strong><small>versions, variants, dependency edges</small></div><div class="arrow">→</div>
+      <div class="node"><strong>platform policy</strong><small>reviewed externals + compiler bootstrap</small></div><div class="arrow">→</div>
+      <div class="node"><strong>spack.lock</strong><small>exact source commits and DAG hashes</small></div><div class="arrow">→</div>
+      <div class="node"><strong>installed view</strong><small>CLI + CMake packages</small></div>
+    </div>
+    <div class="cols-2" style="margin-top:18px">
+      <pre>development profile
+repositories.sources: [...]
+develop.sources: [...]
+lock: regenerate
+spack concretize --force</pre>
+      <pre>immutable deployment profile
+repositories.sources: [...]
+develop.sources: []
+lock: required
+spack concretize</pre>
+    </div>
+    <div class="callout">Both locked graphs were source-fetched by commit and installed in the Linux aarch64 devcontainer with no tag and no <code>dev_path</code>: GCC 14.2 and LLVM 20.1.2, both C++23. These prove clean-source composition but are not x86_64 Unity locks. Snapshots: TulaCMake <code>a7d411dc</code>, Tula <code>212717a2</code>, Kidscpp <code>06b3130b</code>, Citlali <code>91b7febc</code>.</div>
+  </section>
+
+  <section class="slide" data-title="Build and product provenance">
+    <div class="slide-head"><span class="section">11 · provenance</span><h2>Artifact identity is compiled; deployment identity is resolved at runtime</h2></div>
+    <pre>package source + compiler + concrete DAG
+                 │ build
+                 ▼
+TulaCMakeGitVersion.cmake ──▶ generated version.h
+                             semantic version · Git revision/state
+                             compiler · C++ standard · spec · DAG hash
+
+active location ──▶ TOLTECA_SPACK_PROFILE
+spack.lock ─SHA──▶ TOLTECA_SPACK_LOCK_SHA256
+                 │ runtime
+                 ├────────────┬─────────────┐
+                 ▼            ▼             ▼
+        citlali --version   NetCDF attrs   FITS/index metadata</pre>
+    <div class="callout">A Spack prefix may be shared by multiple environments. Runtime lookup prevents the installed binary from permanently claiming the profile and lock of whichever location built it first. For environment-sanitizing subprocess and scheduler boundaries, <code>LOCATION/bin/citlali</code> exports the exact environment, view, profile, and lock before executing the raw Spack-view binary.</div>
+    <pre>TolTECA / TolProj / Slurm
+          │ full executable path only
+          ▼
+LOCATION/bin/citlali            location-owned provenance wrapper
+          │ export identity; exec "$@"
+          ▼
+spack/&lt;profile&gt;/.spack-env/view/bin/citlali</pre>
+    <div class="cols-2"><div class="panel"><h3>Portable package tests</h3><p>Generated NetCDF and installed consumers run without the large science fixture.</p></div><div class="panel"><h3>Local observation gate</h3><p>A packaged fixture manifest validates required files/counts before the available 123-scan run. The data itself is not published.</p></div></div>
+  </section>
+
+  <section class="slide" data-title="Measured Unity boundary">
+    <div class="slide-head"><span class="section">12 · Unity deployment</span><h2>The site profile must describe the host that actually exists</h2></div>
+    <div class="cols-2">
+      <pre>toltec-cpu005
+├── Ubuntu 24.04 · x86_64
+├── GCC/G++ 13.3.0
+├── CMake 3.28.3
+├── GNU Make 4.3
+├── pkg-config 1.8.1
+├── /work       shared software
+└── /nese/toltec
+    ├── data_lmt
+    └── dataprod_toltec</pre>
+      <div><div class="panel"><h3>Verified host boundary</h3><p>System GCC 13.3 bootstraps managed GCC 14.2. GNU Make and pkg-config are reused; build tools retain source fallback when compiler, target, or version constraints prevent reuse. Every C++ link/runtime dependency is source-buildable.</p></div><div class="panel"><h3>NFS test boundary</h3><p>The optional <code>--test=all</code> audit passed 1,350,473 Perl assertions and failed only when a directory check observed NFS's deferred-delete <code>.nfs*</code> file. Unity therefore tests TolTEC roots; dependency feature matrices remain strict in the devcontainer.</p></div></div>
+    </div>
+    <div class="flow"><div class="node"><strong>system GCC 13</strong><small>bootstrap only</small></div><div class="arrow">→</div><div class="node"><strong>managed GCC 14.2</strong><small>main graph · cascadelake</small></div><div class="arrow">→</div><div class="node"><strong>source dependency DAG</strong><small>CCfits · NetCDF · Ceres · FFTW …</small></div><div class="arrow">→</div><div class="node"><strong>Citlali C++23</strong><small>5/5 root tests · clean launcher</small></div></div>
+    <div class="callout">Accepted development lock <code>cc3427db7207…ddca5</code>: TulaCMake <code>dcae20c</code>, Tula <code>aa16c85</code>, Kidscpp <code>498ece1</code>, Citlali <code>ceb4335</code>. The sanitized location launcher reports the matching profile, lock and DAG identities; the raw ELF has no unresolved libraries.</div>
+  </section>
+
+  <section class="slide" data-title="Unity locations and stable stack entries">
+    <div class="slide-head"><span class="section">12 · Unity deployment</span><h2>Concrete locations stay isolated behind concise TolTEC Astro entry points</h2></div>
+    <div class="cols-2">
+      <pre>/work/toltec/opt/toltec_astro/
+├── bootstrap/                 generated flat config
+├── cache/uv/                  shared uv cache
+├── logs/                      deployment logs
+├── tools/
+│   ├── bin/{uv,uvx,just}
+│   ├── python/                uv-managed Python
+│   └── uv-tools/
+├── locations/
+│   ├── release-A/{.venv,spack,bin,run}
+│   └── toltec_astro_dev/{...}
+├── default → locations/release-A
+├── develop → locations/toltec_astro_dev
+└── spack/{store,cache}</pre>
+      <div><div class="panel"><h3>Activation</h3><pre>source /work/toltec/opt/
+  toltec_astro/default/dotbashrc
+
+citlali --version</pre><p><code>.envrc</code> resolves the physical location. Repointing <code>default</code> cannot change an already-activated shell.</p></div><div class="panel"><h3>Subprocess boundary</h3><pre>Tolteca / TolProj / Slurm
+        ↓ full path
+LOCATION/bin/citlali
+        ↓ bind profile + lock
+Spack-view binary</pre><p>The callers remain unaware of <code>tolteca_deploy</code>.</p></div></div>
+    </div>
+    <div class="callout"><code>location.path</code> is the only concrete identity. Optional <code>stack: {alias: develop}</code> validates the layout; derives shared Spack, uv cache, Python, and tool paths; and atomically publishes the alias. The packaged bootstrap validates the exact stack boundary before setup. The existing <code>toltec_shared</code> tree is untouched.</div>
+  </section>
+
+  <section class="slide" data-title="Accepted system and deployment boundary">
+    <div class="slide-head"><span class="section">13 · measured state</span><h2>Development and immutable clean-source graphs pass</h2></div>
+    <div class="cols-2">
+      <div class="panel"><h3>Accepted gates</h3><ol><li>Tula focused component matrices</li><li>Kidscpp and Citlali development acceptance graph</li><li>native Unity GCC 14 development location</li><li>Citlali observation 149101 runtime</li><li>Tlaloc executable build + real tune reader</li><li>GCC 14 and LLVM 20, C++23</li></ol></div>
+      <div class="panel"><h3>Accepted clean-source gates</h3><ol><li>immutable package commits</li><li>required GCC 14 and LLVM 20 locks</li><li>no tag and no local <code>dev_path</code></li><li>package tests + installed CLI</li><li>runtime profile and lock checks</li></ol></div>
+    </div>
+    <div class="callout">Canonical detail:
+      <code>tula/design/COMPONENTS.md</code>,
+      <code>design/ARCHITECTURE.md</code>,
+      <code>design/SUPPORT_MATRIX.md</code>, and
+      <code>design/TESTING.md</code>, and
+      <code>tolteca_deploy/design/cpp_release.md</code>, and
+      <code>tolteca_deploy/design/unity_deployment.md</code>. Unity discovery,
+      compiler bootstrap, complete source installation, root tests, linkage,
+      and provenance launcher validation are complete for the mutable
+      development location. An immutable packaged Unity release lock,
+      observation-fixture gate, optional buildcache, and <code>default</code>
+      promotion remain explicit follow-up gates.</div>
+  </section>
+</main>
+
+<aside class="index" id="index-panel" aria-label="Slide index">
+  <h2>Technical reference index</h2>
+  <ol id="index-list"></ol>
+</aside>
+
+<nav class="nav" aria-label="Presentation navigation">
+  <button type="button" id="prev" aria-label="Previous slide">← Previous</button>
+  <button type="button" id="next" aria-label="Next slide">Next →</button>
+  <button type="button" id="index-button">Index</button>
+  <span class="nav-title" id="nav-title"></span>
+  <span class="spacer"></span>
+  <div class="progress" aria-hidden="true"><div id="progress"></div></div>
+  <span class="counter" id="counter"></span>
+</nav>
+
+<script>
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const indexPanel = document.getElementById("index-panel");
+  const indexList = document.getElementById("index-list");
+  let current = 0;
+
+  slides.forEach((slide, index) => {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    button.textContent = `${index + 1}. ${slide.dataset.title}`;
+    button.addEventListener("click", () => {
+      show(index);
+      indexPanel.classList.remove("open");
+    });
+    item.appendChild(button);
+    indexList.appendChild(item);
+  });
+
+  function show(index, updateHash = true) {
+    current = Math.max(0, Math.min(slides.length - 1, index));
+    slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+    document.getElementById("counter").textContent = `${current + 1} / ${slides.length}`;
+    document.getElementById("nav-title").textContent = slides[current].dataset.title;
+    document.getElementById("progress").style.width = `${((current + 1) / slides.length) * 100}%`;
+    document.getElementById("prev").disabled = current === 0;
+    document.getElementById("next").disabled = current === slides.length - 1;
+    if (updateHash) history.replaceState(null, "", `#${current + 1}`);
+  }
+
+  document.getElementById("prev").addEventListener("click", () => show(current - 1));
+  document.getElementById("next").addEventListener("click", () => show(current + 1));
+  document.getElementById("index-button").addEventListener("click", () => indexPanel.classList.toggle("open"));
+  document.addEventListener("keydown", event => {
+    if (["ArrowRight", "PageDown", " "].includes(event.key)) show(current + 1);
+    if (["ArrowLeft", "PageUp"].includes(event.key)) show(current - 1);
+    if (event.key === "Home") show(0);
+    if (event.key === "End") show(slides.length - 1);
+    if (event.key === "Escape") indexPanel.classList.remove("open");
+  });
+
+  const initial = Number(location.hash.slice(1));
+  show(Number.isFinite(initial) && initial > 0 ? initial - 1 : 0, false);
+</script>
+</body>
+</html>
