@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 320" role="img" aria-labelledby="versions-title versions-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:320px">
+<title id="versions-title">Version-group alternatives</title><desc id="versions-desc">A group has two exact realizations. Its main tag selects realization B.</desc>
+<defs><marker id="versions-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 796 250 H 724" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#versions-arrow)"/><rect x="718" y="206" width="84" height="28" fill="white"/><text x="760" y="228" text-anchor="middle" fill="#516276" font-size="22">selects</text><path d="M 304 100 H 396" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#versions-arrow)"/><rect x="314" y="56" width="72" height="28" fill="white"/><text x="350" y="78" text-anchor="middle" fill="#516276" font-size="22">member</text><path d="M 304 128 H 340 Q 348 128 348 136 V 242 Q 348 250 356 250 H 396" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#versions-arrow)"/><rect x="314" y="198" width="72" height="28" fill="white"/><text x="350" y="220" text-anchor="middle" fill="#516276" font-size="22">member</text><g><rect x="0" y="60" width="304" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="20" y="98" fill="#17283d" font-size="26" font-weight="600">Version group</text>
+<text x="20" y="132" fill="#516276" font-size="22">Stable logical result</text></g><g><rect x="396" y="50" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="416" y="88" fill="#17283d" font-size="26" font-weight="600">Realization A</text>
+<text x="416" y="122" fill="#516276" font-size="22">Exact product + run A</text></g><g><rect x="396" y="200" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="416" y="238" fill="#17283d" font-size="26" font-weight="600">Realization B</text>
+<text x="416" y="272" fill="#516276" font-size="22">Exact product + run B</text></g><g><rect x="796" y="200" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="816" y="238" fill="#17283d" font-size="26" font-weight="600">Tag: main</text>
+<text x="816" y="272" fill="#516276" font-size="22">Selects realization B</text></g>
+</svg>

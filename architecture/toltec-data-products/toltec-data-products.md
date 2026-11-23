@@ -3,494 +3,420 @@ marp: true
 theme: kids-review
 size: 16:9
 paginate: true
-title: 'Data products and publication'
-footer: 'Data products and publication · 2026-10-24'
+title: 'Data products: records, contexts and execution'
+footer: 'Data products · contexts and execution · 2026-11-22'
 ---
 <!-- _class: cover -->
 <!-- _paginate: false -->
 
-# Data products and publication
+# Data products
 
-<p class="subtitle">Identities, versions, storage, provenance and output actions</p>
+<p class="subtitle">Records, structured contexts and execution</p>
 
----
+From a described measurement to an exact, reusable selection
 
-# Contents
-
-<div class="cols">
-<div>
-
-[Product identity rules](#3)
-
-[Logical products and realized versions](#4)
-
-[Identity, name and storage](#5)
-
-[Filesystem projection](#6)
-
-[Run allocation and tags](#7)
-
-[Publication actions](#8)
-
-</div>
-<div>
-
-[Stored interface layout](#9)
-
-[Scientific data and external views](#10)
-
-[Metadata ownership](#11)
-
-[Resolved workflow configuration](#12)
-
-[Relational representation](#13)
-
-[Portable registration and reopening](#14)
-
-</div>
-</div>
-
-<p class="note"><a href="#15">API and structure reference</a></p>
+<!-- The record framework is shared. Raw observations are one domain-specific structured context built with it. -->
 
 ---
 
-# Product identity rules
+# A route from records to execution
 
-| Product | Namespace ownership | UID |
-|---|---|---|
-| Singleton observation | Shared across namespaces | `{uid_obs}` |
-| Singleton raw acquisition | Shared across namespaces | `{uid_raw_obs}` |
-| Version group | Global | `{logical_product_identifier}` |
-| Intrinsic calibration group | None | `dp_cal_group_<opening VNA quartet>` |
-| Realized non-singleton product | Producing namespace | `{version_group.uid}/{run_uid}` |
+<div class="cols"><div>
 
-- Every non-singleton product belongs to a version group.
-- Group type: `dp_version_group`; `meta.content_data_prod_type` is the type shared by its versions.
-- Each version owns its metadata, associations and sources.
-- `dp.name` reads `meta.name`; product display names need not be unique.
+[Products, items and relationships](#3)
 
-<p class="note">Run UUIDs make realized-product UIDs globally distinct. Each result belongs to its producing namespace. Versions from different namespaces share one logical group.</p>
+[Shared machinery and domain meaning](#4)
+
+[Exact identities and locations](#5)
+
+[Runs, stores and publication](#7)
+
+[Context terminology](#10)
+
+</div><div>
+
+[Dummy measurement context](#11)
+
+[Raw-observation context](#12)
+
+[Build from recorded history](#13)
+
+[Attach an exact model](#14)
+
+[Save and replay run inputs](#16)
+
+</div></div>
+
+<p class="note">Companion: <a href="tolteca-datamodels-input-workflow.html#3">Sources, file tables and data access</a>.</p>
+
+<!-- Use the contents links during review. The sequence starts with records, then moves to publication and structured contexts. -->
 
 ---
 
-# Logical products and realized versions
+# A product is a record with relationships
 
-<div class="diagram">
+<div class="diagram" data-diagram="product_records"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 320" role="img" aria-labelledby="product_records-title product_records-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:320px">
+<title id="product_records-title">Product record relationships</title><desc id="product_records-desc">A product contains items and has associations. Each association targets a product reference.</desc>
+<defs><marker id="product_records-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 290 60 H 410" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#product_records-arrow)"/><rect x="302" y="20" width="96" height="28" fill="white"/><text x="350" y="42" text-anchor="middle" fill="#516276" font-size="22">contains</text><path d="M 145 110 V 242 Q 145 250 153 250 H 410" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#product_records-arrow)"/><rect x="172" y="206" width="36" height="28" fill="white"/><text x="190" y="228" text-anchor="middle" fill="#516276" font-size="22">has</text><path d="M 700 250 H 820" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#product_records-arrow)"/><rect x="718" y="208" width="84" height="28" fill="white"/><text x="760" y="230" text-anchor="middle" fill="#516276" font-size="22">targets</text><g><rect x="0" y="10" width="290" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="20" y="48" fill="#17283d" font-size="26" font-weight="600">Product</text>
+<text x="20" y="82" fill="#516276" font-size="22">UID + domain metadata</text></g><g><rect x="410" y="10" width="290" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="430" y="48" fill="#17283d" font-size="26" font-weight="600">Item</text>
+<text x="430" y="82" fill="#516276" font-size="22">Metadata + source</text></g><g><rect x="410" y="200" width="290" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="430" y="238" fill="#17283d" font-size="26" font-weight="600">Association</text>
+<text x="430" y="272" fill="#516276" font-size="22">Type + relation fields</text></g><g><rect x="820" y="200" width="300" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="840" y="238" fill="#17283d" font-size="26" font-weight="600">Product reference</text>
+<text x="840" y="272" fill="#516276" font-size="22">UID + namespace</text></g>
+</svg></div>
 
-```mermaid
-flowchart LR
-    G[Version group managing T] -->|version| V1[Product V1: type T]
-    G -->|version| V2[Product V2: type T]
-    V1 -->|derived from| I[Input products]
-    V2 -->|derived from| I
-```
+`DataProdIndexBase` packages a product with locations, actors, runs and supporting
+product indexes. Its typed subclasses restore the domain's metadata schema.
 
-</div>
+Items are constituents of a product. Associations target other products.
+Neither relationship implies a filesystem directory or database row.
 
-| Product | Identity |
+<!-- A product can describe logical data without an artifact. Items describe data sources; associations connect products by exact reference. -->
+
+---
+
+# Infrastructure does not define an instrument
+
+| Shared `core.data_prod` | Instrument or scientific domain |
 |---|---|
-| `dp_obs`, `dp_raw_obs` | Singleton per entity, across namespaces and locations |
-| `dp_version_group` | Stable identity; manages versions of one declared DP type |
-| Realized product | Independently identified result of a run |
+| Product, item, reference, association, index | Product metadata and domain relationships |
+| Named group and version group contracts | Scientific roles and selection constraints |
+| Run, namespace, store, versioned publication | Placement and terminal-primary policy |
+| ArtifactBinding and RunInputSnapshot | Sweep ownership and consumer readiness |
 
-<p class="note">Generic named groups may mix types. Version groups require all version members to match their declared product type. DPA direction follows the operation: result or group → inputs.</p>
+`dp_obs`, `dp_raw_obs`, quartets and TolTEC calibration history belong to the
+LMT/TolTEC product schema. Core treats product UIDs as opaque identifiers.
+
+Dummy products use their own measurement and summary types. Their **observation
+reader** follows LMT conventions; their **product schema** does not reuse TolTEC types.
+
+<!-- The core does not define observation numbers or TolTEC product kinds. Dummy products exercise the same shared storage and version machinery. -->
 
 ---
 
-# Identity, name and storage
+# Identity, relationship and location are separate
 
-| Value | Role |
+| Value | Answers |
 |---|---|
-| `uid_obs`, `uid_raw_obs`, `uid_raw_obs_file` | Observation, acquisition and acquisition-file identities |
-| `run.uid` / `run.name` | Portable invocation UUID / namespace-unique readable directory name |
-| Namespace UUID | Producing output history |
-| Inventory + namespace path | Reported path, displayed as `taco:ql` or `unity:taco/ql` |
-| `dp.uid`, `meta.name` | Product identity / display name |
-| Location + source URI | Artifact access, independent of product namespace |
+| Product UID + namespace | Which exact product? |
+| Association type | What does the relationship mean? |
+| `is_primary` | Which logical entity groups this result for placement? |
+| Item metadata | Which constituent, format and producer? |
+| `source.location` + `source.path` | Where is this copy stored? |
+
+A copied index can keep the same product identity while its relative artifact
+locations resolve under a new directory. Supporting records do not automatically
+become context members or primary relationships.
+
+<!-- A reference identifies a record. A location resolves an item path. Relocation must not change product identity. -->
 
 ---
 
-# Filesystem projection
-
-<pre class="tree">dataprod_toltec/
-└── ql/
-    ├── namespace.yaml
-    ├── .runs/by_uid/<run_uid>/run.yaml     invocation record
-    └── 145609-0-1/
-        ├── dp_raw_obs.yaml
-        └── dp_raw_obs_proc/
-            ├── index.yaml                 version group + tags
-            └── 0007-nightly/              run.name
-                ├── index.yaml             exact product + provenance
-                ├── array.zarr/
-                └── …                      plots / feedback</pre>
-
-<p class="note">TCS is omitted in directory labels. Other masters remain. This is a filesystem projection of product relationships. Portable descriptors and registered inventories can recreate it.</p>
-
----
-
-# Run allocation and tags
-
-```yaml
-kids:
-  output:
-    enabled: true
-    namespace: ql
-    run:
-      name: {generator: counter, key: nightly}
-    tag: ql-main
-```
-
-- `run.uid` is supplied or generated once per invocation.
-- Counter state belongs to the namespace; consumed reservations are retained.
-- A tag selects one version-group membership across namespaces in that DPDB.
-- Local publishers choose labels such as `main` or `ql-main`.
-- Imported selections can use `taco:main`; qualification is explicit.
-
----
-
-# Publication actions
-
-<div class="diagram">
-
-```mermaid
-flowchart LR
- T[Working trees and artifacts] --> O[DataProdOutput]
- O --> F[Commit arrays, plots and indexes]
- F --> R[Optional DPDB registration]
- R --> J[Committed journal entry]
-```
-
-</div>
-
-| Setting / outcome | Behavior |
-|---|---|
-| `kids.output.enabled` | Materialize product files |
-| `kids.output.registration` | Invoke configured `data_prod.index` registration |
-| Registration failure | Published files remain available for retry |
-| Conflicting tag publication | Fail on the held publication lock |
-
----
-
-# Stored interface layout
-
-<pre class="tree">array.zarr/                       product scope
-├── toltec0/                      acquisition-file metadata
-│   ├── blocks/index/             block table
-│   ├── blocks/chan/              shared channel table
-│   ├── blocks/probe/             shared probe table
-│   ├── blocks/0/sweep/           reduced Dataset
-│   ├── blocks/0/sweep_check/     optional diagnostic datasets
-│   └── tolteca_kids/             acquisition step records
-└── toltec1/                      another selected interface</pre>
-
-<p class="note">Layout stays the same for one interface. Current writer covers selected KIDs interfaces. HWPR fits the interface-root contract; its product integration remains pending.</p>
-
----
-
-# Scientific data and external views
-
-| Content | Storage |
-|---|---|
-| Block index, channel/probe axes, reduced I/Q | Zarr datasets |
-| Installed D21 / PSD / sweep checks | Result subtrees in the same Zarr |
-| Sweep-check figures and quicklook feedback | External HTML / PNG / JSON, listed in the index |
-| Resolved workflow and input references | Run index provenance |
-| Finding tables, ECSV exports, diagnostic pickles | Further producer/exporter work; not part of this slice |
-
-<p class="note">No separate manifest.json. The index describes product sources; Zarr stores scientific structure and result metadata.</p>
-
----
-
-# Metadata ownership
-
-| Owner | Contents |
-|---|---|
-| `namespace.yaml` | Namespace identity, counter and actor records |
-| `.runs/by_uid/<run_uid>/run.yaml` | Invocation state and publication requests |
-| Group `index.yaml` | Version memberships and current tag selections |
-| Run `index.yaml` / DB `run.context` | Selected inputs, resolved workflow, publication provenance |
-| Interface and block attrs | Acquisition / block metadata |
-| `tolteca_kids` at each execution scope | Serialized step settings, completion and failures |
-| Analysis namespace attrs | Producing D21 / PSD configuration snapshots |
-
----
-
-# Resolved workflow configuration
-
-<p class="path">&lt;run.name&gt;/index.yaml → provenance.inputs[interface].config</p>
-
-| Run-index record | Contents |
-|---|---|
-| `inputs[interface].config` | Full workflow after defaults, conditions and overrides; disabled operations included |
-| `inputs[interface]` | Raw-file UID, requested source and resolved reader location |
-| `output` | Actual publication settings; `run.uid` identifies the invocation; `run.name` names its directory |
-| `runtime_info`, `software` | Publication host/process information and installed package versions |
-
-- A saved default of `1` replays as `1`, even if today's default is `2`.
-
-<p class="note">The relational owner is run.context; stable environment facts belong to actor.meta. Standalone steps may lack a workflow snapshot. Input checksums and an environment lock are not captured.</p>
-
-<!-- Table fields are relative to provenance; run.uid and run.name are at the index root.
-Execution depends on resolved values, input data and software environment.
-Original recipe text and explicit-versus-default field presence do not control replay. -->
-
----
-
-# Relational representation
-
-| Tables | Responsibility |
-|---|---|
-| `data_prod`, `data_prod_type` | Typed products, metadata and lifecycle |
-| `data_prod_assoc`, `data_prod_assoc_type` | Directed product relationships |
-| `run`, `data_prod_assoc_run`, `actor` | Invocations, edge provenance and attribution |
-| `data_prod_tag` | Current version-group selections |
-| `data_prod_item`, `location` | Product constituents, source references and access roots |
-| `data_prod_inventory`, `data_prod_inventory_namespace` / membership tables | Which inventory reports each namespace path and record |
-
----
-
-# Portable registration and reopening
-
-| Operation | Input | Result |
-|---|---|---|
-| Index registration | Portable YAML + namespace descriptor | DPDB records and associations |
-| Inventory registration | Portable record batch | Products, runs, sources and reporting ownership |
-| Scientific reopening | Registered source + location | Selected interface / block views |
-| Filesystem export | Registered inventory projection | Portable product-store tree |
-
-- Local database primary keys never become portable identities.
-- Relative locations resolve against the containing index.
-- Product queries do not require the original index files after registration.
-- Scientific payloads remain separate from metadata registration.
-
----
-
-<!-- _class: section-title -->
-# API and structure reference
-
-Detailed interfaces and data layouts
-
----
-
-# Primary access
-
-<div class="cols">
-<div>
-
-### Typed association in the product
-
-```yaml
-assocs:
-  - data_prod_assoc_type:
-      dpa_raw_obs_proc_raw_obs
-    uid: tcs-145609-0-1
-    is_primary: true
-    context: {}
-```
-
-<p class="note">is_primary selects a typed link; default False.</p>
-
-</div>
-<div>
-
-### Resolve the terminal primary
+# An artifact binding pins a product item
 
 ```python
-# Portable indexes: supply a reference lookup.
-primary = index.product.get_primary(
-    products.__getitem__
+from tolteca_datamodels.core.data_prod import ArtifactBinding
+
+binding = ArtifactBinding(
+    product=index.product.reference,
+    producer="dummy_instru.summarize_counters",
+    name="counter_summary", format="ecsv",
+)
+item = binding.resolve(index)
+uri = index.get_source_uri(item.source)
+```
+
+Resolution checks exact product identity, unique selection and producing-run
+attribution. It reads no payload and follows no live tag.
+
+Optional `interface`, `scope` and `source` refine the selection.
+`resolve_path(index)` additionally verifies a local file and recorded checksum.
+
+<!-- ArtifactBinding now lives in core.data_prod. It selects exactly one item and checks run attribution. A domain binding adds its own ownership checks. -->
+
+---
+
+# Three different meanings of “save”
+
+| Operation | Effect | Requires a producing run? |
+|---|---|---|
+| `index.write(path)` | Persist records in ordinary index YAML | No |
+| `WorkflowRun` + `store.write_run(run)` | Retain an execution and its context | The run itself |
+| `store.materialize(index, ...)` | Publish a result realization and version membership | Yes |
+
+Logical acquisitions, named groups and structured contexts can be ordinary
+index records. Saving them does not allocate a result version.
+
+A run is an execution. A store run supplies that execution's local directory name.
+A namespace identifies the store's scoped product records.
+
+<!-- Keep document persistence, execution lifecycle and publication distinct. Saving YAML alone does not register or publish a result. -->
+
+---
+
+# Version groups select alternative results
+
+<div class="diagram" data-diagram="versions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 320" role="img" aria-labelledby="versions-title versions-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:320px">
+<title id="versions-title">Version-group alternatives</title><desc id="versions-desc">A group has two exact realizations. Its main tag selects realization B.</desc>
+<defs><marker id="versions-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 796 250 H 724" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#versions-arrow)"/><rect x="718" y="206" width="84" height="28" fill="white"/><text x="760" y="228" text-anchor="middle" fill="#516276" font-size="22">selects</text><path d="M 304 100 H 396" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#versions-arrow)"/><rect x="314" y="56" width="72" height="28" fill="white"/><text x="350" y="78" text-anchor="middle" fill="#516276" font-size="22">member</text><path d="M 304 128 H 340 Q 348 128 348 136 V 242 Q 348 250 356 250 H 396" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#versions-arrow)"/><rect x="314" y="198" width="72" height="28" fill="white"/><text x="350" y="220" text-anchor="middle" fill="#516276" font-size="22">member</text><g><rect x="0" y="60" width="304" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="20" y="98" fill="#17283d" font-size="26" font-weight="600">Version group</text>
+<text x="20" y="132" fill="#516276" font-size="22">Stable logical result</text></g><g><rect x="396" y="50" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="416" y="88" fill="#17283d" font-size="26" font-weight="600">Realization A</text>
+<text x="416" y="122" fill="#516276" font-size="22">Exact product + run A</text></g><g><rect x="396" y="200" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="416" y="238" fill="#17283d" font-size="26" font-weight="600">Realization B</text>
+<text x="416" y="272" fill="#516276" font-size="22">Exact product + run B</text></g><g><rect x="796" y="200" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="816" y="238" fill="#17283d" font-size="26" font-weight="600">Tag: main</text>
+<text x="816" y="272" fill="#516276" font-size="22">Selects realization B</text></g>
+</svg></div>
+
+The group has a stable logical identity and a declared member product type.
+Each realization has its own exact reference and producing run.
+
+A tag such as `main` selects one member. An exact artifact binding retains the
+chosen member even after the tag moves.
+
+<!-- The group identifies a logical result; each member identifies one realization. A tag is a changing choice, while an exact reference is pinned. -->
+
+---
+
+# Publish a prepared dummy result
+
+```python
+from tolteca_datamodels.core.data_prod import WorkflowRun
+from tolteca_dummy_instru.data_prod import DummyDataProdStore
+
+store = DummyDataProdStore(output / "store", namespace="nightly")
+with WorkflowRun.create() as run:
+    draft = make_draft(run)  # Prepared summary; stable logical result UID.
+    with store.materialize(draft, run_name="first") as result:
+        write_summary_artifact(result, result.base_path)
+store.write_run(run)
+```
+
+The writer runs on an independent staged index. Successful exit installs the
+realization, group membership and selected tag. Failure leaves the old selection.
+
+<p class="note">Helper definitions are in the runnable probe and the dummy-instrument example. No analysis is hidden inside materialize().</p>
+
+<!-- This example runs the dummy voltage workflow and publishes a versioned result. Payload units remain in the ECSV artifact. -->
+
+---
+
+# A context is a structured product
+
+| Term | Meaning |
+|---|---|
+| Context | Product describing selections that belong together |
+| Member | One product selection with a declared role |
+| Member key | Local name within this context |
+| Member selection | Part of a product: interface, block, statistic or artifact |
+| Context binding | Relationship between member keys |
+| Artifact binding | Selection of one artifact within an exact product |
+
+A context schema constrains the combination. Its associations own product
+references and roles. Supporting indexes supply records for resolution.
+
+Context construction is not execution, payload validation or publication.
+
+<!-- A context is itself a product. Membership roles describe its parts; bindings connect those parts by local member key. -->
+
+---
+
+# Dummy: measurement plus selected summary
+
+<div class="diagram small" data-diagram="dummy_context"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 220" role="img" aria-labelledby="dummy_context-title dummy_context-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:220px">
+<title id="dummy_context-title">Dummy context binding</title><desc id="dummy_context-desc">The mean summary member names the voltage measurement member it summarizes.</desc>
+<defs><marker id="dummy_context-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 700 110 H 420" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#dummy_context-arrow)"/><rect x="500" y="66" width="120" height="28" fill="white"/><text x="560" y="88" text-anchor="middle" fill="#516276" font-size="22">summarizes</text><g><rect x="60" y="60" width="360" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="80" y="98" fill="#17283d" font-size="26" font-weight="600">signal · measurement</text>
+<text x="80" y="132" fill="#516276" font-size="22">Acquisition / voltage stream</text></g><g><rect x="700" y="60" width="360" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="720" y="98" fill="#17283d" font-size="26" font-weight="600">mean · summary</text>
+<text x="720" y="132" fill="#516276" font-size="22">Result / mean_voltage</text></g>
+</svg></div>
+
+The summary member names the voltage measurement it summarizes.
+
+```python
+context_path = write_measurement_context(index, output / "context.yaml")
+from tolteca_dummy_instru.data_prod import DummyDataProdIndex
+restored = DummyDataProdIndex.read(context_path)
+products = {i.product.reference: i.product for i in restored.products}
+members = restored.product.resolve_context_members(products.__getitem__)
+```
+
+The scalar Quantity is available without opening the ECSV artifact.
+
+<!-- The summary member names the measurement member it summarizes. This is a domain rule expressed with shared product relationships. -->
+
+---
+
+# Raw observations: source, sweep and model roles
+
+<div class="diagram" data-diagram="raw_context"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 340" role="img" aria-labelledby="raw_context-title raw_context-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:340px">
+<title id="raw_context-title">Raw-observation context bindings</title><desc id="raw_context-desc">The source names a model and a sweep. The model names the same sweep. Labels are local member keys.</desc>
+<defs><marker id="raw_context-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 320 70 H 800" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#raw_context-arrow)"/><rect x="506" y="26" width="108" height="28" fill="white"/><text x="560" y="48" text-anchor="middle" fill="#516276" font-size="22">model_key</text><path d="M 160 120 V 262 Q 160 270 168 270 H 400" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#raw_context-arrow)"/><rect x="190" y="226" width="180" height="28" fill="white"/><text x="280" y="248" text-anchor="middle" fill="#516276" font-size="22">calibration_key</text><path d="M 960 120 V 262 Q 960 270 952 270 H 720" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#raw_context-arrow)"/><rect x="750" y="226" width="180" height="28" fill="white"/><text x="840" y="248" text-anchor="middle" fill="#516276" font-size="22">calibration_key</text><g><rect x="0" y="20" width="320" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="20" y="58" fill="#17283d" font-size="26" font-weight="600">signal · source</text>
+<text x="20" y="92" fill="#516276" font-size="22">Raw acquisition / block 1</text></g><g><rect x="800" y="20" width="320" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="820" y="58" fill="#17283d" font-size="26" font-weight="600">fit · model</text>
+<text x="820" y="92" fill="#516276" font-size="22">Processed result / artifact</text></g><g><rect x="400" y="220" width="320" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="420" y="258" fill="#17283d" font-size="26" font-weight="600">cal · sweep</text>
+<text x="420" y="292" fill="#516276" font-size="22">Raw acquisition / block 0</text></g>
+</svg></div>
+
+A source names its recorded calibration sweep and optional fitted model by local
+member key. The model names the same sweep. Several sources may share a sweep.
+
+The context UID is separate from the raw-acquisition UID.
+Whole-interface selections are for ancillary data; detector inputs select blocks.
+
+<!-- The source and fitted model both name the same calibration sweep. A model may serve several sources, but each source must retain its own recorded lineage. -->
+
+---
+
+# Build the context from recorded history
+
+```python
+from tolteca_datamodels.data_prod.context import RawObsContextSourceAssoc
+from tolteca_datamodels.data_prod.metadata import RawObsContextMeta
+from tolteca_datamodels.raw_obs_context import build_context_product
+
+product = build_context_product(
+    [RawObsContextSourceAssoc(
+        uid=raw.product.uid, member_key="signal", interface="toltec0", block=1,
+    )],
+    indexes=indexes, uid="context:review-A",
+    meta=RawObsContextMeta(data_prod_type="dp_raw_obs_context", name="Review A"),
+)
+```
+
+The caller chooses source blocks. Recorded acquisition history determines their
+sweeps. The builder validates those relations, changes no input and opens no payload.
+
+<p class="note">Here the acquired history is sweep block 0 followed by timestream block 1. In a file workflow, build_raw_obs_batch supplies the acquisition records.</p>
+
+<!-- The builder follows recorded block history. It does not invent a missing calibration sweep, run a fit or open payload data. -->
+
+---
+
+# Attach a selected fitted model
+
+```python
+from tolteca_datamodels.raw_obs_context import (
+    KidsModelBinding, bind_context_models,
 )
 
-# ORM product: keep the session open.
-primary = product.primary
-primary_uid = primary.uid
+choice = KidsModelBinding(
+    product=model_index.product.reference,
+    producer="kidscpp.fit", name="model",
+)
+bound = bind_context_models(product, {"signal": choice}, indexes=indexes)
 ```
 
+The result is an independent context copy. The source's calibration stays fixed;
+its model choice changes. Existing members and unrelated relationships remain.
 
-</div>
-</div>
+`KidsModelBinding` validates processed-acquisition and sweep ownership, then uses
+the shared `ArtifactBinding` to select the exact ECSV artifact.
+
+<!-- The caller chooses the model product. Binding validates ownership and records the choice without mutating the input context. -->
 
 ---
 
-# Portable index — current format
+# Model attachment is a selection operation
 
-| Index field | Contract |
+| This operation establishes | The consumer still establishes |
 |---|---|
-| `format_version` | Portable YAML format version |
-| `product` | Identity, typed metadata, data items, associations and tags |
-| `locations` | Named storage roots |
-| `namespace`, `actors`, `run` | Supporting identity and attribution records |
-| `provenance` | Producing workflow and selected inputs |
-| `products` | Related portable product documents |
+| Exact product and artifact | Payload can be loaded |
+| Producing run | Scientific fit is suitable |
+| Model derives from the recorded sweep | Channels and parameter meanings apply |
+| Source and model bind the same sweep | Required model coverage is complete |
 
-- Read a named YAML file or a folder containing `index.yaml`.
-- Relative location roots resolve against the containing index; source URIs resolve against that root.
-- YAML contains no database primary keys; reading it does not open numerical payloads.
+A source may remain model-free for inspection. A pipeline that needs fitted
+models checks its readiness before running.
 
----
+`bind_context_models()` neither performs a fit nor discovers a “best” model.
+It records a choice supplied by the caller.
 
-# Product contents and supporting models
-
-| Model | Responsibility |
-|---|---|
-| `DataProd` | Identity, metadata, constituents, relationships and tags |
-| `DataProdItem` | One constituent with its own metadata and source |
-| `DataProdSource` | URI, location reference and storage verification facts |
-| `Location` | Root used to resolve relative source URIs |
-| `Actor` | Stable attribution for the producing environment |
-| `WorkflowRun` | One invocation and its resolved execution context |
-
-<p class="note">A raw observation can contain telescope and KIDs files. A processing product can also contain calibration inputs and generated artifacts. Each item retains its own metadata.</p>
+<!-- Attachment validates records and relationships. The consumer validates the actual scientific payload before use. -->
 
 ---
 
-# Publication and registration APIs
+# Persist the context; snapshot a run's choices
 
-| API | Responsibility |
-|---|---|
-| `DataProdIndex` | Portable product document with supporting records |
-| `DataProdBatch` | Validated submission: metadata and multiple indexes / runs |
-| `DataProdStore` | Filesystem layout, run allocation and publication |
-| `store.create_run()` | Yield a live `WorkflowRunContext`; reserve and finalize the run |
-| `store.publish(..., run=...)` | Stage and commit one product publication |
-| `ingest_data_prod_batch(session, batch)` | Register portable contents in a caller-owned transaction |
+```python
+from tolteca_datamodels.data_prod import DataProdIndex
+from tolteca_datamodels.raw_obs_context import prepare_context_run_inputs
 
-<p class="note">One run can publish several products. A batch can submit products from several runs. File publication and database registration are separate operations.</p>
-
----
-
-# Metadata owners in the relational model
-
-| Information | Owner |
-|---|---|
-| Stable client and deployment environment | `actor.meta` |
-| Namespace identity and counter | `data_prod_namespace` |
-| Path in one inventory | `data_prod_inventory_namespace` |
-| Run state and invocation facts | `run`, `run.meta` |
-| Full resolved workflow and selected inputs | `run.context` |
-| Edge-specific execution context | `data_prod_assoc_run.context` |
-| Product facts, including declared product type | `data_prod.meta` |
-| Current selection; artifact access | `data_prod_tag`; `data_prod_item` + `location` |
-
-<p class="note">Step and analysis snapshots stay in Zarr. Full workflow config belongs to the run; edge context records only execution details for that association.</p>
-
----
-
-# Result configuration snapshots
-
-| Result owner | Snapshot location | Access |
-|---|---|---|
-| Sweep reducer | `blocks/<block>/sweep` dataset attrs | Stored calculation settings, such as uncertainty calculation |
-| D21 analysis | Its namespace attrs under `blocks/<block>` | D21 view's `.d21_analysis` |
-| PSD analysis | Its namespace attrs under `blocks/<block>` | PSD view's `.psd_analysis` |
-
-- Each analysis namespace owns its snapshot and result datasets.
-- Reused results retain their producing configuration.
-
-<p class="note">A workflow configuration describes the request. Installed results and saved execution records establish what is available.</p>
-
-<!-- Result snapshots describe the calculation that produced the arrays.
-Step selection, aliases and force controls belong to step records. -->
-
----
-
-# Actors and record attribution
-
-| Owner | Fields and responsibility |
-|---|---|
-| `actor` | Local `pk`, portable `uid`, name, immutable `meta`, creation time |
-| Stable actor facts | Hostname, user and deployment/environment facts shared across runs |
-| Mutable records | `created_at`, `created_by_fk`, `updated_at`, `updated_by_fk` |
-| `run` | Invocation-specific settings, selected inputs, commands and timing |
-
-- Changed recorded environment facts select a different actor.
-- Import preserves attribution and remaps actor FKs.
-- Idempotent import leaves modification time unchanged.
-
-<p class="note">Actors have no recursive creator/updater FKs. Actor metadata/reuse and historical attribution need migration rules. Generic DB auditing is deployment infrastructure; EventLog is removed from the runtime ORM.</p>
-
----
-
-# Runs link to product associations
-
-<div class="diagram small">
-
-```mermaid
-flowchart LR
-    R[run] --> J[data_prod_assoc_run]
-    J --> E[data_prod_assoc]
-    E -->|source| C[Result C]
-    E -->|target| A[Input A or B]
+context_index = DataProdIndex(product=bound, products=list(indexes.values()))
+context_index.write(output / "raw-context.yaml")
+snapshot = prepare_context_run_inputs([context_index])
+with WorkflowRun.create(
+    context=snapshot.model_dump(mode="json", round_trip=True),
+) as run:
+    selected_context, = snapshot.selected_indexes
 ```
 
-</div>
+The snapshot retains selected context references and supporting indexes, including
+producing runs. Relative location roots must first be bound to an index directory.
 
-| Junction field | Contract |
-|---|---|
-| `run_fk`, `data_prod_assoc_fk` | Composite primary key |
-| `context` | Execution details specific to this edge |
-| `created_at`, `created_by_fk` | Attribution of this link |
+It does not copy payloads or turn supporting records into selected inputs.
 
-<p class="note">A + B → R → C links R to C → A and C → B. Full workflow config stays on run.context. Relation type distinguishes derivation from grouping; no run_data_prod table is needed.</p>
+<!-- Ordinary context persistence saves the context product and supporting records. A run snapshot retains the choices used for one execution. -->
 
 ---
 
-# Tags select outgoing associations
+# Readback restores choices; consumers resolve them
 
-<div class="cols">
-<div>
+```python
+from tolteca_datamodels.core.data_prod import RunInputSnapshot
+from tolteca_datamodels.raw_obs_context import resolve_context_members
 
-### Product graph
-
-<pre>A       version group
-A/1     realized product
-A/2     realized product
-
-E1: A → A/1
-E2: A → A/2</pre>
-
-</div>
-<div>
-
-### `data_prod_tag`
-
-| Owning DP | Label | Selected DPA |
-|---|---|---|
-| A | main | E1 |
-| A | test | E2 |
-
-- Unique `(data_prod_fk, label)`.
-- Selected DPA originates at the owner.
-- Several labels may select one edge.
-- Null selection represents an empty tag.
-
-</div>
-</div>
-
-<p class="note">The group is global; selected versions retain their producing namespaces. Selection targets a completed version of the declared product type. Creator/modifier fields record current attribution; append-only tag-selection history remains a deferred proposal.</p>
-
----
-
-# Archive handoff
-
-<p class="path">TolTEC adapter and packaging are deferred</p>
-
-<div class="diagram small">
-
-```mermaid
-flowchart LR
-    R[Pinned run] -->|artifacts| A[Archive preparation]
-    M[Telescope + project] -->|metadata| A
-    A -->|index + files| D[dvpipe]
+saved_run = WorkflowRun.model_validate_json(run.model_dump_json(round_trip=True))
+saved = RunInputSnapshot[DataProdIndex].from_run(saved_run)
+selected_context, = saved.selected_indexes
+members = resolve_context_members(selected_context.product, saved.indexes)
 ```
 
-</div>
+Readback validates saved records. Explicit member resolution checks context
+relationships; the consumer opens selected data and performs its own readiness checks.
 
-| Archive material | Role |
-|---|---|
-| `LmtMetadataBlock` YAML | Project, observation, instrument, bands, processing level and release metadata |
-| dvpipe dataset index | Citation/dataset metadata and concrete file inventory |
-| Packaged payloads | Selected run’s arrays and export artifacts; Zarr directory packaging still to define |
+Moving a live tag later does not replace the model recorded in this snapshot.
 
-<p class="note">Product index, LMT metadata YAML and dvpipe dataset index are distinct contracts. Readout tone frequency is not astronomical band frequency.</p>
+<!-- Readback reconstructs selections. Opening data and applying scientific models belong to consumers with live resource lifetimes. -->
+
+---
+
+# Current boundaries and further integration
+
+<div class="cols"><div>
+
+### Implemented product path
+
+Build source/sweep context products.
+
+Attach exact model artifacts.
+
+Save ordinary indexes and run snapshots.
+
+Resolve saved members independently of payload I/O.
+
+</div><div>
+
+### Existing consumer context
+
+The older nested `RawObsContext` still serves consumers with representation,
+stub, APT, pointing and photometry choices.
+
+Those roles are not yet all expressed by the source/sweep/model product schema.
+
+</div></div>
+
+<p class="note">Contracts: tolteca/design/spec/data-products.md. The shared artifact-binding implementation now belongs to core.data_prod; consumer migration remains a separate review.</p>
+
+<!-- The product path is implemented. Existing nested RawObsContext consumers still carry additional roles; their migration remains separate work. -->

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 280" role="img" aria-labelledby="owners-title owners-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:280px">
+<title id="owners-title">Domain modules depend on shared machinery</title><desc id="owners-desc">LMT, TolTEC and dummy each depend on core; root entry points assemble their registrations.</desc>
+<defs><marker id="owners-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 162 100 V 160" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#owners-arrow)"/><rect x="173" y="114" width="48" height="28" fill="white"/><text x="197" y="136" text-anchor="middle" fill="#516276" font-size="22">uses</text><path d="M 560 100 V 160" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#owners-arrow)"/><rect x="571" y="114" width="48" height="28" fill="white"/><text x="595" y="136" text-anchor="middle" fill="#516276" font-size="22">uses</text><path d="M 958 100 V 160" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#owners-arrow)"/><rect x="969" y="114" width="48" height="28" fill="white"/><text x="993" y="136" text-anchor="middle" fill="#516276" font-size="22">uses</text><g><rect x="0" y="0" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="20" y="38" fill="#17283d" font-size="26" font-weight="600">LMT</text>
+<text x="20" y="72" fill="#516276" font-size="22">Telescope conventions</text></g><g><rect x="398" y="0" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="418" y="38" fill="#17283d" font-size="26" font-weight="600">TolTEC</text>
+<text x="418" y="72" fill="#516276" font-size="22">KIDs and HWPR layouts</text></g><g><rect x="796" y="0" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="816" y="38" fill="#17283d" font-size="26" font-weight="600">Dummy instrument</text>
+<text x="816" y="72" fill="#516276" font-size="22">Reference extension</text></g><g><rect x="0" y="160" width="1120" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="20" y="198" fill="#17283d" font-size="26" font-weight="600">core + Tollan</text>
+<text x="20" y="232" fill="#516276" font-size="22">Shared validation, projection, dispatch, stores and query machinery</text></g>
+</svg>

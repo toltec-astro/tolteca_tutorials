@@ -1,11 +1,13 @@
 # Architecture decks
 
 Open the [deck index](../slides/index.html) for HTML, PDF, source and evidence links.
-Each domain architecture deck has 14 main slides. Detailed API and structure references follow in
-appendices where needed. The telescope deck remains a focused instrument example.
+The data-model deck has 17 slides; the product/context deck has 18. Other decks
+retain their own main sequence and references. The telescope deck is a focused
+instrument example.
 
 Audience: developers reviewing architecture, APIs and operational boundaries.
-Status: maintained descriptions of the current implementation, reviewed 2026-10-19;
+Status: the data-model and product/context decks were refreshed on 2026-11-22;
+other decks retain their recorded review dates;
 verification and deployment limits are recorded in each companion evidence file.
 These are developer design resources, not end-user operational instructions.
 

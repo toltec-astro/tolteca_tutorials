@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 220" role="img" aria-labelledby="dummy_context-title dummy_context-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:220px">
+<title id="dummy_context-title">Dummy context binding</title><desc id="dummy_context-desc">The mean summary member names the voltage measurement member it summarizes.</desc>
+<defs><marker id="dummy_context-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 700 110 H 420" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#dummy_context-arrow)"/><rect x="500" y="66" width="120" height="28" fill="white"/><text x="560" y="88" text-anchor="middle" fill="#516276" font-size="22">summarizes</text><g><rect x="60" y="60" width="360" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="80" y="98" fill="#17283d" font-size="26" font-weight="600">signal · measurement</text>
+<text x="80" y="132" fill="#516276" font-size="22">Acquisition / voltage stream</text></g><g><rect x="700" y="60" width="360" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="720" y="98" fill="#17283d" font-size="26" font-weight="600">mean · summary</text>
+<text x="720" y="132" fill="#516276" font-size="22">Result / mean_voltage</text></g>
+</svg>

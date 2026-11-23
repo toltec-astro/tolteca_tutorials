@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 320" role="img" aria-labelledby="product_records-title product_records-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:320px">
+<title id="product_records-title">Product record relationships</title><desc id="product_records-desc">A product contains items and has associations. Each association targets a product reference.</desc>
+<defs><marker id="product_records-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 290 60 H 410" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#product_records-arrow)"/><rect x="302" y="20" width="96" height="28" fill="white"/><text x="350" y="42" text-anchor="middle" fill="#516276" font-size="22">contains</text><path d="M 145 110 V 242 Q 145 250 153 250 H 410" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#product_records-arrow)"/><rect x="172" y="206" width="36" height="28" fill="white"/><text x="190" y="228" text-anchor="middle" fill="#516276" font-size="22">has</text><path d="M 700 250 H 820" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#product_records-arrow)"/><rect x="718" y="208" width="84" height="28" fill="white"/><text x="760" y="230" text-anchor="middle" fill="#516276" font-size="22">targets</text><g><rect x="0" y="10" width="290" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="20" y="48" fill="#17283d" font-size="26" font-weight="600">Product</text>
+<text x="20" y="82" fill="#516276" font-size="22">UID + domain metadata</text></g><g><rect x="410" y="10" width="290" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="430" y="48" fill="#17283d" font-size="26" font-weight="600">Item</text>
+<text x="430" y="82" fill="#516276" font-size="22">Metadata + source</text></g><g><rect x="410" y="200" width="290" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="430" y="238" fill="#17283d" font-size="26" font-weight="600">Association</text>
+<text x="430" y="272" fill="#516276" font-size="22">Type + relation fields</text></g><g><rect x="820" y="200" width="300" height="100" rx="12" fill="#f4f7fa" stroke="#245bc0" stroke-width="2"/>
+<text x="840" y="238" fill="#17283d" font-size="26" font-weight="600">Product reference</text>
+<text x="840" y="272" fill="#516276" font-size="22">UID + namespace</text></g>
+</svg>

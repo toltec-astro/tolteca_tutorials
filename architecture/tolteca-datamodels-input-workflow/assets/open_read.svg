@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 200" role="img" aria-labelledby="open_read-title open_read-desc" style="font-family:Arial,Helvetica,sans-serif;width:100%;max-height:200px">
+<title id="open_read-title">Resource and data access</title><desc id="open_read-desc">Source; io_obj; accessor_obj</desc>
+<defs><marker id="open_read-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#516276"/></marker></defs>
+<path d="M 324 100 H 396" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#open_read-arrow)"/><rect x="336" y="50" width="48" height="28" fill="white"/><text x="360" y="72" text-anchor="middle" fill="#516276" font-size="22">open</text><path d="M 724 100 H 796" fill="none" stroke="#516276" stroke-width="2" marker-end="url(#open_read-arrow)"/><rect x="736" y="50" width="48" height="28" fill="white"/><text x="760" y="72" text-anchor="middle" fill="#516276" font-size="22">bind</text><g><rect x="0" y="50" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="20" y="88" fill="#17283d" font-size="26" font-weight="600">Source</text>
+<text x="20" y="122" fill="#516276" font-size="22">Path or borrowed resource</text></g><g><rect x="400" y="50" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="420" y="88" fill="#17283d" font-size="26" font-weight="600">io_obj</text>
+<text x="420" y="122" fill="#516276" font-size="22">Format-specific container</text></g><g><rect x="796" y="50" width="324" height="100" rx="12" fill="#f4f7fa" stroke="#007c83" stroke-width="2"/>
+<text x="816" y="88" fill="#17283d" font-size="26" font-weight="600">accessor_obj</text>
+<text x="816" y="122" fill="#516276" font-size="22">Domain-specific data view</text></g>
+</svg>
